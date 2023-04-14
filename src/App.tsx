@@ -1,24 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h3 style={{ "fontSize": "var(--header-font-size)" }}>Header</h3>
+      <h3 style={{ "fontSize": "var(--subheader-font-size)" }}>Subheader</h3>
+      <p style={{ "fontSize": "var(--body-font-size)" }}>body</p>
+      <p style={{ "fontSize": "var(--body-font-size)", "color":"var(--grey-font-color)" }}>grey body</p>
+
     </div>
   );
 }
