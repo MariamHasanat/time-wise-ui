@@ -5,13 +5,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/* <Header/> */}
+        {/* <Header/> */}
         <Routes>
           {/* <Route path='/login' element={<Login/>}/> */}
           {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
           {/* <Route path='/timeTracker' element={<TimeTracker/>}/> */}
           {/* <Route path='/projects' element={<Projects/>}/> */}
-          <Route path='/'element={<>project is working</>}></Route>
+          <Route path='/' element={<>project is working</>}></Route>
         </Routes>
         {/* <Footer/> */}
       </BrowserRouter>
