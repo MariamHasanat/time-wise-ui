@@ -1,5 +1,5 @@
 .App {
-  --primary-color: ##025edb;
+  --primary-color: #025edb;
   --font-family: Lato;
   /* i installed lato font but if we don't want it, then let's uninstall it */
 
@@ -10,4 +10,7 @@
 
   font-family: var(--font-family);
   text-align: center;
+
+  border-radius: 5px;
+
 }
