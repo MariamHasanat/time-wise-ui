@@ -1,11 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Button from './components/button/button';
 
 function App() {
   return (
     <div className="App">
-      <Button label="this is a button" onClick={() => console.log('hello')}/>
       <BrowserRouter>
         {/* <Header/> */}
         <Routes>

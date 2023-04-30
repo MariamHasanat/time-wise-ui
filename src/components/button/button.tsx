@@ -3,13 +3,14 @@ import './button.css'
 
 interface BtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: String;
-  btnType?: String;
+  primary?: Boolean;
 }
 
 const Button: React.FC<BtnProps> = (props) => {
+  const primary = props.primary
   return (
-    <div className="button">
-    <button {...props}>{props.label}</button>
+    <div className={primary ? "primary button" : "button"}>
+      <button {...props}>{props.label}</button>
     </div>
   )
 }
