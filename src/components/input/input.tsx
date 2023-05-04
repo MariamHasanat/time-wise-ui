@@ -1,36 +1,18 @@
-import React, { ChangeEvent } from 'react';
+
+import React from "react";
+import './input.css'
 
 
-// Define the JSX.IntrinsicElements interface in a separate file,
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      input: React.InputHTMLAttributes<HTMLInputElement>;
-    }
-  }
+interface InpProps extends React.InputHTMLAttributes< HTMLInputElement> {
+  label?: String;
 }
 
-
-interface InputProps {
-  value: string;
-  placeholder?: string;
-  label?:string;
-  onChange: (value: string) => void;
-}
-
-const Input= ({ value, placeholder,label, onChange }:InputProps) => {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
-
+const Input: React.FC<InpProps> = (props) => {
   return (
-    <input
-      type="text"
-      value={value}
-      placeholder={placeholder}
-      onChange={handleChange}
-    />
-  );
-};
+    <div className="input">
+    <input {...props}>{props.label}</input>
+    </div>
+  )
+}
 
 export default Input;
