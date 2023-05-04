@@ -8,7 +8,8 @@ interface InpProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InpProps> = (props) => {
   return (
     <div className="input">
-      <input {...props}>{props.label}</input>
+      {props.label&&<label>{props.label}</label>}
+      <input {...props}/>
     </div>
   )
 }

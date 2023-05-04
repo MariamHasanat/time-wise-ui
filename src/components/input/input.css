@@ -1,9 +1,19 @@
 .input {
+  font-size: var(--body-font-size);
+  width: fit-content;
+}
+
+.input>label {
+  display: block;
+  text-align: left;
+}
+
+.input>input {
   background-color: white;
-  border: 1px solid var(--grey-color);
   border-radius: var(--border-radius);
-  padding: 2px 5px;
   cursor: pointer;
+  border: 1px solid var(--grey-font-color);
+  padding: 2px 5px;
 }
 
 .input>input:active {
