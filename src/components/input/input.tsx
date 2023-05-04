@@ -1,7 +1,5 @@
-
 import React from "react";
 import './input.css'
-
 
 interface InpProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: String;
@@ -14,6 +12,5 @@ const Input: React.FC<InpProps> = (props) => {
     </div>
   )
 }
-
 export default Input;
 

@@ -6,6 +6,6 @@
   cursor: pointer;
 }
 
-.input input:active {
+.input>input:active {
   background-color: var(--grey-color);
 }
