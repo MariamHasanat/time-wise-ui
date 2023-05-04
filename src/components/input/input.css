@@ -1,0 +1,11 @@
+.input {
+  background-color: white;
+  border: 1px solid var(--grey-color);
+  border-radius: var(--border-radius);
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.input input:active {
+  background-color: var(--grey-color);
+}
