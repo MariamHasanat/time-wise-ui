@@ -7,7 +7,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         {/* <Header/> */}
-        <ProjectComponent/>
         <Routes>
           {/* <Route path='/login' element={<Login/>}/> */}
           {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
