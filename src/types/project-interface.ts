@@ -1,7 +1,7 @@
-import React from "react";
+
 
 export interface Project {
-  _ID: number;
+  _ID: string;
   name: string;
   color: string;
   projectHours: number;
