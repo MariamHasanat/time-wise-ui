@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Project {
+export interface Project {
   _ID: number;
   name: string;
   color: string;
@@ -8,7 +8,4 @@ interface Project {
   description?: string;
 }
 
-interface ProjectProps {
-  project: Project;
-}
 
