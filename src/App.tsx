@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import ProjectComponent from './types/project';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         {/* <Header/> */}
+        <ProjectComponent/>
         <Routes>
           {/* <Route path='/login' element={<Login/>}/> */}
           {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
