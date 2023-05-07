@@ -3,15 +3,12 @@
   --font-family: Lato;
   /* i installed lato font but if we don't want it, then let's uninstall it */
 
-
-  --grey-font-color: #6B6B6B;
+  --grey-color: #eeeeee;
   --header-font-size: 40px;
   --subheader-font-size: 25px;
   --body-font-size: 20px;
  --border-radius: 5px;
   font-family: var(--font-family);
   text-align: center;
-
- 
-
+  --border-radius: 4px;
 }
