@@ -1,14 +1,19 @@
-.App {
-  --primary-color: #025edb;
-  --font-family: Lato;
-  /* i installed lato font but if we don't want it, then let's uninstall it */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
 
-  --grey-color: #eeeeee;
-  --header-font-size: 40px;
-  --subheader-font-size: 25px;
-  --body-font-size: 20px;
- --border-radius: 5px;
-  font-family: var(--font-family);
-  text-align: center;
-  --border-radius: 4px;
+:root {
+  --primary-color: #52469C;
+  --ligt-primary-color: #c4d3fa;
+  --background-color: #f1f8ff;
+  --shadow-color: #bcd2e7;
+
+  --grey-color: #a9a9a9;
+  --header-font-size: 30px;
+  --subheader-font-size: 18px;
+  --input-font-size: 15px;
+  --body-font-size: 14px;
+
+  --border-radius: 5px;
+
+  font-family: 'Lato', sans-serif;
+  background-color: var(--background-color);
 }
