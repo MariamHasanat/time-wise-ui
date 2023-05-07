@@ -1,5 +1,5 @@
 .input {
-  display: inline-block;
+  display: block;
   font-size: var(--body-font-size);
 }
 
@@ -14,8 +14,4 @@
   cursor: pointer;
   border: 1px solid var(--grey-font-color);
   padding: 2px 5px;
-}
-
-.input>input:active {
-  background-color: var(--grey-color);
 }
