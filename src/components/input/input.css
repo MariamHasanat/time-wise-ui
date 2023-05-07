@@ -1,0 +1,17 @@
+.input {
+  display: block;
+  font-size: var(--body-font-size);
+}
+
+.input>label {
+  display: block;
+  text-align: left;
+}
+
+.input input {
+  border-radius: var(--border-radius);
+  display: block;
+  cursor: pointer;
+  border: 1px solid var(--grey-font-color);
+  padding: 2px 5px;
+}
