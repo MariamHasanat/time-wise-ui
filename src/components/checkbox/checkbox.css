@@ -1,0 +1,19 @@
+.checkbox {
+  display: flex;
+  margin: 10px 0;
+}
+
+.checkbox>label {
+  margin: 2px;
+  text-align: left;
+  font-size: var(--body-font-size);
+}
+
+.checkbox input {
+  accent-color: var(--primary-color);
+  padding: 7px;
+  border: 1px solid var(--grey-color);
+  border-radius: var(--border-radius);
+  outline: none;
+  font-size: var(--input-font-size);
+}
