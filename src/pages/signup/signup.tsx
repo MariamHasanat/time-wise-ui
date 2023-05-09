@@ -1,9 +1,11 @@
 import './signup.css'
+import React from 'react';
 import Button from "../../components/button/button";
 import Input from '../../components/input/input';
 import Checkbox from '../../components/checkbox/checkbox';
 
 const Signup = () => {
+  const [showPassword, setShowPassword] = React.useState<boolean>(false);
   return (
     <div className="signup">
       <div className='signup-logo'>
@@ -17,9 +19,9 @@ const Signup = () => {
       <form action="">
         <Input label="Username" />
         <Input label="Email" type='email' />
-        <Input label="Password" type='password' />
-        <Input label="Confirm Password" type='password' />
-        <Checkbox label="show password" style={{ "color": "var(--primary-color)" }} />
+        <Input label="Password" type={showPassword ? "text" : "password"} />
+        <Input label="Confirm Password" type={showPassword ? "text" : "password"} />
+        <Checkbox label="show password" style={{ "color": "var(--primary-color)" }} checked={showPassword} setChecked={setShowPassword} />
         <Button label="Sign up" primary />
       </form>
     </div>
