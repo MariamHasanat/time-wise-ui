@@ -8,7 +8,7 @@ function App() {
       <BrowserRouter>
         {/* <Header/> */}
         <Routes>
-          <Route path='/signup' element={<Signup/>}/>
+          <Route path='/signup' element={<Signup />} />
           {/* <Route path='/login' element={<Login/>}/> */}
           {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
           {/* <Route path='/timeTracker' element={<TimeTracker/>}/> */}

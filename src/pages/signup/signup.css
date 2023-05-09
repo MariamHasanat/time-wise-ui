@@ -1,19 +1,23 @@
 .signup h3 {
-  font-size: var(--subheader-font-size);}
+  font-size: var(--subheader-font-size);
+}
 
 .signup .signup-logo {
   display: flex;
   align-items: center;
 }
+
 .signup .logo-text {
   display: flex;
   flex-direction: column;
   align-items: space-around;
   /* align-items: center; */
 }
+
 .signup h5 {
   margin: 0;
-} 
+}
+
 .signup h4 {
   font-size: var(--subheader-font-size);
   color: var(--primary-color);

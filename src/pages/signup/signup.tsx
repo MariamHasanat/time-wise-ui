@@ -17,10 +17,10 @@ const Signup = () => {
       </div>
       <h3>Create a new  Account</h3>
       <form action="">
-        <Input label="Username" required/>
-        <Input label="Email" type='email' required/>
-        <Input label="Password" type={showPassword ? "text" : "password"} required/>
-        <Input label="Confirm Password" type={showPassword ? "text" : "password"} required/>
+        <Input label="Username" required />
+        <Input label="Email" type='email' required />
+        <Input label="Password" type={showPassword ? "text" : "password"} required />
+        <Input label="Confirm Password" type={showPassword ? "text" : "password"} required />
         <Checkbox label="show password" style={{ "color": "var(--primary-color)" }} checked={showPassword} setChecked={setShowPassword} />
         <Button label="Sign up" primary />
       </form>
