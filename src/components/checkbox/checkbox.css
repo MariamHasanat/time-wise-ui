@@ -1,21 +1,16 @@
-.input {
-  display: block;
+.checkbox {
+  display: flex;
   margin: 10px 0;
 }
 
-.input>label {
+.checkbox>label {
   margin: 2px;
-  display: block;
   text-align: left;
   font-size: var(--body-font-size);
 }
 
-.input label span {
-  color: red;
-}
-
-.input input {
-  display: block;
+.checkbox input {
+  accent-color: var(--primary-color);
   padding: 7px;
   border: 1px solid var(--grey-color);
   border-radius: var(--border-radius);
