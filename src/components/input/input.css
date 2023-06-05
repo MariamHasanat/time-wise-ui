@@ -22,3 +22,9 @@
   outline: none;
   font-size: var(--input-font-size);
 }
+
+.input input[type="color"] {
+  background: none;
+  border: none;
+  padding: 0;
+}
