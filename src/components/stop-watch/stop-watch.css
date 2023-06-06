@@ -1,9 +1,11 @@
-label{
-  border: 1px solid black;
+label {
+  border: 1px solid #ccc;
+  border-radius: 10px;
   background-color: white;
   width: min-content;
   padding: 5px;
 }
+
 .stopwatch-container {
   /* height: 30vh; */
   display: flex;
@@ -19,13 +21,13 @@ label{
 
 .timer-display p {
   margin: 0;
-  font-size: 2rem;
-  letter-spacing: 2px; 
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 
 .timer-display span {
-  font-size: 1rem;
+  font-size: 22px;
   position: relative;
-  top: 8px;
-  /* letter-spacing: 1px; */
+  top: -3px;
+  letter-spacing: 2px;
 }
