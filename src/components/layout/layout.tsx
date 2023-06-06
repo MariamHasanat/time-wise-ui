@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   FieldTimeOutlined,
   PieChartOutlined,
@@ -6,6 +6,7 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Layout, Menu, theme } from 'antd';
+import { useNavigate } from 'react-router';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -26,37 +27,41 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Dashboard', '1', <PieChartOutlined />),
-  getItem('Time Tracker', '2', <FieldTimeOutlined />),
-  getItem('Projects', 'sub1', <ProjectFilled />)
+  getItem('Dashboard', '/dashboard', <PieChartOutlined />),
+  getItem('Time Tracker', '/timeTracker', <FieldTimeOutlined />),
+  getItem('Projects', '/projects', <ProjectFilled />)
 ];
 
-interface IProps {
-  children: React.ReactNode;
-};
+interface IProps { children: React.ReactNode; };
 
 const PageLayout = (props: IProps) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+    <Layout >
+      <Sider style={{ minHeight: "100vh" }}>
         <div className="demo-logo-vertical" style={{ color: "white", textAlign: "center" }}>
           {/* logo here */}
           <h4>Time Wise</h4>
           {/* <h5>track your time wisely</h5> */}
         </div>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu
+          onClick={({ key }) => navigate(key)}
+          theme="dark"
+          defaultSelectedKeys={['1']}
+          mode="inline"
+          items={items}
+        />
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }} />
         <Content style={{ margin: '0 16px' }}>
           {props.children}
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: 'center' }}>Created with AntDesign</Footer>
       </Layout>
     </Layout>
   );
