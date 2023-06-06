@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Input } from 'antd';
 
-const NewTaskForm = () => {
+const NewTaskForm: React.FC = () => {
   return (
-    <div>NewTaskForm</div>
+    <form>
+      <div>
+        <Input placeholder="Task Description" />;
+      </div>
+    </form>
   )
 }
 
