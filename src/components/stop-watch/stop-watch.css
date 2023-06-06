@@ -1,17 +1,11 @@
-label {
+.stopwatch-container {
+  display: inline-block;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: white;
   width: min-content;
   padding: 5px;
-}
-
-.stopwatch-container {
-  /* height: 30vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin-right: 20px;
 }
 
 .timer-display {

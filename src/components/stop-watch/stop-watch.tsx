@@ -9,13 +9,13 @@ const StopWatch: React.FC = () => {
   }, [timeInSecond]);
   return (
     <label className='stopwatch-container'>
-      <section className='timer-display'>
+      <div className='timer-display'>
         <p id='hour'>00</p>
         <span>:</span>
         <p id='minute'>00</p>
         <span>:</span>
         <p id='second'>00</p>
-      </section>
+      </div>
     </label>
   )
 }

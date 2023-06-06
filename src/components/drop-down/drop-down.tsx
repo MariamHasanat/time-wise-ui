@@ -24,7 +24,7 @@ const items: MenuProps['items'] = [
 const DropDown: React.FC = () => (
   <Dropdown menu={{ items }} trigger={['click']} >
     <a href='./' onClick={(e) => e.preventDefault()}>
-      <Space style={{ border: '1px solid #ccc', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '5px', paddingTop: '5px', borderRadius: '10px' }}>
+      <Space style={{ border: '1px solid #ccc', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '5px', paddingTop: '5px', borderRadius: '10px', marginRight:'20px' }}>
         Projects
         <DownOutlined />
       </Space>
