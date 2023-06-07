@@ -9,7 +9,7 @@ import { PlayCircleOutlined } from '@ant-design/icons';
 const NewTaskForm: React.FC = () => {
   return (
     <form className='new-task-form'>
-      <Input placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px', borderRadius: '0px' }} />
+      <Input placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px'}} />
       <DropDown />
       <StopWatch />
       <Button type='primary' style={{ height: '30px', width: '30px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><PlayCircleOutlined style={{ fontSize: '18px' }} /></Button>

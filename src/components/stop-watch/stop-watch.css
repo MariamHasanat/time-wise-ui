@@ -8,6 +8,7 @@
   margin: 0px 10px;
   height: 25px;
   justify-content: center;
+  border-radius: var(--border-radius);
 }
 
 .timer-display {

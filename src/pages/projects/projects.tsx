@@ -6,7 +6,7 @@ const ProjectsPage = () => {
   const [showPopup, setShowPopup] = React.useState<boolean>(false);
   return (
     <div className="projects">
-      <Button onClick={() => { setShowPopup(!showPopup); console.log('click!') }}>New Project</Button>
+      <Button onClick={() => setShowPopup(!showPopup)}>New Project</Button>
       <ProjectForm showPopup={showPopup} setShowPopup={setShowPopup} />
     </div >
   )
