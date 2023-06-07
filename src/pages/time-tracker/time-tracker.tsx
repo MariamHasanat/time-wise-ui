@@ -4,7 +4,7 @@ import NewTaskForm from '../../components/new-task-form/new-task-form';
 
 const TimeTracker: React.FC = () => {
   return (
-    <div>
+    <div className='time-body'>
       <NewTaskForm />
     </div>
   )
