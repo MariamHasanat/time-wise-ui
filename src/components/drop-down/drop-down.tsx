@@ -1,5 +1,5 @@
 import React from 'react';
-import { CaretDownFilled, CaretDownOutlined } from '@ant-design/icons';
+import { CaretDownFilled } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
 

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { ConfigProvider, theme } from 'antd';
+import { ConfigProvider } from 'antd';
 import Signup from './pages/signup/signup';
 import ProjectsPage from './pages/projects/projects';
 import TimeTracker from './pages/time-tracker/time-tracker';
