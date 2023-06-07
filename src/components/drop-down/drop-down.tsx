@@ -5,11 +5,11 @@ import { Dropdown, Space } from 'antd';
 
 const items: MenuProps['items'] = [
   {
-    label: <a href="https://www.antgroup.com">1st menu item</a>,
+    label: '1st menu item',
     key: '0',
   },
   {
-    label: <a href="https://www.aliyun.com">2nd menu item</a>,
+    label: '2nd menu item',
     key: '1',
   },
   {
@@ -24,7 +24,7 @@ const items: MenuProps['items'] = [
 const DropDown: React.FC = () => (
   <Dropdown menu={{ items }} trigger={['click']} >
     <a href='./' onClick={(e) => e.preventDefault()}>
-      <Space style={{ border: '1px solid #ccc', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '5px', paddingTop: '5px', borderRadius: '10px', marginRight:'20px' }}>
+      <Space style={{fontSize : '15px'}}>
         Projects
         <DownOutlined />
       </Space>
