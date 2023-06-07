@@ -53,13 +53,14 @@ const PageLayout = (props: IProps) => {
           <Menu
             onClick={({ key }) => navigate(key)}
             theme="dark"
+            style={{backgroundColor:"#c4d3fa", color:"#52469C", fontWeight:600}}
             defaultSelectedKeys={['1']}
             mode="inline"
             items={items}
           />
         </Sider>
-        <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }} />
+        <Layout style={{"paddingTop":25}}>
+          {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
           <Content style={{ margin: '0 16px' }}>
             {props.children}
           </Content>
