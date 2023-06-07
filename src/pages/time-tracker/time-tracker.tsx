@@ -1,9 +1,12 @@
 import React from 'react';
 import './time-tracker.css';
+import NewTaskForm from '../../components/new-task-form/new-task-form';
 
-const TimeTracker = () => {
+const TimeTracker: React.FC = () => {
   return (
-    <div>time-tracker</div>
+    <div className='time-body'>
+      <NewTaskForm />
+    </div>
   )
 }
 

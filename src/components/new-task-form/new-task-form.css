@@ -1,0 +1,12 @@
+form.new-task-form {
+  box-sizing: border-box;
+  width: 750px;
+  background: #FAFAFA;
+  border: 1px solid #B1B1B1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px;
+}
