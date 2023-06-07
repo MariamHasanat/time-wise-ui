@@ -1,0 +1,15 @@
+.page-layout .menu-logo {
+  border-radius: var(--border-radius);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* color: white; */
+  background-color: white;
+  margin: 5px 5px 10px;
+}
+
+.page-layout .menu-logo img {
+  width: 50px;
+  /* display: inline; */
+}

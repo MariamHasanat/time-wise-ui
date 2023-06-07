@@ -1,4 +1,5 @@
 import React from 'react';
+import './layout.css'
 import {
   FieldTimeOutlined,
   PieChartOutlined,
@@ -41,29 +42,31 @@ const PageLayout = (props: IProps) => {
   } = theme.useToken();
 
   return (
-    <Layout >
-      <Sider style={{ minHeight: "100vh" }}>
-        <div className="demo-logo-vertical" style={{ color: "white", textAlign: "center" }}>
-          {/* logo here */}
-          <h4>Time Wise</h4>
-          {/* <h5>track your time wisely</h5> */}
-        </div>
-        <Menu
-          onClick={({ key }) => navigate(key)}
-          theme="dark"
-          defaultSelectedKeys={['1']}
-          mode="inline"
-          items={items}
-        />
-      </Sider>
-      <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
-        <Content style={{ margin: '0 16px' }}>
-          {props.children}
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Created with AntDesign</Footer>
+    <div className="page-layout">
+      <Layout >
+        <Sider style={{ minHeight: "100vh" }}>
+          <div className="menu-logo">
+            <img src="/logo.png" alt="logo" />
+            <h4 >Time Wise</h4>
+            {/* <h5>track your time wisely</h5> */}
+          </div>
+          <Menu
+            onClick={({ key }) => navigate(key)}
+            theme="dark"
+            defaultSelectedKeys={['1']}
+            mode="inline"
+            items={items}
+          />
+        </Sider>
+        <Layout>
+          <Header style={{ padding: 0, background: colorBgContainer }} />
+          <Content style={{ margin: '0 16px' }}>
+            {props.children}
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Created with AntDesign</Footer>
+        </Layout>
       </Layout>
-    </Layout>
+    </div>
   );
 };
 
