@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import './stop-watch.css';
 const StopWatch: React.FC = () => {
-  const [timeInSecond, setTimeInSecond] = React.useState<number>(0);
-  const [timeArray, setTimeArray] = React.useState<Array<number | string>>([]);
+  const [timeInSecond] = React.useState<number>(0); // i deleted setTimeInSecond :)
+  // const [timeArray, setTimeArray] = React.useState<Array<number | string>>([]);
 
   useEffect(() => {
     //  setTimeArray(calculateTimeInSeconds(timeInSecond))
