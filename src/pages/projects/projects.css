@@ -1,0 +1,7 @@
+.projects {
+  display: flex;
+  flex-direction: column;
+}
+.new-project-btn {
+  align-self: flex-end;
+}

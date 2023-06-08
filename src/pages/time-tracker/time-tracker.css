@@ -1,3 +1,7 @@
+.time-body {
+  display: flex;
+  justify-content: center;
+}
 .time-body div{
   display: flex;
   justify-content: center;
