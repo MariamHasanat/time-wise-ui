@@ -6,10 +6,10 @@ import {
   ProjectFilled,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -37,9 +37,6 @@ interface IProps { children: React.ReactNode; };
 
 const PageLayout = (props: IProps) => {
   const navigate = useNavigate();
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
 
   return (
     <div className="page-layout">
