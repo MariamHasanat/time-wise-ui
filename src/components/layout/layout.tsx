@@ -4,6 +4,7 @@ import {
   FieldTimeOutlined,
   PieChartOutlined,
   ProjectFilled,
+  UserOutlined
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Layout, Menu } from 'antd';
@@ -30,7 +31,7 @@ function getItem(
 const items: MenuItem[] = [
   getItem('Dashboard', '/dashboard', <PieChartOutlined />),
   getItem('Time Tracker', '/timeTracker', <FieldTimeOutlined />),
-  getItem('Projects', '/projects', <ProjectFilled />)
+  getItem('Projects', '/projects', <ProjectFilled />),
 ];
 
 interface IProps { children: React.ReactNode; };
@@ -41,7 +42,7 @@ const PageLayout = (props: IProps) => {
   return (
     <div className="page-layout">
       <Layout >
-        <Sider style={{ minHeight: "100vh" }}>
+        <Sider style={{ minHeight: "83vh" }}>
           <div className="menu-logo">
             <img src="/logo.png" alt="logo" />
             <h4 >Time Wise</h4>
@@ -50,13 +51,16 @@ const PageLayout = (props: IProps) => {
           <Menu
             onClick={({ key }) => navigate(key)}
             theme="dark"
-            style={{backgroundColor:"#c4d3fa", color:"#52469C", fontWeight:600}}
+            style={{ backgroundColor: "#c4d3fa", color: "#52469C", fontWeight: 600 }}
             defaultSelectedKeys={['1']}
             mode="inline"
             items={items}
           />
+          <div className='user-icon'>
+            <UserOutlined />
+          </div>
         </Sider>
-        <Layout style={{"paddingTop":25}}>
+        <Layout style={{ "paddingTop": 25 }}>
           {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
           <Content style={{ margin: '0 16px' }}>
             {props.children}

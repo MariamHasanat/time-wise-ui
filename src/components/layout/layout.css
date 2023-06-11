@@ -1,3 +1,7 @@
+.page-layout {
+  height: 1vh;
+  box-sizing: border-box;
+}
 .page-layout .menu-logo {
   border-radius: var(--border-radius);
   text-align: center;
@@ -12,4 +16,13 @@
 .page-layout .menu-logo img {
   width: 50px;
   /* display: inline; */
+}
+
+.page-layout .user-icon {
+  border: 1px solid var(--primary-color);
+  width: 100px;
+  margin-bottom: auto;
+  padding: 0 24px;
+  position: absolute;
+  bottom :10px;
 }
