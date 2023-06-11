@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 type Props = {
+  timeInSecond: number,
   setTimeInSecond: Function
 }
 const ControlBtn = (props: Props) => {
 
-  const [buttonFlag, setButtonFlag] = React.useState<boolean>(true);
-
-  const { setTimeInSecond } = props;
+  const [buttonFlag, setButtonFlag] = React.useState<boolean>(true);//this state to change the form of icon 
+  const [startTime, setStartTime] = React.useState<number>(Date.now());
+  const { setTimeInSecond } = props; //, timeInSecond  
   const [intervalId, setIntervalId] = React.useState<number>(0);
 
   const handlePlayButton = (e: object) => {
@@ -31,9 +32,6 @@ const ControlBtn = (props: Props) => {
 
 
 
-
-
-
   return (
     <div>
       {
@@ -43,6 +41,8 @@ const ControlBtn = (props: Props) => {
             onClick={(e) => {
               e.preventDefault()
               setButtonFlag(!buttonFlag);
+              setStartTime(Date.now());
+              console.log(startTime);
               handlePlayButton(e)
             }}
             type='primary' style={{ height: '30px', width: '30px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><PlayCircleOutlined style={{ fontSize: '18px' }} /></Button>
