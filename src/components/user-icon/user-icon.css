@@ -1,0 +1,39 @@
+.user-icon {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  width: 182px;
+  border-radius: 8px;
+}
+
+.profile-pic {
+  border: 1px solid var(--primary-color);
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  padding: 1px;
+  overflow: hidden;
+  background-color: white;
+  margin-right: 3px;
+}
+
+.user-icon .user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-icon .user-details h4,
+.user-icon .user-details h5 {
+  margin: 0;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100px;
+  margin-top: 10px;
+}

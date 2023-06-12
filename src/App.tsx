@@ -19,6 +19,7 @@ function App() {
                 colorBgHeader: "#c4d3fa",
                 colorBgBase: '#c4d3fa',
                 colorBgBody: '#f1f8ff',
+                
               }, Input: {
                 borderRadius: 4,
                 colorBgBase: '#f1f8ff'
