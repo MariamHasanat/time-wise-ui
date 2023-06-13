@@ -1,7 +1,13 @@
-.projects {
+.projects-page {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
-.new-project-btn {
-  align-self: flex-end;
+.projects-page .projects-page-inner {
+  width: 750px;
+  display: flex;
+  align-items: center;
+}
+.projects-page .new-project-btn {
+  margin-left: auto;
 }
