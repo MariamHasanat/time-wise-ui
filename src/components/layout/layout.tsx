@@ -1,19 +1,14 @@
 import React from 'react';
 import './layout.css'
 import {
-  ExportOutlined,
   FieldTimeOutlined,
-  FileTextFilled,
-  MailFilled,
   PieChartOutlined,
   ProjectFilled,
-  UserOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router';
 import UserIcon from '../user-icon/user-icon';
-import MenuDivider from 'antd/es/menu/MenuDivider';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -36,10 +31,7 @@ function getItem(
 const items: MenuItem[] = [
   getItem('Dashboard', '/dashboard', <PieChartOutlined />),
   getItem('Time Tracker', '/timeTracker', <FieldTimeOutlined />),
-  getItem('Projects', '/projects', <ProjectFilled />),
-  getItem('User', '/user', <UserOutlined />),
-  getItem('logout', '/logout', <ExportOutlined />
-  )
+  getItem('Projects', '/projects', <ProjectFilled />)
 ];
 
 interface IProps { children: React.ReactNode; };
@@ -57,16 +49,16 @@ const PageLayout = (props: IProps) => {
             {/* <h5>track your time wisely</h5> */}
           </div>
           <Menu
-            onClick={({ key }) => key !== '/user' && key !== '/logout' && navigate(key)}
+            onClick={({ key }) => navigate(key)}
             theme="dark"
             style={{ backgroundColor: "#c4d3fa", color: "#52469C", fontWeight: 600 }}
             defaultSelectedKeys={['1']}
             mode="inline"
             items={items}
           />
+          <UserIcon />
         </Sider>
         <Layout style={{ "paddingTop": 25 }}>
-          {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
           <Content style={{ margin: '0 16px' }}>
             {props.children}
           </Content>
