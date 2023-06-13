@@ -4,10 +4,22 @@
   align-items: center;
 }
 .projects-page .projects-page-inner {
-  width: 750px;
+  width: 950px;
   display: flex;
   align-items: center;
 }
 .projects-page .new-project-btn {
   margin-left: auto;
+}
+
+.projects-page .projects-board{
+  margin-top: 10px;
+  width: 950px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.projects-page .project-card {
+  margin: 2px;
+  
 }
