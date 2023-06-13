@@ -4,7 +4,6 @@ import { ExportOutlined, UserOutlined, } from "@ant-design/icons"
 
 const UserIcon = () => {
   return (
-    <Button style={{ padding: 0, margin: 0, height: 'min-content' }}>
       <div className='user-icon'>
         <div className='profile-pic'>
           <UserOutlined style={{ fontSize: 24 }} />
@@ -18,7 +17,6 @@ const UserIcon = () => {
           <p>logout</p>
         </Button>
       </div>
-    </Button>
   )
 }
 export default UserIcon;
