@@ -9,7 +9,7 @@ type Props = {
 const ControlBtn = (props: Props) => {
 
   const [buttonFlag, setButtonFlag] = React.useState<boolean>(true);//this state to change the form of icon 
-  const [startTime, setStartTime] = React.useState<number>(Date.now());
+  const [startTime, setStartTime] = React.useState<number>(0);
   const { setTimeInSecond } = props; //, timeInSecond  
   const [intervalId, setIntervalId] = React.useState<number>(0);
 
@@ -31,7 +31,9 @@ const ControlBtn = (props: Props) => {
   }
 
 
-
+  React.useEffect(() => {
+    console.log(startTime);
+  }, [startTime]);
   return (
     <div>
       {
@@ -42,7 +44,6 @@ const ControlBtn = (props: Props) => {
               e.preventDefault()
               setButtonFlag(!buttonFlag);
               setStartTime(Date.now());
-              console.log(startTime);
               handlePlayButton(e)
             }}
             type='primary' style={{ height: '30px', width: '30px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><PlayCircleOutlined style={{ fontSize: '18px' }} /></Button>
