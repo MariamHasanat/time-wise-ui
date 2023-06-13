@@ -13,10 +13,24 @@ const ControlBtn = (props: Props) => {
   const { setTimeInSecond } = props; //, timeInSecond  
   const [intervalId, setIntervalId] = React.useState<number>(0);
 
+  const storedArray:any = localStorage.getItem('startTimeArray');
+  const d:Array<number | string> = JSON.parse(storedArray);
+  
+
+  const [stampTimeArray, setStampTimeArray] = React.useState<Array<number | string>>(storedArray ? d : []);
+
   const handlePlayButton = (e: object) => {
     const interval: any = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
+
+    // const currentStampTime = Date.now();
+
+    // // Add the new timestamp to the stampTimeArray using the functional form of setState
+    // setStampTimeArray((previousArray) => [...previousArray, currentStampTime]);
+
+    // // Save the updated stampTimeArray to localStorage
+    // localStorage.setItem("startTimeArray", JSON.stringify(stampTimeArray));
 
     setIntervalId(interval);
   }
@@ -31,9 +45,12 @@ const ControlBtn = (props: Props) => {
   }
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     console.log(startTime);
-  }, [startTime]);
+    localStorage.setItem("startTime", startTime.toString());
+    localStorage.setItem("startTimeArray", JSON.stringify(stampTimeArray));
+  }, [startTime, stampTimeArray]);
+
   return (
     <div>
       {
@@ -44,6 +61,7 @@ const ControlBtn = (props: Props) => {
               e.preventDefault()
               setButtonFlag(!buttonFlag);
               setStartTime(Date.now());
+              setStampTimeArray((previousArray) => [...previousArray, Date.now()]);
               handlePlayButton(e)
             }}
             type='primary' style={{ height: '30px', width: '30px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><PlayCircleOutlined style={{ fontSize: '18px' }} /></Button>
