@@ -14,8 +14,10 @@ const login = async (props: ILogin) => {
     body: JSON.stringify({ ...props })
   })
     .then(async response => {
+      console.log(response);
       if (response.status === 200) {
-        showMessage('success', 'success')
+        showMessage('success', 'success');
+        response.json().then((res) => localStorage.setItem('token', res.token));
         return true;
       } else if (response.status === 400 || response.status === 401) {
         showMessage('error', 'email/password combination is not valid');
