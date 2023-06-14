@@ -3,6 +3,7 @@ import React from 'react';
 import Button from "../../components/button/button";
 import Input from '../../components/input/input';
 import Checkbox from '../../components/checkbox/checkbox';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -21,6 +22,7 @@ const Login = () => {
         <Input label="Password" type={showPassword ? "text" : "password"} required />
         <Checkbox label="show password" style={{ "color": "var(--primary-color)" }} checked={showPassword} setChecked={setShowPassword} />
         <Button label="Log in" primary />
+        <Link to="/signup">don't have an account?</Link>
       </form>
     </div>
   )
