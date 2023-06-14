@@ -1,6 +1,5 @@
-
 import showMessage from '../utils/message/message';
-import { signup } from '../services/users';
+import { signup } from '../services/user/signup';
 import { useNavigate } from 'react-router-dom';
 
 interface ISignup {
@@ -29,7 +28,7 @@ const useSignup = () => {
       }
 
       if (await signup(user)) {
-        navigate('login');
+        navigate('/login');
       }
 
     }

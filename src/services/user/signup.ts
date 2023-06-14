@@ -1,4 +1,4 @@
-import showMessage from "../utils/message/message";
+import showMessage from "../../utils/message/message";
 
 interface ISignup {
   username: string,
