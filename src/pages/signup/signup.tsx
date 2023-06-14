@@ -32,7 +32,7 @@ const Signup = () => {
         <Input name='password1' label="Password" type={showPassword ? "text" : "password"} required />
         <Input name='passowrd2' label="Confirm Password" type={showPassword ? "text" : "password"} required />
         <Checkbox label="show password" style={{ "color": "var(--primary-color)" }} checked={showPassword} setChecked={setShowPassword} />
-        <Button label="Sign up" primary />
+        <Button label="Sign up" primary={true} />
         <Link to="/login">already have an account?</Link>
       </form>
     </div>

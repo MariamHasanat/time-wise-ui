@@ -1,18 +1,33 @@
-import './checkbox.css'
 import React from "react";
-interface checkBProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: String;
+import "./checkbox.css";
+
+interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
   checked: boolean;
-  setChecked: (arg0: boolean) => void;
+  setChecked: (newValue: boolean) => void;
 }
 
-const Checkbox: React.FC<checkBProps> = (props) => {
+const Checkbox: React.FC<CheckboxProps> = ({
+  label,
+  checked,
+  setChecked,
+  ...rest
+}) => {
+  const handleChange = () => {
+    setChecked(!checked);
+  };
+
   return (
-    <div className="checkbox" onClick={() => props.setChecked(!props.checked)}>
-      <input {...props} type="checkbox" checked={props.checked} />
-      {props.label && <label>{props.label}</label>}
+    <div className="checkbox" onClick={handleChange}>
+      <input
+        {...rest}
+        type="checkbox"
+        checked={checked}
+        onChange={handleChange}
+      />
+      {label && <label>{label}</label>}
     </div>
-  )
-}
-export default Checkbox;
+  );
+};
 
+export default Checkbox;
