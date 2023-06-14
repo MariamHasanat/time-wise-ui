@@ -10,13 +10,17 @@ interface Props {
 const StopWatch = (props: Props) => {
 
   const { timeInSecond } = props;
-  const storedStartTime: any = localStorage.getItem('startTime');
-  const parsedStoredStartTime: number = JSON.parse(storedStartTime);
+  // const storedStartTime: any = localStorage.getItem('startTime');
+  // const parsedStoredStartTime: number = JSON.parse(storedStartTime);
+
+  // const storedEndTime: any = localStorage.getItem('endTime');
+  // const parsedStoredEndTime: number = JSON.parse(storedEndTime);
+
   const [timeArray, setTimeArray] = React.useState<Array<number | string>>([]);
 
   useEffect(() => {
-    setTimeArray(calculateTimeInSeconds(timeInSecond + (Math.floor((Date.now() - parsedStoredStartTime) / 1000))));
-  }, [timeInSecond, parsedStoredStartTime]);
+    setTimeArray(calculateTimeInSeconds(timeInSecond));
+  }, [timeInSecond]); 
 
 
   return (

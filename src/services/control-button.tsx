@@ -11,25 +11,44 @@ const ControlBtn = (props: Props) => {
   const [buttonFlag, setButtonFlag] = React.useState<boolean>(true);//this state to change the form of icon 
 
 
-  const storedStartTime: any = localStorage.getItem('startTime');
-  const parsedStoredStartTime: number = JSON.parse(storedStartTime);
-  
-  const [startTime, setStartTime] = React.useState<number>(storedStartTime ? parsedStoredStartTime : 0);
+  // const storedStartTime: any = localStorage.getItem('startTime');
+  //  const parsedStoredStartTime: number = JSON.parse(storedStartTime);
+
+  const [startTime, setStartTime] = React.useState<number>(0);
 
   const [endTime, setEndTime] = React.useState<number>(0);
 
-  const { setTimeInSecond } = props; //, timeInSecond  
+  const { setTimeInSecond } = props; // timeInSecond  
+
   const [intervalId, setIntervalId] = React.useState<number>(0);
 
   const storedArray: any = localStorage.getItem('startTimeArray');
   const parsedStoredArray: Array<number | string> = JSON.parse(storedArray);
 
-
   const [stampTimeArray, setStampTimeArray] = React.useState<Array<number | string>>(storedArray ? parsedStoredArray : []);
+
+  const getTimeInSeconds = (timestamp: number) => {
+    const date = new Date(timestamp);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const timeInSeconds = hours * 3600 + minutes * 60 + seconds;
+    return timeInSeconds;
+  };
+
+  useEffect(() => {
+
+    if (endTime > startTime) {
+      const trying = getTimeInSeconds(endTime) - getTimeInSeconds(startTime);
+      console.log("result", trying);
+    }
+
+  }, [buttonFlag])
 
   const handlePlayButton = (e: object) => {
     const interval: any = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
+      //setTimeInSecond()
     }, 1000);
 
     setIntervalId(interval);
@@ -37,12 +56,12 @@ const ControlBtn = (props: Props) => {
 
   const handleStopButton = () => {
     clearInterval(intervalId);
-    setStartTime(0);
+   //setStartTime(0);
   }
 
   const handleReset = () => {
     clearInterval(intervalId);
-    setTimeInSecond(0);
+  //  setTimeInSecond(0);
   }
 
 
@@ -56,7 +75,8 @@ const ControlBtn = (props: Props) => {
   return (
     <div>
       {
-        (startTime == 0)
+        // (startTime === 0)
+        buttonFlag
           ?
           <Button
             onClick={(e) => {
@@ -74,7 +94,6 @@ const ControlBtn = (props: Props) => {
               e.preventDefault()
               setButtonFlag(!buttonFlag);
               setEndTime(Date.now());
-              setStartTime(0);
               handleStopButton();
               handleReset();
             }}
