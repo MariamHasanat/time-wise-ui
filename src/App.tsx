@@ -9,6 +9,7 @@ import Dashboard from './pages/dashboard/dashboard';
 import Login from './pages/Login/login';
 function App() {
   return (
+
     <div className="App">
       <ConfigProvider
         theme={
@@ -43,6 +44,7 @@ function App() {
         </BrowserRouter>
       </ConfigProvider>
     </div>
+
   );
 }
 export default App;
