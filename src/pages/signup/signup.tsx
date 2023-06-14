@@ -4,6 +4,15 @@ import Button from "../../components/button/button";
 import Input from '../../components/input/input';
 import Checkbox from '../../components/checkbox/checkbox';
 
+const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const data = new FormData(e.currentTarget);
+  const user = {
+    username: data.get('username'),
+    email: data.get('email'),
+    password: data.get('password')
+  }
+}
 const Signup = () => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
   return (
@@ -16,11 +25,11 @@ const Signup = () => {
         </div>
       </div>
       <h3>Create a new  Account</h3>
-      <form action="">
-        <Input label="Username" required/>
-        <Input label="Email" type='email' required/>
-        <Input label="Password" type={showPassword ? "text" : "password"} required/>
-        <Input label="Confirm Password" type={showPassword ? "text" : "password"} required/>
+      <form onSubmit={(e) => {submitHandler(e)}}>
+        <Input name='username' label="Username" required />
+        <Input name='email' label="Email" type='email' required />
+        <Input name='password1' label="Password" type={showPassword ? "text" : "password"} required />
+        <Input name='passowrd2' label="Confirm Password" type={showPassword ? "text" : "password"} required />
         <Checkbox label="show password" style={{ "color": "var(--primary-color)" }} checked={showPassword} setChecked={setShowPassword} />
         <Button label="Sign up" primary />
       </form>
