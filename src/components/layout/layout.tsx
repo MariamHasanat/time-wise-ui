@@ -6,10 +6,11 @@ import {
   ProjectFilled,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router';
+import UserIcon from '../user-icon/user-icon';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -37,14 +38,11 @@ interface IProps { children: React.ReactNode; };
 
 const PageLayout = (props: IProps) => {
   const navigate = useNavigate();
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
 
   return (
     <div className="page-layout">
-      <Layout >
-        <Sider style={{ minHeight: "100vh" }}>
+      <Layout>
+        <Sider style={{ minHeight: "83vh" }} theme='dark'>
           <div className="menu-logo">
             <img src="/logo.png" alt="logo" />
             <h4 >Time Wise</h4>
@@ -53,18 +51,18 @@ const PageLayout = (props: IProps) => {
           <Menu
             onClick={({ key }) => navigate(key)}
             theme="dark"
-            style={{backgroundColor:"#c4d3fa", color:"#52469C", fontWeight:600}}
+            style={{ backgroundColor: "#c4d3fa", color: "#52469C", fontWeight: 600 }}
             defaultSelectedKeys={['1']}
             mode="inline"
             items={items}
           />
+          <UserIcon />
         </Sider>
-        <Layout style={{"paddingTop":25}}>
-          {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
+        <Layout style={{ "paddingTop": 25 }}>
           <Content style={{ margin: '0 16px' }}>
             {props.children}
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Created with AntDesign</Footer>
+          <Footer style={{ textAlign: 'center', fontSize: 10 }}>Created with AntDesign</Footer>
         </Layout>
       </Layout>
     </div>
