@@ -8,14 +8,13 @@ type Props = {
 }
 const ControlBtn = (props: Props) => {
 
-  const [buttonFlag, setButtonFlag] = React.useState<boolean>(true);//this state to change the form of icon 
 
 
-  // const storedStartTime: any = localStorage.getItem('startTime');
-  //  const parsedStoredStartTime: number = JSON.parse(storedStartTime);
+  const storedStartTime: any = localStorage.getItem('startTime');
+  const parsedStoredStartTime: number = JSON.parse(storedStartTime);
+  const [startTime, setStartTime] = React.useState<number>(parsedStoredStartTime);
 
-  const [startTime, setStartTime] = React.useState<number>(0);
-
+  const [buttonFlag, setButtonFlag] = React.useState<boolean>((startTime === 0) ? true : false);//this state to change the form of icon 
   const [endTime, setEndTime] = React.useState<number>(0);
 
   const { setTimeInSecond } = props; // timeInSecond  
@@ -27,6 +26,7 @@ const ControlBtn = (props: Props) => {
 
   const [stampTimeArray, setStampTimeArray] = React.useState<Array<number | string>>(storedArray ? parsedStoredArray : []);
 
+  //this function to get the time in seconds 
   const getTimeInSeconds = (timestamp: number) => {
     const date = new Date(timestamp);
     const hours = date.getHours();
@@ -36,19 +36,10 @@ const ControlBtn = (props: Props) => {
     return timeInSeconds;
   };
 
-  useEffect(() => {
+  const handlePlayButton = () => {
 
-    if (endTime > startTime) {
-      const trying = getTimeInSeconds(endTime) - getTimeInSeconds(startTime);
-      console.log("result", trying);
-    }
-
-  }, [buttonFlag])
-
-  const handlePlayButton = (e: object) => {
     const interval: any = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
-      //setTimeInSecond()
     }, 1000);
 
     setIntervalId(interval);
@@ -56,13 +47,22 @@ const ControlBtn = (props: Props) => {
 
   const handleStopButton = () => {
     clearInterval(intervalId);
-   //setStartTime(0);
+    setStartTime(0);
+    setTimeInSecond(0);
   }
 
-  const handleReset = () => {
-    clearInterval(intervalId);
-  //  setTimeInSecond(0);
-  }
+
+  useEffect(() => {
+    if ((endTime > 0)) {
+      const totalCountingTime: number = getTimeInSeconds(Date.now()) - getTimeInSeconds(startTime);
+      localStorage.setItem("totalTime", totalCountingTime.toString());
+      console.log("result", totalCountingTime);
+      setEndTime(0);
+      setStartTime(0);
+      setTimeInSecond(0);
+    }
+
+  }, [endTime])
 
 
   useEffect(() => {
@@ -70,13 +70,29 @@ const ControlBtn = (props: Props) => {
     localStorage.setItem("startTime", startTime.toString());
     localStorage.setItem("endTime", endTime.toString());
     localStorage.setItem("startTimeArray", JSON.stringify(stampTimeArray));
+
   }, [startTime, stampTimeArray, endTime]);
+
+  useEffect(() => {
+    if ((endTime === 0) && (startTime > 0) && (buttonFlag === false)) {
+
+      const interval: any = setInterval(() => {
+        setTimeInSecond(getTimeInSeconds(Date.now()) - getTimeInSeconds(startTime))
+      }, 1000);
+
+      setIntervalId(interval);
+    }
+    else if (endTime > 0) {
+      handleStopButton()
+      setTimeInSecond(0);
+      setIntervalId(0)
+    }
+  }, [endTime]);
 
   return (
     <div>
       {
-        // (startTime === 0)
-        buttonFlag
+        (startTime === 0 && endTime === 0)
           ?
           <Button
             onClick={(e) => {
@@ -85,7 +101,7 @@ const ControlBtn = (props: Props) => {
               setStartTime(Date.now());
               setStampTimeArray((previousArray) => [...previousArray, Date.now()]);
               setEndTime(0);
-              handlePlayButton(e)
+              handlePlayButton()
             }}
             type='primary' style={{ height: '30px', width: '30px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><PlayCircleOutlined style={{ fontSize: '18px' }} /></Button>
           :
@@ -95,7 +111,6 @@ const ControlBtn = (props: Props) => {
               setButtonFlag(!buttonFlag);
               setEndTime(Date.now());
               handleStopButton();
-              handleReset();
             }}
             type='primary' style={{ height: '30px', width: '30px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><PauseCircleOutlined style={{ fontSize: '18px' }} /></Button>
       }
@@ -103,4 +118,4 @@ const ControlBtn = (props: Props) => {
   )
 }
 
-export default ControlBtn
+export default ControlBtn;
