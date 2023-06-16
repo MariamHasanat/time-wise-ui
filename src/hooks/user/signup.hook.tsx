@@ -1,5 +1,5 @@
-import showMessage from '../utils/message/message';
-import { signup } from '../services/user/signup';
+import showMessage from '../../utils/message/message';
+import { signup } from '../../services/user/signup';
 import { useNavigate } from 'react-router-dom';
 
 interface ISignup {

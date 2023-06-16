@@ -8,6 +8,8 @@ interface IProject {
 const token = localStorage.getItem('token') || '';
 
 const createProject = async (props: IProject) => {
+  if (!token.length) { showMessage('error', 'you are not logged in');return false; }
+
   return fetch('http://localhost:3001/projects', {
     method: 'POST',
     headers: {
@@ -18,15 +20,15 @@ const createProject = async (props: IProject) => {
   })
     .then(async response => {
       console.log(response.status);
-      if (response.status === 401) {
-        showMessage('error', 'Unauthorized');
+      if (response.status === 401 || response.status === 403) {
+        showMessage('error', 'please log in to continue');
         response.json().then(() => localStorage.setItem('token', "invalid"));
         return false;
       } else if (response.status === 409) {
         showMessage('error', 'project name already exists');
         return false;
       } else if (response.status === 201) {
-        showMessage('success', `project ${props.name} was created`);
+        showMessage('success', `project "${props.name}" was created`);
         return true;
       }
       else {

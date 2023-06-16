@@ -1,78 +1,49 @@
 import './project-form.css'
 import Input from '../input/input';
-import React from 'react';
 import { Modal, Form, Button } from 'antd';
-import { createProject } from '../../services/projects/submit';
+import useCreateProject from '../../hooks/project/submit.hook';
 
-
-interface iProps {
+interface IProps {
   showPopup: boolean;
-  setShowPopup: (arg0: boolean) => void;
+  setShowPopup: (oldVal: boolean) => void;
 };
 
-interface IProject {
-  name: string,
-  color: string,
-  description?: string
-}
-const emptyProject: IProject = { name: "", description: "", color: "#52469C" };
-
-const ProjectForm = (props: iProps) => {
-  const [projectData, setProjectData] = React.useState<IProject>(emptyProject);
-  const resetAndClose = () => {
-    props.setShowPopup(!props.showPopup);
-    setProjectData(emptyProject);
-    console.log(emptyProject);
-  }
-
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-
-    const project: IProject = {
-      name: data.get('name') as string,
-      description: data.get('description') as string,
-      color: data.get('color') as string
-    }
-    if (await createProject(project)) {
-      resetAndClose();
-    }
-  }
-
+const ProjectForm = (props: IProps) => {
+  const hook = useCreateProject(props);
   return (
     <div className="project-form">
       <Modal
         title="Create a New  Project"
         open={props.showPopup}
         footer={null}
-        onCancel={resetAndClose}
+        onCancel={hook.resetAndClose}
         okButtonProps={{ form: 'category-editor-form', htmlType: 'submit' }}
       >
-        <Form onSubmitCapture={submitHandler}>
+        <Form onSubmitCapture={hook.submitHandler}>
           <Input
             name="name"
-            value={projectData.name || ""}
-            onChange={(e) => setProjectData({ ...projectData, name: e.target.value })}
+            value={hook.projectData.name.val}
+            onChange={(e) => hook.projectData.name.onchange(e.target.value)}
             label="Project Name"
             required
           />
           <Input
             name="description"
             label="Description"
-            value={projectData.description || ""}
-            onChange={(e) => setProjectData({ ...projectData, description: e.target.value })}
+            value={hook.projectData.description.val}
+            onChange={(e) => hook.projectData.description.onchange(e.target.value)}
           />
           <Input
             name="color"
             label="Color"
             type="color"
-            value={projectData.color}
-            onChange={(e) => setProjectData({ ...projectData, color: e.target.value })}
+            value={hook.projectData.color.val}
+            onChange={(e) => hook.projectData.color.onchange(e.target.value)}
             required
           />
 
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-            <Button style={{ marginRight: 10 }} onClick={resetAndClose}>Cancel</Button>
+            <Button style={{ marginRight: 10 }} onClick={hook.resetAndClose}>Cancel</Button>
             <Button style={{ marginRight: 10 }} htmlType='submit'>Submit</Button>
           </div>
         </Form>

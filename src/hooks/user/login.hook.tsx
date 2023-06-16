@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { login } from '../services/user/login';
+import { login } from '../../services/user/login';
 
 interface ILogin {
   email: string,
