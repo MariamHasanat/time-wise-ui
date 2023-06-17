@@ -5,9 +5,9 @@ interface IProject {
   color: string,
   description?: string
 }
-const token = localStorage.getItem('token') || '';
 
 const createProject = async (props: IProject) => {
+  const token :string = localStorage.getItem('token') || "";
   if (!token.length) {
     showMessage('error', 'you are not logged in');
     return false;
