@@ -8,7 +8,10 @@ interface IProject {
 const token = localStorage.getItem('token') || '';
 
 const createProject = async (props: IProject) => {
-  if (!token.length) { showMessage('error', 'you are not logged in');return false; }
+  if (!token.length) {
+    showMessage('error', 'you are not logged in');
+    return false;
+  }
 
   return fetch('http://localhost:3001/projects', {
     method: 'POST',
