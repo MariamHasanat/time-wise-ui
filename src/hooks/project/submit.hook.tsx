@@ -25,7 +25,6 @@ const useCreateProject = (props: IProps) => {
   const resetAndClose = () => {
     props.setShowPopup(!props.showPopup);
     setProjectData(emptyProject);
-    console.log(emptyProject);
   }
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
