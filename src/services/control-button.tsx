@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
@@ -10,8 +10,14 @@ type Props = {
 
 const ControlBtn = (props: Props) => {
   const { setTimeInSecond } = props; // timeInSecond  
-  const [startTime, setStartTime] = React.useState(JSON.parse(localStorage.getItem('startTime') || '0'));
-  const [duration, setDuration] = React.useState<number>(0);
+  const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
+  const timerRef = useRef<NodeJS.Timer>();
+
+  const clearTimer = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  };
 
   const getTimeInSeconds = (timestamp: number) => { 
     const date = new Date(timestamp);
@@ -23,15 +29,13 @@ const ControlBtn = (props: Props) => {
   };
 
   const handlePlayButton = () => { 
-    const interval: any = setInterval(() => {
+    timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
-
-    setDuration(interval);
   }
 
   const handleStopButton = () => {
-    clearInterval(duration);
+    clearTimer();
     setStartTime(0);
     setTimeInSecond(0);
   }
@@ -41,12 +45,13 @@ const ControlBtn = (props: Props) => {
   }, [startTime]);
 
   useEffect(() => { 
-    if (startTime > 0) { // is working
-      const interval: any = setInterval(() => {
+    if (startTime > 0) {
+      timerRef.current = setInterval(() => {
         setTimeInSecond(getTimeInSeconds(Date.now()) - getTimeInSeconds(startTime))
       }, 1000);
-      setDuration(interval);
     }
+
+    return () => clearTimer();
   }, []);
 
   return (
