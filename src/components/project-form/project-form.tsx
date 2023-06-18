@@ -1,26 +1,52 @@
 import './project-form.css'
 import Input from '../input/input';
-import { Modal } from 'antd';
+import { Modal, Form, Button } from 'antd';
+import useCreateProject from '../../hooks/project/submit.hook';
 
-interface iProps {
+interface IProps {
   showPopup: boolean;
-  setShowPopup: (arg0: boolean) => void;
+  setShowPopup: (oldVal: boolean) => void;
 };
 
-const ProjectForm = (props: iProps) => {
+const ProjectForm = (props: IProps) => {
+  const hook = useCreateProject(props);
   return (
     <div className="project-form">
       <Modal
         title="Create a New  Project"
         open={props.showPopup}
-        onCancel={() => props.setShowPopup(!props.showPopup)}
-        onOk={() => { props.setShowPopup(!props.showPopup) }}
+        footer={null}
+        onCancel={hook.resetAndClose}
+        okButtonProps={{ form: 'category-editor-form', htmlType: 'submit' }}
       >
-        <form action="">
-          <Input label="Project Name" required />
-          <Input label="Description" />
-          <Input label="Color" type="color" required />
-        </form>
+        <Form onSubmitCapture={hook.submitHandler}>
+          <Input
+            name="name"
+            value={hook.projectData.name.val}
+            onChange={(e) => hook.projectData.name.onchange(e.target.value)}
+            label="Project Name"
+            required
+          />
+          <Input
+            name="description"
+            label="Description"
+            value={hook.projectData.description.val}
+            onChange={(e) => hook.projectData.description.onchange(e.target.value)}
+          />
+          <Input
+            name="color"
+            label="Color"
+            type="color"
+            value={hook.projectData.color.val}
+            onChange={(e) => hook.projectData.color.onchange(e.target.value)}
+            required
+          />
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+            <Button style={{ marginRight: 10 }} onClick={hook.resetAndClose}>Cancel</Button>
+            <Button style={{ marginRight: 10 }} htmlType='submit'>Submit</Button>
+          </div>
+        </Form>
       </Modal>
     </div >
   )

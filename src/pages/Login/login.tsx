@@ -4,7 +4,7 @@ import Button from "../../components/button/button";
 import Input from '../../components/input/input';
 import Checkbox from '../../components/checkbox/checkbox';
 import { Link } from 'react-router-dom';
-import useLogin from '../../hooks/login.hook';
+import useLogin from '../../hooks/user/login.hook';
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);

@@ -37,7 +37,6 @@ const ControlBtn = (props: Props) => {
   }
 
   useEffect(() => { 
-    console.log("startTime: ", startTime);
     localStorage.setItem("startTime", startTime.toString());
   }, [startTime]);
 

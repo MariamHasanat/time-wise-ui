@@ -14,7 +14,6 @@ const login = async (props: ILogin) => {
     body: JSON.stringify({ ...props })
   })
     .then(async response => {
-      console.log(response);
       if (response.status === 200) {
         showMessage('success', 'success');
         response.json().then((res) => localStorage.setItem('token', res.token));
