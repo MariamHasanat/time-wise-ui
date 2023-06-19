@@ -8,6 +8,7 @@ import TimeTracker from './pages/time-tracker/time-tracker';
 import PageLayout from './components/layout/layout';
 import Dashboard from './pages/dashboard/dashboard';
 import Login from './pages/Login/login';
+import Guard from './providers/guard/guard';
 function App() {
   return (
 
@@ -37,10 +38,18 @@ function App() {
           <Routes>
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/dashboard' element={<PageLayout><Dashboard /></PageLayout>} />
+            <Route path='/dashboard' element={
+              <Guard >
+                <PageLayout>
+                  <Dashboard />
+                </PageLayout>
+              </Guard>
+            } />
+
+
             <Route path='/timeTracker' element={<PageLayout><TimeTracker /></PageLayout>} />
             <Route path='/projects' element={<PageLayout><ProjectsPage /></PageLayout>} />
-            <Route path='/*' element={<Navigate to="/login"/>} />
+            <Route path='/*' element={<Navigate to="/login" />} />
           </Routes>
         </BrowserRouter>
       </ConfigProvider>
