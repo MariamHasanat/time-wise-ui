@@ -45,10 +45,18 @@ function App() {
                 </PageLayout>
               </Guard>
             } />
-
-
-            <Route path='/timeTracker' element={<PageLayout><TimeTracker /></PageLayout>} />
-            <Route path='/projects' element={<PageLayout><ProjectsPage /></PageLayout>} />
+            <Route path='/timeTracker' element={
+              <Guard >
+                <PageLayout>
+                  <TimeTracker />
+                </PageLayout>
+              </Guard>} />
+            <Route path='/projects' element={
+              <Guard>
+                <PageLayout>
+                  <ProjectsPage />
+                </PageLayout>
+              </Guard>} />
             <Route path='/*' element={<Navigate to="/login" />} />
           </Routes>
         </BrowserRouter>
