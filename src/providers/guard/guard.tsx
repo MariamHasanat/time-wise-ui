@@ -10,8 +10,8 @@ const Guard = (props: any) => {
     if (!token.length) {
       console.log("no one");
       
-      showMessage('error', 'you are not logged in');
       navigate("/login")
+      showMessage('error', 'you are not logged in');
     }
   }, [token])
 
