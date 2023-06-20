@@ -6,15 +6,10 @@ const Guard = (props: any) => {
   const navigate = useNavigate();
   const token: string = localStorage.getItem('token') || "";
 
-  useEffect(() => {
-    if (!token.length) {
-      console.log("no one");
-      
-      navigate("/login")
-      showMessage('error', 'you are not logged in');
-    }
-  }, [token])
-
+  if (!token.length) {
+    navigate("/login")
+    showMessage('error', 'you should login to continue');
+  }
   return (
     <div>
       {props.children}

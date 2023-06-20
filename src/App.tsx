@@ -10,6 +10,8 @@ import Dashboard from './pages/dashboard/dashboard';
 import Login from './pages/Login/login';
 import Guard from './providers/guard/guard';
 function App() {
+
+
   return (
 
     <div className="App">
@@ -39,14 +41,14 @@ function App() {
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/dashboard' element={
-              <Guard >
+              <Guard>
                 <PageLayout>
                   <Dashboard />
                 </PageLayout>
               </Guard>
             } />
             <Route path='/timeTracker' element={
-              <Guard >
+              <Guard>
                 <PageLayout>
                   <TimeTracker />
                 </PageLayout>
