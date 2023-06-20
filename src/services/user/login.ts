@@ -25,7 +25,7 @@ const login = async (props: ILogin) => {
         showMessage('error', 'email/password combination is not valid');
         return false;
       } else {
-        showMessage('error', 'an unexpected error occured')
+        showMessage('error', 'an unexpected error occurred')
         throw new Error('Unexpected response status');
       }
     })
