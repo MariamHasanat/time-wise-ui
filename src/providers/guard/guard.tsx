@@ -5,11 +5,13 @@ import showMessage from '../../utils/message/message';
 const Guard = (props: any) => {
   const navigate = useNavigate();
   const token: string = localStorage.getItem('token') || "";
-
-  if (!token.length) {
-    navigate("/login")
-    showMessage('error', 'you should login to continue');
-  }
+ 
+  useEffect(() => { 
+    if (!token.length) {
+      showMessage('error', 'you should login to continue');
+      navigate("/login")
+    }// eslint-disable-next-line
+  }, [])
   return (
     <div>
       {props.children}
