@@ -1,0 +1,54 @@
+import './project-form.css'
+import Input from '../input/input';
+import { Modal, Form, Button } from 'antd';
+import useCreateProject from '../../hooks/project/submit.hook';
+
+interface IProps {
+  showPopup: boolean;
+  setShowPopup: (oldVal: boolean) => void;
+};
+
+const ProjectForm = (props: IProps) => {
+  const hook = useCreateProject(props);
+  return (
+    <div className="project-form">
+      <Modal
+        title="Create a New  Project"
+        open={props.showPopup}
+        footer={null}
+        onCancel={hook.resetAndClose}
+        okButtonProps={{ form: 'category-editor-form', htmlType: 'submit' }}
+      >
+        <Form onSubmitCapture={hook.submitHandler}>
+          <Input
+            name="name"
+            value={hook.projectData.name.val}
+            onChange={(e) => hook.projectData.name.onchange(e.target.value)}
+            label="Project Name"
+            required
+          />
+          <Input
+            name="description"
+            label="Description"
+            value={hook.projectData.description.val}
+            onChange={(e) => hook.projectData.description.onchange(e.target.value)}
+          />
+          <Input
+            name="color"
+            label="Color"
+            type="color"
+            value={hook.projectData.color.val}
+            onChange={(e) => hook.projectData.color.onchange(e.target.value)}
+            required
+          />
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+            <Button style={{ marginRight: 10 }} onClick={hook.resetAndClose}>Cancel</Button>
+            <Button style={{ marginRight: 10 }} htmlType='submit'>Submit</Button>
+          </div>
+        </Form>
+      </Modal>
+    </div >
+  )
+}
+export default ProjectForm;

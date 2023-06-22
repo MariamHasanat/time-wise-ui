@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
 
 :root {
-  zoom: 110%;
+  zoom: 121%;
   --primary-color: #52469C;
   --ligt-primary-color: #c4d3fa;
   --background-color: #f1f8ff;
@@ -17,4 +17,6 @@
 
   font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
   background-color: var(--background-color);
+
+  /*   box-shadow: 0px 0px 5px 0px var(--shadow-color); */
 }

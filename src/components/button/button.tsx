@@ -1,18 +1,17 @@
 import React from "react";
-import './button.css'
+import "./button.css";
 
 interface BtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: String;
-  primary?: Boolean;
+  label: string;
+  primary?: boolean;
 }
 
-const Button: React.FC<BtnProps> = (props) => {
-  const primary = props.primary
+const Button: React.FC<BtnProps> = ({ label, primary, ...rest }) => {
   return (
     <div className={primary ? "primary button" : "button"}>
-      <button {...props}>{props.label}</button>
+      <button {...rest}>{label}</button>
     </div>
-  )
-}
+  );
+};
 
 export default Button;

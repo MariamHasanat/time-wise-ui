@@ -1,0 +1,31 @@
+.stopwatch-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  background-color: white;
+  width: min-content;
+  padding: 0px 5px;
+  margin: 0px 10px;
+  height: 25px;
+  justify-content: center;
+  border-radius: var(--border-radius);
+}
+
+.timer-display {
+  display: flex;
+  color: #666;
+}
+
+.timer-display p {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+.timer-display span {
+  font-size: 15px;
+  font-weight: bold;
+  position: relative;
+  top: -1px;
+  letter-spacing: 1px;
+}

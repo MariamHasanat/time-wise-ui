@@ -1,0 +1,23 @@
+.page-layout {
+  height: 1vh;
+  box-sizing: border-box;
+}
+.page-layout .menu-logo {
+  border-radius: var(--border-radius);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  margin: 5px 5px 10px;
+}
+
+.page-layout .menu-logo img {
+  width: 50px;
+}
+
+.page-layout .user-icon {
+  position: fixed;
+  bottom :10px;
+  left: 10px;
+}
