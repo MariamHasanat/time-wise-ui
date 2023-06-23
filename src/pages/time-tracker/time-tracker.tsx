@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './time-tracker.css';
 import NewTaskForm from '../../components/new-task-form/new-task-form';
 import TaskLog from '../../components/task-log/task-log';
@@ -12,7 +12,7 @@ interface IProName {
 
 const TimeTracker = () => {
   const projectsNames = useRef<Array<IProName>>();
-  let arrayOfProjectsNames: Array<string>;
+ 
   useEffect(() => {
     fetchProjectNames()
       .then((names: Array<IProName>) => {
@@ -23,9 +23,6 @@ const TimeTracker = () => {
         } else {
           projectsNames.current = names;
           console.log("mariam is ok", projectsNames.current);
-          // eslint-disable-next-line
-          arrayOfProjectsNames = projectsNames.current.map(item => item.name);
-          console.log(arrayOfProjectsNames);
         }
       }
       )// eslint-disable-next-line
