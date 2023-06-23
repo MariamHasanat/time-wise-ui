@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import './time-tracker.css';
 import NewTaskForm from '../../components/new-task-form/new-task-form';
 import TaskLog from '../../components/task-log/task-log';
@@ -11,8 +11,8 @@ interface IProName {
 }
 
 const TimeTracker = () => {
-  const projectsNames = useRef<Array<IProName>>();
- 
+  const [projectsNames, setProjectsNames] = useState<Array<IProName>>([]);
+
   useEffect(() => {
     fetchProjectNames()
       .then((names: Array<IProName>) => {
@@ -21,12 +21,12 @@ const TimeTracker = () => {
           console.log("projects names : ", projectsNames);
           showMessage('error', "names of projects are not found")
         } else {
-          projectsNames.current = names;
-          console.log("mariam is ok", projectsNames.current);
+          setProjectsNames(names);
         }
       }
       )// eslint-disable-next-line
   }, [])
+  console.log("mariam is ok", projectsNames);
   return (
     <div className='time-tracker'>
       <NewTaskForm />
