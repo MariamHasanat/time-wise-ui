@@ -1,5 +1,4 @@
 import './project-card.css';
-import { IProject } from '../../types/project-interface';
 
 interface IProps {
   name: string;
@@ -15,6 +14,7 @@ interface IProps {
 //   totalTime: string;
 // }
 const ProjectCard = (props: IProps) => {
+  console.log("jjjjjjjjjjjjjj"); 
   return (
     <div className="project-card">
       <div className="project-top">

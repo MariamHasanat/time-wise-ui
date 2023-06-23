@@ -9,23 +9,23 @@ const ProjectsPage = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [projects, setProjects] = useState<IProject[]>([]);
   console.log("kkkkkkkkkkkkkkk");
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     try {
-  //       const fetchedProjects = await getProjects();
-  //       console.log("lllllllll", fetchedProjects);
-  //       if (Array.isArray(fetchedProjects)) {
-  //         setProjects(fetchedProjects);
-  //       } else {
-  //         console.error('Invalid projects data:', fetchedProjects);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching projects:', error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const fetchedProjects = await getProjects();
+        console.log("lllllllll", fetchedProjects);
+        if (Array.isArray(fetchedProjects)) {
+          setProjects(fetchedProjects);
+        } else {
+          console.error('Invalid projects data:', fetchedProjects);
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
 
-  //   fetchProjects();
-  // }, []);
+    fetchProjects();
+  }, []);
 
   console.log('Render projects:', projects);
   return (
@@ -38,8 +38,8 @@ const ProjectsPage = () => {
       <div className="projects-board">
 
 
-        {projects.map((project) => (
-          <ProjectCard
+        {projects && projects.map((project) => (
+          <ProjectCard    
             key={project.name}
             color={project.color}
             name={project.name}
@@ -47,6 +47,7 @@ const ProjectsPage = () => {
             projectHours={project.projectHours || 0}
           />
         ))}
+
       </div>
       <ProjectForm showPopup={showPopup} setShowPopup={setShowPopup} />
     </div>
