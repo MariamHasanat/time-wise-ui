@@ -10,7 +10,7 @@ interface IProName {
   name: string
 }
 
-const TimeTracker = () => {
+const TimeTracker = () => {// eslint-disable-next-line
   const [projectsNames, setProjectsNames] = useState<Array<IProName>>([]);
 
   useEffect(() => {
