@@ -17,8 +17,6 @@ const TimeTracker = () => {
     fetchProjectNames()
       .then((names: Array<IProName>) => {
         if (names === null || names === undefined) {
-          console.log("names : ", names);
-          console.log("projects names : ", projectsNames);
           showMessage('error', "names of projects are not found")
         } else {
           setProjectsNames(names);
@@ -26,7 +24,7 @@ const TimeTracker = () => {
       }
       )// eslint-disable-next-line
   }, [])
-  console.log("mariam is ok", projectsNames);
+  
   return (
     <div className='time-tracker'>
       <NewTaskForm />
