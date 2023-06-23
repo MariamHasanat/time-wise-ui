@@ -1,89 +1,56 @@
-import './projects.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'antd';
 import ProjectForm from '../../components/project-form/project-form';
 import ProjectCard from '../../components/project-card/project-card';
+import getProjects from '../../services/projects/getProjects';
+import { IProject } from '../../types/project-interface';
 
 const ProjectsPage = () => {
-  const [showPopup, setShowPopup] = React.useState<boolean>(false);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [projects, setProjects] = useState<IProject[]>([]);
+  console.log("kkkkkkkkkkkkkkk");
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       const fetchedProjects = await getProjects();
+  //       console.log("lllllllll", fetchedProjects);
+  //       if (Array.isArray(fetchedProjects)) {
+  //         setProjects(fetchedProjects);
+  //       } else {
+  //         console.error('Invalid projects data:', fetchedProjects);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching projects:', error);
+  //     }
+  //   };
+
+  //   fetchProjects();
+  // }, []);
+
+  console.log('Render projects:', projects);
   return (
     <div className="projects-page">
       <div className="projects-page-inner">
-        <div className='new-project-btn'>
+        <div className="new-project-btn">
           <Button onClick={() => setShowPopup(!showPopup)}>New Project</Button>
         </div>
       </div>
       <div className="projects-board">
-        <ProjectCard
-          color="red"
-          projectName='project name here'
-          description='This is a short description, this space should probably be enough.'
-          totalTime='16hrs 45mins'
-        />
-        <ProjectCard
-          color="yellow"
-          projectName='yellow market'
-          description='This is another short description'
-          totalTime='2hrs 9mins'
-        />
-        <ProjectCard
-          color="pink"
-          projectName='idk pro'
-          description='This is another short description'
-          totalTime='2hrs 9mins'
-        />
-        <ProjectCard
-          color="pink"
-          projectName='idk pro'
-          description='This is another short description'
-          totalTime='2hrs 9mins'
-        />
-        <ProjectCard
-          color="orange"
-          projectName='frying nemo'
-          description='This is a very long description, i am going to try to make it look good even though its desciption is too long'
-          totalTime='2hrs 9mins'
-        />
-        <ProjectCard
-          color="red"
-          projectName='project name here'
-          description='This is a short description, this space should probably be enough.'
-          totalTime='16hrs 45mins'
-        />
-        <ProjectCard
-          color="yellow"
-          projectName='yellow market'
-          description='This is another short description'
-          totalTime='2hrs 9mins'
-        />
-        <ProjectCard
-          color="yellow"
-          projectName='yellow market'
-          description='This is another short description'
-          totalTime='2hrs 9mins'
-        />
-        <ProjectCard
-          color="pink"
-          projectName='idk pro'
-          description='This is another short description'
-          totalTime='2hrs 9mins'
-        />
-        <ProjectCard
-          color="orange"
-          projectName='frying nemo'
-          description='This is a very long description, i am going to try to make it look good even though its desciption is too long'
-          totalTime='2hrs 9mins'
-        />
-        <ProjectCard
-          color="red"
-          projectName='project name here'
-          description='This is a short description, this space should probably be enough.'
-          totalTime='16hrs 45mins'
-        />
+
+
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.name}
+            color={project.color}
+            name={project.name}
+            description={project.description || ''}
+            projectHours={project.projectHours || 0}
+          />
+        ))}
       </div>
-      {/*list of projects here */}
       <ProjectForm showPopup={showPopup} setShowPopup={setShowPopup} />
-    </div >
-  )
-}
+    </div>
+  );
+};
+
 export default ProjectsPage;
