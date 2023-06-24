@@ -19,7 +19,7 @@ const ControlBtn = (props: Props) => {
     }
   };
 
-  const getTimeInSeconds = (timestamp: number) => { 
+  const getTimeInSeconds = (timestamp: number) => {
     const date = new Date(timestamp);
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -28,7 +28,7 @@ const ControlBtn = (props: Props) => {
     return timeInSeconds;
   };
 
-  const handlePlayButton = () => { 
+  const handlePlayButton = () => {
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
@@ -40,11 +40,11 @@ const ControlBtn = (props: Props) => {
     setTimeInSecond(0);
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     localStorage.setItem("startTime", startTime.toString());
   }, [startTime]);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (startTime > 0) {
       timerRef.current = setInterval(() => {
         setTimeInSecond(getTimeInSeconds(Date.now()) - getTimeInSeconds(startTime))
@@ -52,6 +52,7 @@ const ControlBtn = (props: Props) => {
     }
 
     return () => clearTimer();
+    // eslint-disable-next-line
   }, []);
 
   return (
