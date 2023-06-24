@@ -3,13 +3,13 @@ import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 type Props = {
-  timeInSecond: number,
-  setTimeInSecond: Function
+  setTimeInSecond: Function,
+  setDropdownLabel: Function,
 }
 
 
 const ControlBtn = (props: Props) => {
-  const { setTimeInSecond } = props; // timeInSecond  
+  const { setTimeInSecond , setDropdownLabel} = props; // timeInSecond  
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
 
@@ -38,6 +38,7 @@ const ControlBtn = (props: Props) => {
     clearTimer();
     setStartTime(0);
     setTimeInSecond(0);
+    setDropdownLabel("Projects");
   }
 
   useEffect(() => {
