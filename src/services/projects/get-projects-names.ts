@@ -13,6 +13,7 @@ const fetchProjectNames = async () => {
     });
     if (response.status === 200) {
       const projectName = await response.json();
+      console.log("success fetching the projects names");
       return projectName;
     }
   } catch (error) {
