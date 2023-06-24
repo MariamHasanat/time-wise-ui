@@ -24,10 +24,15 @@ const TimeTracker = () => {// eslint-disable-next-line
       }
       )// eslint-disable-next-line
   }, [])
-  
+
+  const convertedProjectsNames = projectsNames.map((item, index) => ({
+    key: index.toString(),
+    label: item.name,
+  }));
+
   return (
     <div className='time-tracker'>
-      <NewTaskForm />
+      <NewTaskForm projects={convertedProjectsNames} />
       <TaskLog />
     </div>
   )
