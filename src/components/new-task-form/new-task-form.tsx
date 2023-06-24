@@ -8,8 +8,6 @@ import ControlBtn from '../../services/control-button';
 
 const NewTaskForm= (props : any) => {
   
-  console.log("projects :", props.projects);
-
   const [timeInSecond, setTimeInSecond] = React.useState<number>(0);
 
   useEffect(() => {

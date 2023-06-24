@@ -5,9 +5,7 @@ import { Dropdown, Space } from 'antd';
 
 
 const DropDown = (props: any) => {
-  console.log("props from drop-down : ", props.projects);
   const items : MenuProps['items'] = props.projects;
-  console.log("items : ", items);
   
   return (
     <Dropdown menu={{ items }} trigger={['click']} >

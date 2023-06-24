@@ -29,8 +29,6 @@ const TimeTracker = () => {// eslint-disable-next-line
     key: index.toString(),
     label: item.name,
   }));
-  console.log("converted : ", convertedProjectsNames);
-
 
   return (
     <div className='time-tracker'>
