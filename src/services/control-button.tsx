@@ -3,13 +3,13 @@ import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 type Props = {
-  timeInSecond: number,
-  setTimeInSecond: Function
+  setTimeInSecond: Function,
+  setDropdownLabel: Function,
 }
 
 
 const ControlBtn = (props: Props) => {
-  const { setTimeInSecond } = props; // timeInSecond  
+  const { setTimeInSecond , setDropdownLabel} = props; // timeInSecond  
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
 
@@ -19,7 +19,7 @@ const ControlBtn = (props: Props) => {
     }
   };
 
-  const getTimeInSeconds = (timestamp: number) => { 
+  const getTimeInSeconds = (timestamp: number) => {
     const date = new Date(timestamp);
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -28,7 +28,7 @@ const ControlBtn = (props: Props) => {
     return timeInSeconds;
   };
 
-  const handlePlayButton = () => { 
+  const handlePlayButton = () => {
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
@@ -38,13 +38,14 @@ const ControlBtn = (props: Props) => {
     clearTimer();
     setStartTime(0);
     setTimeInSecond(0);
+    setDropdownLabel("Projects");
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     localStorage.setItem("startTime", startTime.toString());
   }, [startTime]);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (startTime > 0) {
       timerRef.current = setInterval(() => {
         setTimeInSecond(getTimeInSeconds(Date.now()) - getTimeInSeconds(startTime))
@@ -52,6 +53,7 @@ const ControlBtn = (props: Props) => {
     }
 
     return () => clearTimer();
+    // eslint-disable-next-line
   }, []);
 
   return (
