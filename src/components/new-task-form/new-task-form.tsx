@@ -6,8 +6,9 @@ import StopWatch from '../stop-watch/stop-watch';
 import ControlBtn from '../../services/control-button';
 
 
-
-const NewTaskForm: React.FC = () => {
+const NewTaskForm= (props : any) => {
+  
+  console.log("projects :", props.projects);
 
   const [timeInSecond, setTimeInSecond] = React.useState<number>(0);
 
@@ -20,7 +21,7 @@ const NewTaskForm: React.FC = () => {
   return (
     <form className='new-task-form'>
       <Input placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px' }} />
-      <DropDown />
+      <DropDown projects ={props.projects}/>
       <StopWatch timeInSecond={timeInSecond} />
       <ControlBtn timeInSecond={timeInSecond} setTimeInSecond={setTimeInSecond} />
     </form>
