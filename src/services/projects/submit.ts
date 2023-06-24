@@ -1,6 +1,6 @@
 import showMessage from "../../utils/message/message";
 
-interface IProject {
+export interface IProject {
   name: string,
   color: string,
   description?: string
