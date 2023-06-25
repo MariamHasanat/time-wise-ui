@@ -5,11 +5,14 @@ import { Button } from 'antd';
 type Props = {
   setTimeInSecond: Function,
   setDropdownLabel: Function,
+  setIsRunning: Function,
+  setTaskDescription: Function,
+  isRunning: boolean
 }
 
 
 const ControlBtn = (props: Props) => {
-  const { setTimeInSecond , setDropdownLabel} = props; // timeInSecond  
+  const { setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription } = props; // timeInSecond  
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
 
@@ -29,6 +32,7 @@ const ControlBtn = (props: Props) => {
   };
 
   const handlePlayButton = () => {
+    setIsRunning(true)
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
@@ -39,6 +43,8 @@ const ControlBtn = (props: Props) => {
     setStartTime(0);
     setTimeInSecond(0);
     setDropdownLabel("Projects");
+    setIsRunning(false);
+    setTaskDescription('');
   }
 
   useEffect(() => {
@@ -65,6 +71,7 @@ const ControlBtn = (props: Props) => {
             onClick={() => {
               setStartTime(Date.now());
               handlePlayButton();
+
             }}
             type='primary' style={{ height: '30px', width: '30px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><PlayCircleOutlined style={{ fontSize: '18px' }} /></Button>
           :
