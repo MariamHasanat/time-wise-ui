@@ -7,14 +7,7 @@ interface IProps {
   projectHours:number;
 
 }
-// interface IProps {
-//   projectName: string,
-//   description: string,
-//   color: string,
-//   totalTime: string;
-// }
 const ProjectCard = (props: IProps) => {
-  console.log("jjjjjjjjjjjjjj"); 
   return (
     <div className="project-card">
       <div className="project-top">
