@@ -4,11 +4,11 @@ import { Input } from 'antd';
 import DropDown from '../drop-down/drop-down';
 import StopWatch from '../stop-watch/stop-watch';
 import ControlBtn from '../../services/control-button';
-
+// import getTimeInSeconds from '../../utils/get-time-in-seconds';
 
 const NewTaskForm = (props: any) => {
 
-  const [timeInSecond, setTimeInSecond] = React.useState<number>(0);
+  const [timeInSecond, setTimeInSecond] = React.useState<number>(0);//getTimeInSeconds(Number(localStorage.getItem("startTime")?.toString()) || 0)
   const [dropdownLabel, setDropdownLabel] = React.useState<string>(localStorage.getItem('projectName')?.toString() || 'Projects');
   const [isRunning, setIsRunning] = React.useState<boolean>((Number(localStorage.getItem("startTime")?.toString()) > 0));
   const [taskDescription, setTaskDescription] = React.useState<string>('');

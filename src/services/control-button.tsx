@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import getTimeInSeconds from '../utils/get-time-in-seconds';
 
 type Props = {
   setTimeInSecond: Function,
@@ -20,15 +21,6 @@ const ControlBtn = (props: Props) => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
     }
-  };
-
-  const getTimeInSeconds = (timestamp: number) => {
-    const date = new Date(timestamp);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    const timeInSeconds = hours * 3600 + minutes * 60 + seconds;
-    return timeInSeconds;
   };
 
   const handlePlayButton = () => {
