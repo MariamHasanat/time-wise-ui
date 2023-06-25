@@ -8,7 +8,6 @@ type Props = {
   setDropdownLabel: Function,
   setIsRunning: Function,
   setTaskDescription: Function,
-  isRunning: boolean
 }
 
 

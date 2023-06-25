@@ -27,7 +27,7 @@ const NewTaskForm = (props: any) => {
       <Input required={true} disabled={isRunning} placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px' }} value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} />
       <DropDown projects={props.projects} dropdownLabel={dropdownLabel} setDropdownLabel={setDropdownLabel} isRunning={isRunning} />
       <StopWatch timeInSecond={timeInSecond} />
-      <ControlBtn setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} isRunning={isRunning} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} />
+      <ControlBtn setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} />
     </form>
   )
 }
