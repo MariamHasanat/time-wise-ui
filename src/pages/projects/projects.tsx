@@ -8,12 +8,10 @@ import { IProject } from '../../types/project-interface';
 const ProjectsPage = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [projects, setProjects] = useState<IProject[]>([]);
-  console.log("kkkkkkkkkkkkkkk");
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const fetchedProjects = await getProjects();
-        console.log("lllllllll", fetchedProjects);
         if (Array.isArray(fetchedProjects)) {
           setProjects(fetchedProjects);
         } else {
@@ -27,7 +25,6 @@ const ProjectsPage = () => {
     fetchProjects();
   }, []);
 
-  console.log('Render projects:', projects);
   return (
     <div className="projects-page">
       <div className="projects-page-inner">
@@ -39,7 +36,7 @@ const ProjectsPage = () => {
 
 
         {projects && projects.map((project) => (
-          <ProjectCard    
+          <ProjectCard
             key={project.name}
             color={project.color}
             name={project.name}
