@@ -5,12 +5,10 @@
   padding: 12px;
   background-color: white;
   border: 1px dashed var(--primary-color);
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* min-height: 200px; */
-  height: max-content;
+  max-height: 200px;
 }
 
 .project-card p {
