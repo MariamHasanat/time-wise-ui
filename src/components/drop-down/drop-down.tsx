@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { CaretDownFilled } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space, Menu } from 'antd';
@@ -6,7 +6,7 @@ import { Dropdown, Space, Menu } from 'antd';
 const DropDown = (props: any) => {
   const items: MenuProps['items'] = props.projects;
   // const [dropdownLabel, setDropdownLabel] = useState<string>(localStorage.getItem('projectName')?.toString() || 'Projects');
-  const {dropdownLabel, setDropdownLabel} = props;
+  const { dropdownLabel, setDropdownLabel } = props;
   const handleItemClick = (e: any) => {
     setDropdownLabel(e.key);
   };
