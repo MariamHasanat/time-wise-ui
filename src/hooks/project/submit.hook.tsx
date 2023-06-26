@@ -1,31 +1,20 @@
 import React from 'react';
-import { createProject } from '../../services/projects/submit';
-
+import createProject from '../../services/projects/submit';
+import { IProject } from '../../services/projects/submit';
 interface IProps {
   showPopup: boolean;
   setShowPopup: (arg0: boolean) => void;
-};
-
-interface IProject {
-  name: string,
-  color: string,
-  description?: string
 }
 
 const emptyProject: IProject = { name: "", description: "", color: "#52469C" };
 
-interface IProject {
-  name: string,
-  color: string,
-  description?: string
-}
 const useCreateProject = (props: IProps) => {
   const [projectData, setProjectData] = React.useState<IProject>(emptyProject);
 
   const resetAndClose = () => {
     props.setShowPopup(!props.showPopup);
     setProjectData(emptyProject);
-  }
+  };
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,11 +24,13 @@ const useCreateProject = (props: IProps) => {
       name: data.get('name') as string,
       description: data.get('description') as string,
       color: data.get('color') as string
-    }
+    };
+
     if (await createProject(project)) {
       resetAndClose();
     }
-  }
+  };
+
   return {
     submitHandler,
     resetAndClose,
@@ -58,7 +49,7 @@ const useCreateProject = (props: IProps) => {
         onchange: (newVal: string) => setProjectData({ ...projectData, name: newVal })
       },
     }
-  }
-}
+  };
+};
 
 export default useCreateProject;

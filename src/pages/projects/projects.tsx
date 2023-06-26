@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'antd';
 import ProjectForm from '../../components/project-form/project-form';
 import ProjectCard from '../../components/project-card/project-card';
@@ -8,6 +8,9 @@ import { IProject } from '../../types/project-interface';
 const ProjectsPage = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [projects, setProjects] = useState<IProject[]>([]);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
+
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -23,19 +26,23 @@ const ProjectsPage = () => {
     };
 
     fetchProjects();
-  }, []);
+  }, [isSubmit]);
+
+  const handleProjectCreated = (newProject: IProject) => {
+    setProjects(prevProjects => [...prevProjects, newProject]);
+  };
 
   return (
     <div className="projects-page">
       <div className="projects-page-inner">
         <div className="new-project-btn">
-          <Button onClick={() => setShowPopup(!showPopup)}>New Project</Button>
+          <Button onClick={() =>
+            setShowPopup(!showPopup)
+          }>New Project</Button>
         </div>
       </div>
       <div className="projects-board">
-
-
-        {projects && projects.map((project) => (
+        {projects.map((project) => (
           <ProjectCard
             key={project.name}
             color={project.color}
@@ -44,11 +51,17 @@ const ProjectsPage = () => {
             projectHours={project.projectHours || 0}
           />
         ))}
-
       </div>
-      <ProjectForm showPopup={showPopup} setShowPopup={setShowPopup} />
+      <ProjectForm
+        onProjectCreated={handleProjectCreated}
+        showPopup={showPopup}
+        setShowPopup={setShowPopup}
+        setIsSubmit={setIsSubmit}
+        isSubmit={isSubmit}
+      />
     </div>
   );
 };
 
 export default ProjectsPage;
+
