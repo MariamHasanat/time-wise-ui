@@ -127,17 +127,18 @@
 
 import React from 'react';
 import createProject from '../../services/projects/submit';
-
+// import { IProject } from '../../types/project-interface';
+import { IProject } from '../../services/projects/submit';
 interface IProps {
   showPopup: boolean;
   setShowPopup: (arg0: boolean) => void;
 }
 
-interface IProject {
-  name: string;
-  color: string;
-  description?: string;
-}
+// interface IProject {
+//   name: string;
+//   color: string;
+//   description?: string;
+// }
 
 const emptyProject: IProject = { name: "", description: "", color: "#52469C" };
 

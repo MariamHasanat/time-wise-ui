@@ -67,6 +67,7 @@ const createProject = async (props: IProject) => {
       'token': token
     },
     body: JSON.stringify({ ...props })
+    
   })
     .then(async response => {
       console.log(response.status);
@@ -77,8 +78,9 @@ const createProject = async (props: IProject) => {
       } else if (response.status === 409) {
         showMessage('error', 'Project name already exists');
         return false;
-      } else if (response.status === 201) {
+      } else if (response.status === 200) {
         showMessage('success', `Project "${props.name}" was created`);
+
         return true;
       } else {
         showMessage('error', 'An unexpected error occurred');
