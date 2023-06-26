@@ -1,15 +1,19 @@
 import { useState, useEffect, useRef } from 'react'
 import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import getTimeInSeconds from '../utils/get-time-in-seconds';
 
 type Props = {
   setTimeInSecond: Function,
   setDropdownLabel: Function,
+  setIsRunning: Function,
+  setTaskDescription: Function,
+  handleRequired: Function,
 }
 
 
 const ControlBtn = (props: Props) => {
-  const { setTimeInSecond , setDropdownLabel} = props; // timeInSecond  
+  const { setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired } = props; // timeInSecond  
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
 
@@ -19,16 +23,9 @@ const ControlBtn = (props: Props) => {
     }
   };
 
-  const getTimeInSeconds = (timestamp: number) => {
-    const date = new Date(timestamp);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    const timeInSeconds = hours * 3600 + minutes * 60 + seconds;
-    return timeInSeconds;
-  };
-
   const handlePlayButton = () => {
+
+    setIsRunning(true)
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
@@ -39,6 +36,8 @@ const ControlBtn = (props: Props) => {
     setStartTime(0);
     setTimeInSecond(0);
     setDropdownLabel("Projects");
+    setIsRunning(false);
+    setTaskDescription('');
   }
 
   useEffect(() => {
@@ -63,8 +62,12 @@ const ControlBtn = (props: Props) => {
           ?
           <Button
             onClick={() => {
-              setStartTime(Date.now());
-              handlePlayButton();
+              if (handleRequired()) {
+                setStartTime(Date.now());
+                handlePlayButton();
+              }
+              else
+                return false
             }}
             type='primary' style={{ height: '30px', width: '30px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><PlayCircleOutlined style={{ fontSize: '18px' }} /></Button>
           :
