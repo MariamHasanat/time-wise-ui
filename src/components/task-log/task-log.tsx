@@ -4,6 +4,7 @@ import { ClockCircleOutlined, MoreOutlined } from "@ant-design/icons"
 import { useState } from "react";
 import { Dropdown } from "antd";
 import type { MenuProps } from 'antd';
+import EditTaskPopup from "../edit-task/edit-task";
 
 const TaskLog = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
@@ -35,7 +36,7 @@ const TaskLog = () => {
       <label >15 mins</label>
       <label> <ClockCircleOutlined /> &nbsp;3:30 - 3:45pm</label>
       <DatePicker />
-      <Modal title="edit task" open={editMode} onCancel={() => setEditMode(false)}>hello</Modal>
+      <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none"/>
       <Dropdown trigger={['click']} menu={{ items }} placement="bottomLeft" arrow>
         <Button className="controlbtn"><MoreOutlined style={{ "fontSize": 15 }} /></Button>
       </Dropdown>
