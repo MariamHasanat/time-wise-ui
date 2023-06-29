@@ -13,6 +13,13 @@
 .project-card h4 {
   text-align: left;
   margin: 10px 0px;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+.project-card p {
+  font-size: 12px;
+  color: #5d5c5c;
 }
 
 .project-card .color {
@@ -23,11 +30,12 @@
   box-shadow: 0px 1px 1px 1px var(--shadow-color);
 }
 
-.project-card .project-card-header{
+.project-card .project-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .project-card .proj-tooltip-btn {
   width: 10px;
   display: flex;
@@ -36,9 +44,10 @@
   outline: none;
   padding: 0;
   background-color: none;
-  border:none;
-  
+  border: none;
+
 }
+
 .project-card .proj-tooltip-btn:hover,
 .project-card .proj-tooltip-btn:active {
   outline: none;
