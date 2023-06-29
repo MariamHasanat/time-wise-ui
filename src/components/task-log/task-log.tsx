@@ -1,5 +1,5 @@
 import "./task-log.css";
-import { Button, DatePicker, Modal } from "antd";
+import { Button } from "antd";
 import { ClockCircleOutlined, MoreOutlined } from "@ant-design/icons"
 import { useState } from "react";
 import { Dropdown } from "antd";
@@ -34,9 +34,14 @@ const TaskLog = () => {
         <label style={{ fontSize: "10px", color: "#7489C1" }} >projectName</label>
       </div>
       <label >15 mins</label>
-      <label> <ClockCircleOutlined /> &nbsp;3:30 - 3:45pm</label>
-      <DatePicker />
-      <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none"/>
+      <div className="task-time">
+        <ClockCircleOutlined style={{"fontSize": "15px", "margin": "10px"}}/>
+        <div className="task-date-time">
+          <label> &nbsp;3:30 - 3:45pm</label>
+          <label className="task-dates" >June 19 - June 20</label>
+        </div>
+      </div>
+      <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none" />
       <Dropdown trigger={['click']} menu={{ items }} placement="bottomLeft" arrow>
         <Button className="controlbtn"><MoreOutlined style={{ "fontSize": 15 }} /></Button>
       </Dropdown>
