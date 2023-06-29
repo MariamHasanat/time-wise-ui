@@ -1,6 +1,6 @@
-import { Tooltip } from 'antd';
 import './project-card.css';
-import { InfoCircleFilled } from '@ant-design/icons';
+import { Tooltip } from 'antd';
+import { ClockCircleOutlined, InfoCircleFilled } from '@ant-design/icons';
 
 interface IProps {
   name: string;
@@ -19,7 +19,9 @@ const ProjectCard = (props: IProps) => {
         </Tooltip>
       </div>
         <h4>{props.name}</h4>
-      <p><b>Total Time: </b>{props.projectHours}</p>
+      <div className='proj-time'>
+        <p><b><ClockCircleOutlined/> </b>{props.projectHours}hrs</p>
+      </div>
     </div>
   )
 }

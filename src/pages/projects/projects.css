@@ -21,9 +21,9 @@
   width: 950px;
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: center;
-  flex-direction: row;
+  /* align-items: stretch; */
+  /* justify-content: center; */
+  /* flex-direction: row; */
 }
 
 .projects-page .project-card {

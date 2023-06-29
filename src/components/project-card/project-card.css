@@ -22,6 +22,13 @@
   color: #5d5c5c;
 }
 
+.project-card p b {
+  color: var(--primary-color);
+}
+.project-card p {
+  text-align: right;
+}
+
 .project-card .color {
   border-radius: 4px;
   display: inline-block;
