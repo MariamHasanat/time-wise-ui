@@ -36,7 +36,7 @@ const TaskLog = () => {
       <label >15 mins</label>
       <label> <ClockCircleOutlined /> &nbsp;3:30 - 3:45pm</label>
       <DatePicker />
-      <EditTaskPopup editMode={editMode} setEditMode={setEditMode} />
+      <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none"/>
       <Dropdown trigger={['click']} menu={{ items }} placement="bottomLeft" arrow>
         <Button className="controlbtn"><MoreOutlined style={{ "fontSize": 15 }} /></Button>
       </Dropdown>
