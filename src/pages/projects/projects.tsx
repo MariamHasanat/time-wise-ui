@@ -4,6 +4,7 @@ import ProjectForm from '../../components/project-form/project-form';
 import ProjectCard from '../../components/project-card/project-card';
 import getProjects from '../../services/projects/getProjects';
 import { IProject } from '../../types/project-interface';
+import './projects.css'
 
 const ProjectsPage = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
