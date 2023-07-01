@@ -8,34 +8,40 @@ const submitTask = async (props: ITask) => {
   if (!token.length) {
     showMessage("error", "you are logged out, invalid token")
   }
-  return fetch("http://localhost:3001/tasks", {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-      'token': token
-    },
-    body: JSON.stringify({ ...props })
-  })
-    .then(async response => {
-      // console.log(response.status);
-      if (response.status === 401 || response.status === 403) {
-        showMessage('error', 'Please log in to continue');
-        response.json().then(() => localStorage.setItem('token', "invalid"));
-        return false;
-      } else if (response.status === 200) {
-        showMessage('success', `task begins successfully`);
+  try {
 
-        return true;
-      } else {
-        showMessage('error', 'An unexpected error occurred');
-        throw new Error('Unexpected response status');
-      }
+    return await fetch("http://localhost:3001/tasks", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'token': token
+      },
+      body: JSON.stringify({ ...props })
     })
-    .catch(error => {
-      showMessage('error', error);
-      return false;
-    }
-    )
+      .then(async response => {
+        // console.log(response.status);
+        if (response.status === 401 || response.status === 403) {
+          showMessage('error', 'Please log in to continue');
+          response.json().then(() => localStorage.setItem('token', "invalid"));
+          return false;
+        } else if (response.status === 200) {
+          showMessage('success', `task begins successfully`);
+
+          return true;
+        } else {
+          showMessage('error', 'An unexpected error occurred');
+          throw new Error('Unexpected response status');
+        }
+      })
+      .catch(error => {
+        showMessage('error', error);
+        return false;
+      }
+      )
+  } catch (error) {
+    showMessage('error', `${error}`)
+  }
 }
 
 export default submitTask;
+
