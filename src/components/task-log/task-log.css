@@ -42,12 +42,10 @@
   height: 15px;
 }
 
-.task-log .controlbtn {
-  box-sizing: border-box;
-  padding: 0;
+
+.task-log .control-btns {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  border: none;
+  justify-content: space-around;
+  margin-right: -50px
 }
