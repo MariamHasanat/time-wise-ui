@@ -1,4 +1,5 @@
-import { ITask } from "../../types/task-interface";
+
+import { ITask } from "../../hooks/tasks/submit-task";
 import showMessage from "../../utils/message/message";
 
 const submitTask = async (props: ITask) => {
