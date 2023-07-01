@@ -40,11 +40,16 @@ const timeline = [
   },
 ]
 
+
+// Orange: #FF9800
+// Red: #F44336
+// Purple: #9C27B0
+
 const projects = [
-  { name: "time-wise", color: "#52469C" },
-  { name: "frying-nemo", color: "#ffa344" },
-  { name: "typing-test", color: "#f0db12" },
-  { name: "graduation-project", color: "red" },
+  { name: "typing-test", color: "#FFEB3B" },
+  { name: "frying-nemo", color: "#FF9800" },
+  { name: "graduation-project", color: "#F44336" },
+  { name: "time-wise", color: "#9C27B0" },
 ]
 const MyBarChart = () => {
   return (
