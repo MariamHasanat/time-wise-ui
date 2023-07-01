@@ -1,6 +1,6 @@
 import "./task-log.css";
 import { Button } from "antd";
-import { ClockCircleOutlined, EditOutlined, MoreOutlined } from "@ant-design/icons"
+import { ClockCircleOutlined, EditOutlined } from "@ant-design/icons"
 import { useState } from "react";
 import EditTaskPopup from "../edit-task/edit-task";
 import DeleteConfirmation from "../delete-confirmation/delete-confirmation";

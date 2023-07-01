@@ -42,19 +42,10 @@
   height: 15px;
 }
 
-.task-log .controlbtn {
-  box-sizing: border-box;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  border: none;
-}
 
 .task-log .control-btns {
   display: flex;
-  margin-right: 0;
   align-items: center;
   justify-content: space-around;
+  margin-right: -50px
 }
