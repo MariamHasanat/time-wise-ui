@@ -1,8 +1,11 @@
+import MyBarChart from "../../components/charts/bar-chart/bar-chart";
+
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      Dashboard
-    </div >
-  )
-}
+      <MyBarChart />
+    </div>
+  );
+};
+
 export default Dashboard;
