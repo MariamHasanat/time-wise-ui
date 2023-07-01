@@ -6,8 +6,6 @@
       "dom.iterable",
       "esnext"
     ],
-    "types": ["recharts"],
-    "typeRoots": ["node_modules/@types"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
