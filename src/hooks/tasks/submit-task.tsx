@@ -23,6 +23,9 @@ const useTask = () => {
     if (await submitTask(task)) {
       showMessage('success', "task created successfully")
     }
+    else{
+      showMessage('error', "task not submitted")
+    }
   }
   return {
     submitTaskHandler
