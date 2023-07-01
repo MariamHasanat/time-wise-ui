@@ -5,6 +5,7 @@ import DropDown from '../drop-down/drop-down';
 import StopWatch from '../stop-watch/stop-watch';
 import ControlBtn from '../../services/control-button';
 import showMessage from '../../utils/message/message';
+import useTask from '../../hooks/tasks/submit-task';
 // import getTimeInSeconds from '../../utils/get-time-in-seconds';
 
 const NewTaskForm = (props: any) => {
@@ -15,16 +16,16 @@ const NewTaskForm = (props: any) => {
   const [taskDescription, setTaskDescription] = React.useState<string>(localStorage.getItem("taskDescription")?.toString() || '');
 
 
+  const submitTask = useTask();
   const handleRequired = () => {
-
     if (taskDescription.length > 0 && dropdownLabel !== 'Projects') {
       return true
-    }
-    else {
+    } else {
       showMessage('warning', "task description and project name is required")
       return false
     }
   }
+
   useEffect(() => {
     //Save the stopwatch time to localStorage whenever it changes
     localStorage.setItem('stopwatchTime', timeInSecond.toString());
@@ -35,7 +36,7 @@ const NewTaskForm = (props: any) => {
   }, [taskDescription])
 
   return (
-    <form className='new-task-form'>
+    <form className='new-task-form' onSubmit={(e)=> {submitTask.submitTaskHandler(e)}}>
       <Input required={true} disabled={isRunning} placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px' }} value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} />
       <DropDown projects={props.projects} dropdownLabel={dropdownLabel} setDropdownLabel={setDropdownLabel} isRunning={isRunning} />
       <StopWatch timeInSecond={timeInSecond} />
