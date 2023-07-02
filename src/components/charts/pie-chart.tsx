@@ -1,4 +1,4 @@
-import { Pie, PieChart, Cell, Tooltip, Text } from "recharts";
+import { Pie, PieChart, Cell, Tooltip } from "recharts";
 const projects = [
   { name: "typing-test", color: "#FCBD49", total: 10 },
   { name: "frying-nemo", color: "#FF9800", total: 7 },
