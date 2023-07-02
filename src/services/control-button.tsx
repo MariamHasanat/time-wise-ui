@@ -11,13 +11,13 @@ type Props = {
   setTaskDescription: Function,
   handleRequired: Function,
   handleSubmit: Function,
-  taskInformation : ITask,
-  setTaskInformation : Function
+  taskInformation: ITask,
+  setTaskInformation: Function
 }
 
 
 const ControlBtn = (props: Props) => {
-  const { handleSubmit, setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired ,taskInformation } = props; // timeInSecond  
+  const { setTaskInformation, handleSubmit, setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired, taskInformation } = props; // timeInSecond  
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const [endTime, setEndTime] = useState(JSON.parse(localStorage.getItem('endTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
@@ -28,10 +28,11 @@ const ControlBtn = (props: Props) => {
     }
   };
 
-  const handlePlayButton = () => {
+  const handlePlayButton = async () => {
+    setTaskInformation({ ...taskInformation, beginTime: startTime, endTime: "0" });
 
-    handleSubmit(taskInformation);
-    setIsRunning(true)  
+    await handleSubmit(taskInformation);
+    setIsRunning(true)
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
@@ -50,7 +51,7 @@ const ControlBtn = (props: Props) => {
   useEffect(() => {
     localStorage.setItem("startTime", startTime.toString());
   }, [startTime]);
-  
+
   useEffect(() => {
     localStorage.setItem("endTime", endTime.toString());
   }, [endTime]);

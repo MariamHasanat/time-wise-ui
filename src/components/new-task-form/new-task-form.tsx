@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './new-task-form.css';
 import { Input } from 'antd';
 import DropDown from '../drop-down/drop-down';
@@ -19,13 +19,14 @@ const NewTaskForm = (props: any) => {
   const [dropdownLabel, setDropdownLabel] = React.useState<string>(localStorage.getItem('projectName')?.toString() || 'Projects');
   const [isRunning, setIsRunning] = React.useState<boolean>((Number(localStorage.getItem("startTime")?.toString()) > 0));
   const [taskDescription, setTaskDescription] = React.useState<string>(localStorage.getItem("taskDescription")?.toString() || '');
-  const [selectedProject, setSelectedProject] = useState<string>('');
+  //const [selectedProject, setSelectedProject] = useState<string>('');
+  const selectedProject = useRef<string>('');
 
   const [taskInformation, setTaskInformation] = useState<ITask>({
-    projectId: selectedProject,
-    beginTime: "",
-    endTime: "",
-    description: "",
+    projectId: selectedProject.current,
+    beginTime: localStorage.getItem('startTime') || "0",
+    endTime: localStorage.getItem('startTime') || "0",
+    description: taskDescription,
   })
 
   const submitTask = useTask();
@@ -39,6 +40,9 @@ const NewTaskForm = (props: any) => {
     }
   }
 
+  // useEffect(() => {
+    
+  // }, [selectedProject])
   useEffect(() => {
     //Save the stopwatch time to localStorage whenever it changes
     localStorage.setItem('stopwatchTime', timeInSecond.toString());
@@ -53,9 +57,9 @@ const NewTaskForm = (props: any) => {
 
     const proHasId = projectsId.find((proName) => proName.name === dropdownLabel);
     const proId = proHasId?.id;
-    setSelectedProject(proId)
-    console.log("selectedId", selectedProject);
-
+    selectedProject.current = proId;
+    console.log("selectedId", selectedProject.current);
+    setTaskInformation({ ...taskInformation, projectId: selectedProject.current, description: taskDescription, beginTime : '465645656' , endTime : '4668656'})
 
     // eslint-disable-next-line
   }, [dropdownLabel])
