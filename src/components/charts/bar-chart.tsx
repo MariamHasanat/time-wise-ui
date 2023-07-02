@@ -63,10 +63,10 @@ const timeline = [
 ];
 
 const projects = [
-  { name: "typing-test", color: "#FFEB3B" },
   { name: "frying-nemo", color: "#FF9800" },
-  { name: "graduation-project", color: "#F44336" },
+  { name: "graduation-project", color: "#559ae7" },
   { name: "time-wise", color: "#9C27B0" },
+  { name: "typing-test", color: "#FCBD49" },
 ];
 
 const MyBarChart = () => {
@@ -79,7 +79,7 @@ const MyBarChart = () => {
         <Tooltip />
         <Legend />
         {projects.map((project) =>
-          <Bar dataKey={project.name} stackId="a" fill={project.color} />)}
+          <Bar legendType="circle" dataKey={project.name} stackId="a" fill={project.color} />)}
       </BarChart>
     </div>
   )

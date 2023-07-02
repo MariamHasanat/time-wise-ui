@@ -1,0 +1,12 @@
+.dashboard .charts {
+  align-items: center;
+}
+
+.dashboard .charts .bar-chart {
+  margin-left: 10%;
+
+}
+
+.dashboard .charts .pie-chart {
+  margin: 50px 0;
+}
