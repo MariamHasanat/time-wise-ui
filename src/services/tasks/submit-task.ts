@@ -1,6 +1,3 @@
-import { ITask } from "../../hooks/tasks/task.hook";
-import showMessage from "../../utils/message/message";
-
 export interface comingTasks {
   '_id': string,
   'description': string,
@@ -24,23 +21,6 @@ class TaskAPI {
     }
     ).then(res => res.json() as Promise<comingTasks[]>);
   }
-
-  createTask = (task: ITask) => {
-    console.log(task);
-
-    const optional: RequestInit = {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'token': this.token
-      },
-      body: JSON.stringify(task)
-    };
-    return fetch(`${this.API}/tasks`, optional)
-      .then(res => res.status === 201)
-      .catch(error => showMessage('error', error))
-
-  };
 
 }
 export default TaskAPI

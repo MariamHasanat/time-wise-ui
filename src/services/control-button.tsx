@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import getTimeInSeconds from '../utils/get-time-in-seconds';
-import { ITask } from '../hooks/tasks/task.hook';
 
 type Props = {
   setTimeInSecond: Function,
@@ -10,14 +9,11 @@ type Props = {
   setIsRunning: Function,
   setTaskDescription: Function,
   handleRequired: Function,
-  handleSubmit: Function,
-  taskInformation : ITask,
-  setTaskInformation : Function
 }
 
 
 const ControlBtn = (props: Props) => {
-  const { handleSubmit, setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired ,taskInformation } = props; // timeInSecond  
+  const { setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired } = props; // timeInSecond  
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const [endTime, setEndTime] = useState(JSON.parse(localStorage.getItem('endTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
@@ -30,8 +26,8 @@ const ControlBtn = (props: Props) => {
 
   const handlePlayButton = () => {
 
-    handleSubmit(taskInformation);
-    setIsRunning(true)  
+
+    setIsRunning(true)
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
@@ -50,7 +46,7 @@ const ControlBtn = (props: Props) => {
   useEffect(() => {
     localStorage.setItem("startTime", startTime.toString());
   }, [startTime]);
-  
+
   useEffect(() => {
     localStorage.setItem("endTime", endTime.toString());
   }, [endTime]);

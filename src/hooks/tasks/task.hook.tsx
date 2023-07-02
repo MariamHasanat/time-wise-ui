@@ -24,27 +24,7 @@ const useTask = () => {
       })
   }, [])
 
-  const add = (task: ITask) => {
-
-    api.createTask(task)
-      .then(async success => {
-        let tasks = comingState;
-        if (success) {
-          showMessage('success', "task submitted successfully");
-          tasks = await api.getTasks();
-          setComingState(tasks)
-        } else {
-          showMessage('error', "failed submitted task")
-        }
-        setComingState(tasks);
-
-      })
-      .catch(error => {
-        showMessage('error', error);
-      })
-  }
-
-  return { comingState, add }
+  return { comingState }
 }
 
 export default useTask
