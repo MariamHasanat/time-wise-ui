@@ -1,47 +1,47 @@
-
-import { ITask } from "../../hooks/tasks/submit-task";
+import { ITask } from "../../hooks/tasks/task.hook";
 import showMessage from "../../utils/message/message";
 
-const submitTask = async (props: ITask) => {
+export interface comingTasks {
+  '_id': string,
+  'description': string,
+  'beginTime': string,
+  'endTime': string,
+  'projectName': string,
+  'projectColor': string
+}
 
-  const token: string = localStorage.getItem("token") || "";
-  if (!token.length) {
-    showMessage("error", "you are logged out, invalid token")
+class TaskAPI {
+  private API: string = `http://localhost:3001`;
+  private token: string = localStorage.getItem("token") || "";
+
+  getTasks = () => {
+    return fetch(`${this.API}/tasks`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': this.token
+      }
+    }
+    ).then(res => res.json() as Promise<comingTasks[]>);
   }
-  try {
 
-    return await fetch("http://localhost:3001/tasks", {
+  createTask = (task: ITask) => {
+    console.log(task);
+
+    const optional: RequestInit = {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'token': token
+        'token': this.token
       },
-      body: JSON.stringify({ ...props })
-    })
-      .then(async response => {
-        // console.log(response.status);
-        if (response.status === 401 || response.status === 403) {
-          showMessage('error', 'Please log in to continue');
-          response.json().then(() => localStorage.setItem('token', "invalid"));
-          return false;
-        } else if (response.status === 200) {
-          showMessage('success', `task begins successfully`);
+      body: JSON.stringify(task)
+    };
+    return fetch(`${this.API}/tasks`, optional)
+      .then(res => res.status === 201)
+      .catch(error => showMessage('error', error))
 
-          return true;
-        } else {
-          showMessage('error', 'An unexpected error occurred');
-          throw new Error('Unexpected response status');
-        }
-      })
-      .catch(error => {
-        showMessage('error', error);
-        return false;
-      }
-      )
-  } catch (error) {
-    showMessage('error', `${error}`)
-  }
+  };
+
 }
-
-export default submitTask;
+export default TaskAPI
 
