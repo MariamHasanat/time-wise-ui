@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import ProjectForm from '../../components/project-form/project-form';
 import ProjectCard from '../../components/project-card/project-card';
 import getProjects from '../../services/projects/getProjects';
@@ -10,7 +10,7 @@ const ProjectsPage = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [projects, setProjects] = useState<IProject[]>([]);
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
-
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -24,6 +24,9 @@ const ProjectsPage = () => {
       } catch (error) {
         console.error('Error fetching projects:', error);
       }
+      finally {
+        setLoading(false);
+      }
     };
 
     fetchProjects();
@@ -35,31 +38,33 @@ const ProjectsPage = () => {
 
   return (
     <div className="projects-page">
-      <div className="projects-page-inner">
-        <div className="new-project-btn">
-          <Button onClick={() =>
-            setShowPopup(!showPopup)
-          }>New Project</Button>
+      <Spin spinning={loading}>
+        <div className="projects-page-inner">
+          <div className="new-project-btn">
+            <Button onClick={() =>
+              setShowPopup(!showPopup)
+            }>New Project</Button>
+          </div>
         </div>
-      </div>
-      <div className="projects-board">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.name}
-            color={project.color}
-            name={project.name}
-            description={project.description || ''}
-            projectHours={project.projectHours || 0}
-          />
-        ))}
-      </div>
-      <ProjectForm
-        onProjectCreated={handleProjectCreated}
-        showPopup={showPopup}
-        setShowPopup={setShowPopup}
-        setIsSubmit={setIsSubmit}
-        isSubmit={isSubmit}
-      />
+        <div className="projects-board">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.name}
+              color={project.color}
+              name={project.name}
+              description={project.description || ''}
+              projectHours={project.projectHours || 0}
+            />
+          ))}
+        </div>
+        <ProjectForm
+          onProjectCreated={handleProjectCreated}
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
+          setIsSubmit={setIsSubmit}
+          isSubmit={isSubmit}
+        />
+      </Spin>
     </div>
   );
 };

@@ -17,14 +17,14 @@ const getProjects = async (): Promise<IProject[] | null> => {
       },
     });
 
-    console.log(response.status);
+    // console.log(response.status);
     if (response.status === 401 || response.status === 403) {
       showMessage('error', 'Please log in to continue');
       response.json().then(() => localStorage.setItem('token', "invalid"));
       return null;
     } else if (response.status === 200) {
       const fetchedProjects = await response.json();
-      console.log(fetchedProjects);
+      // console.log(fetchedProjects);
       return fetchedProjects;
     } else {
       showMessage('error', 'An unexpected error occurred');
