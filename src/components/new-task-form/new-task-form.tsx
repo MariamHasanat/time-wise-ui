@@ -15,7 +15,7 @@ const NewTaskForm = (props: any) => {
   const [taskDescription, setTaskDescription] = React.useState<string>(localStorage.getItem("taskDescription")?.toString() || '');
 
   // eslint-disable-next-line
-  const taskhook = useTask();
+  const submitTask = useTask();
   const handleRequired = () => {
     if (taskDescription.length > 0 && dropdownLabel !== 'Projects') {
       return true
