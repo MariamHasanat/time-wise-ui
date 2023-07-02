@@ -11,7 +11,7 @@ const DeleteConfirmation = () => (
     >
       <Button
         danger
-        style={{ "border": "none", "background": "none", "boxShadow": "none", "padding": 0}}
+        style={{ "border": "none", "background": "none", "boxShadow": "none", "padding": 0, "color":"#52469C", "marginLeft": "10px"}}
       >
         <DeleteOutlined />
       </Button>
