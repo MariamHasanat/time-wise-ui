@@ -79,7 +79,7 @@ const MyBarChart = () => {
         <Tooltip />
         <Legend />
         {projects.map((project) =>
-          <Bar dataKey={project.name} stackId="a" fill={project.color} />)}
+          <Bar legendType="circle" dataKey={project.name} stackId="a" fill={project.color} />)}
       </BarChart>
     </div>
   )

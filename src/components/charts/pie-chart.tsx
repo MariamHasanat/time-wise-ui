@@ -1,4 +1,4 @@
-import { Pie, PieChart, Cell } from "recharts";
+import { Pie, PieChart, Cell, Tooltip, Text } from "recharts";
 const projects = [
   { name: "typing-test", color: "#FCBD49", total: 10 },
   { name: "frying-nemo", color: "#FF9800", total: 7 },
@@ -10,6 +10,7 @@ const MyPieChart = () => {
   return (
     <div className="pie-chart">
       <PieChart width={730} height={250}>
+        <Tooltip />
         <Pie
           data={projects}
           dataKey={"total"}
@@ -17,11 +18,10 @@ const MyPieChart = () => {
           outerRadius={100}
           paddingAngle={5}
           label
-        >
+          >
           {
             projects.map((project) => <Cell fill={project.color} />)
           }
-          
         </Pie>
       </PieChart>
     </div>
