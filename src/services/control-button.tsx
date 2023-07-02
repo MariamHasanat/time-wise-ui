@@ -9,11 +9,12 @@ type Props = {
   setIsRunning: Function,
   setTaskDescription: Function,
   handleRequired: Function,
+  handleSubmit: Function,
 }
 
 
 const ControlBtn = (props: Props) => {
-  const { setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired } = props; // timeInSecond  
+  const { handleSubmit, setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired } = props; // timeInSecond  
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
 
@@ -23,9 +24,10 @@ const ControlBtn = (props: Props) => {
     }
   };
 
-  const handlePlayButton = () => {
+  const handlePlayButton = (e : any) => {
 
-    setIsRunning(true)
+    handleSubmit(e);
+    setIsRunning(true)  
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
@@ -61,10 +63,10 @@ const ControlBtn = (props: Props) => {
         (startTime === 0) // is stopped
           ?
           <Button
-            onClick={() => {
+            onClick={(e) => {
               if (handleRequired()) {
                 setStartTime(Date.now());
-                handlePlayButton();
+                handlePlayButton(e);
               }
               else
                 return false

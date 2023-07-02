@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import showMessage from '../../utils/message/message';
 import submitTask from '../../services/tasks/submit-task';
 
@@ -10,10 +10,8 @@ export interface ITask {
 }
 const useTask = () => {
 
-  const submitTaskHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const data = new FormData(e.currentTarget);
+  const submitTaskHandler = async (form: HTMLFormElement) => {
+    const data = new FormData(form);
     const task: ITask = {
       projectId: data.get('projectId') as string,
       beginTime: data.get('beginTime') as string,
