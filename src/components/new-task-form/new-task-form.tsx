@@ -6,12 +6,9 @@ import StopWatch from '../stop-watch/stop-watch';
 import ControlBtn from '../../services/control-button';
 import showMessage from '../../utils/message/message';
 import useTask, { ITask } from '../../hooks/tasks/task.hook';
-// import getTimeInSeconds from '../../utils/get-time-in-seconds';
 
 const NewTaskForm = (props: any) => {
-  // const {...projects} = props;
-  // console.log(projects.projectsId);
-  // console.log("project");
+  
   const projectsId: Array<any> = props.projectsId;
   console.log(projectsId);
 
@@ -19,13 +16,12 @@ const NewTaskForm = (props: any) => {
   const [dropdownLabel, setDropdownLabel] = React.useState<string>(localStorage.getItem('projectName')?.toString() || 'Projects');
   const [isRunning, setIsRunning] = React.useState<boolean>((Number(localStorage.getItem("startTime")?.toString()) > 0));
   const [taskDescription, setTaskDescription] = React.useState<string>(localStorage.getItem("taskDescription")?.toString() || '');
-  //const [selectedProject, setSelectedProject] = useState<string>('');
+  
   const selectedProject = useRef<string>('');
 
   const [taskInformation, setTaskInformation] = useState<ITask>({
     projectId: selectedProject.current,
-    beginTime: localStorage.getItem('startTime') || "0",
-    endTime: localStorage.getItem('startTime') || "0",
+    beginTime: '',
     description: taskDescription,
   })
 
@@ -40,9 +36,7 @@ const NewTaskForm = (props: any) => {
     }
   }
 
-  // useEffect(() => {
-
-  // }, [selectedProject])
+  
   useEffect(() => {
     //Save the stopwatch time to localStorage whenever it changes
     localStorage.setItem('stopwatchTime', timeInSecond.toString());
@@ -50,7 +44,7 @@ const NewTaskForm = (props: any) => {
 
   useEffect(() => {
     localStorage.setItem("taskDescription", taskDescription)
-    setTaskInformation( {...taskInformation, description: taskDescription })
+    setTaskInformation({ ...taskInformation, description: taskDescription })
     // eslint-disable-next-line
   }, [taskDescription])
 
@@ -61,19 +55,19 @@ const NewTaskForm = (props: any) => {
     const proId = proHasId?.id;
     selectedProject.current = proId;
     console.log("selectedId", selectedProject.current);
-    setTaskInformation( {...taskInformation,projectId: selectedProject.current })
+    setTaskInformation({ ...taskInformation, projectId: selectedProject.current })
 
     // eslint-disable-next-line 
   }, [dropdownLabel])
 
   console.log("taskInformation", taskInformation);
-  
+
   return (
     <form className='new-task-form'>
       <Input required={true} disabled={isRunning} placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px' }} value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} />
       <DropDown projects={props.projects} dropdownLabel={dropdownLabel} setDropdownLabel={setDropdownLabel} isRunning={isRunning} />
       <StopWatch timeInSecond={timeInSecond} />
-      <ControlBtn taskInformation={taskInformation} setTaskInformation={setTaskInformation} handleSubmit={submitTask.add} setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} handleRequired={handleRequired} />
+      <ControlBtn  taskInformation={taskInformation} setTaskInformation={setTaskInformation} handleSubmit={submitTask.add} setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} handleRequired={handleRequired} />
     </form>
   )
 }
