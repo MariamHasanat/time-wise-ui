@@ -41,7 +41,7 @@ const NewTaskForm = (props: any) => {
   }
 
   // useEffect(() => {
-    
+
   // }, [selectedProject])
   useEffect(() => {
     //Save the stopwatch time to localStorage whenever it changes
@@ -50,6 +50,8 @@ const NewTaskForm = (props: any) => {
 
   useEffect(() => {
     localStorage.setItem("taskDescription", taskDescription)
+    setTaskInformation( {...taskInformation, description: taskDescription })
+    // eslint-disable-next-line
   }, [taskDescription])
 
   useEffect(() => {
@@ -59,11 +61,13 @@ const NewTaskForm = (props: any) => {
     const proId = proHasId?.id;
     selectedProject.current = proId;
     console.log("selectedId", selectedProject.current);
-    setTaskInformation({ ...taskInformation, projectId: selectedProject.current, description: taskDescription, beginTime : '465645656' , endTime : '4668656'})
+    setTaskInformation( {...taskInformation,projectId: selectedProject.current })
 
-    // eslint-disable-next-line
+    // eslint-disable-next-line 
   }, [dropdownLabel])
 
+  console.log("taskInformation", taskInformation);
+  
   return (
     <form className='new-task-form'>
       <Input required={true} disabled={isRunning} placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px' }} value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} />

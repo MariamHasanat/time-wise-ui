@@ -28,10 +28,8 @@ const ControlBtn = (props: Props) => {
     }
   };
 
-  const handlePlayButton = async () => {
-    setTaskInformation({ ...taskInformation, beginTime: startTime, endTime: "0" });
-
-    await handleSubmit(taskInformation);
+  const handlePlayButton = () => {
+    handleSubmit(taskInformation);
     setIsRunning(true)
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
@@ -50,6 +48,8 @@ const ControlBtn = (props: Props) => {
 
   useEffect(() => {
     localStorage.setItem("startTime", startTime.toString());
+    setTaskInformation({ ...taskInformation, beginTime: startTime, endTime: "0" });
+    // eslint-disable-next-line
   }, [startTime]);
 
   useEffect(() => {
@@ -73,10 +73,10 @@ const ControlBtn = (props: Props) => {
         (startTime === 0) // is stopped
           ?
           <Button
-            onClick={(e) => {
+            onClick={async (e) => {
               if (handleRequired()) {
                 setStartTime(Date.now());
-                handlePlayButton();
+                await handlePlayButton();
               }
               else
                 return false
