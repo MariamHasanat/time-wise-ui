@@ -1,5 +1,5 @@
-import { Button } from 'antd';
 import './user-icon.css';
+import { Button } from 'antd';
 import { ExportOutlined, UserOutlined, } from "@ant-design/icons"
 import { useNavigate } from 'react-router';
 
@@ -10,7 +10,7 @@ const navigate = useNavigate();
   return (
     <div className='user-icon'>
       <div className='profile-pic'>
-        <UserOutlined style={{ fontSize: 24 }} />
+        <img src='/cat.png'/>
       </div>
       <div className='user-details'>
         <h4 style={{ display: 'flex', justifyContent: 'space-between' }}>username</h4>
