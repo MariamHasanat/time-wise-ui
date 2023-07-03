@@ -1,15 +1,10 @@
 .dashboard .top {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .dashboard .date-picker {
-  
-}
-
-.dashboard .pie-chart {
-  display: flex;
-  border: 1px solid red;
+  margin: 20px 0 0 20px;
 }
 
 .dashboard .bar-chart {

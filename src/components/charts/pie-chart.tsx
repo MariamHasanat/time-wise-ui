@@ -9,7 +9,7 @@ const projects = [
 const MyPieChart = () => {
   return (
     <div className="pie-chart">
-      <PieChart width={730} height={250}>
+      <PieChart width={300} height={250}>
         <Tooltip />
         <Pie
           data={projects}
