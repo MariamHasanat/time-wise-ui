@@ -4,6 +4,6 @@ projectId:string;
 projectName:string;
 description:string;
 beginTime:string;
-endTime:string;
+endTime?:string;
 totalTaskTime:number;
 }

@@ -6,7 +6,6 @@ import showMessage from '../../utils/message/message';
 export interface ITask {
   projectId: string,
   beginTime: string,
-  endTime?: string,
   description: string,
 }
 
@@ -24,7 +23,27 @@ const useTask = () => {
       })
   }, [])
 
-  return { comingState }
+  const add = (task: ITask) => {
+
+    api.createTask(task)
+      .then(async success => {
+        let tasks = comingState;
+        if (success) {
+          showMessage('success', "task submitted successfully");
+          tasks = await api.getTasks();
+          setComingState(tasks)
+        } else {
+          showMessage('error', "failed submitted task")
+        }
+        setComingState(tasks);
+
+      })
+      .catch(error => {
+        showMessage('error', error);
+      })
+  }
+
+  return { comingState, add }
 }
 
 export default useTask

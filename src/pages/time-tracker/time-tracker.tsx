@@ -32,11 +32,15 @@ const TimeTracker = () => {// eslint-disable-next-line
     key: index.toString(),
     label: item.name,
   }));
+  const projectsId = projectsNames.map((item)=>({
+    id : item._id,
+    name : item.name
+  }))
 
   return (
     <div className='time-tracker'>
       <Spin spinning={loading} >
-      <NewTaskForm projects={convertedProjectsNames} />
+      <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId}/>
       <TaskLog />
       </Spin>
     </div>
