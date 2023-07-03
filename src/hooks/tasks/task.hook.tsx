@@ -6,7 +6,6 @@ import showMessage from '../../utils/message/message';
 export interface ITask {
   projectId: string,
   beginTime: string,
-  endTime?: string,
   description: string,
 }
 
