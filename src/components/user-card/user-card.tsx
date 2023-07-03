@@ -1,6 +1,6 @@
 import './user-card.css';
 import { Button } from 'antd';
-import { ExportOutlined, UserOutlined, } from "@ant-design/icons"
+import { ExportOutlined } from "@ant-design/icons"
 import { useNavigate } from 'react-router';
 
 const UserCard = () => {
@@ -8,7 +8,7 @@ const UserCard = () => {
   return (
     <div className='user-card'>
       <div className='profile-pic'>
-        <img src='/cat.png' />
+        <img src='/cat.png' alt='avatara'/>
       </div>
       <div className='user-details'>
         <h4 className='username' style={{ display: 'flex', justifyContent: 'space-between' }}>username</h4>
