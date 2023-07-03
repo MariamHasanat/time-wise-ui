@@ -2,18 +2,18 @@ import './dashboard.css';
 import { default as BarChart } from "../../components/charts/bar-chart";
 import { default as PieChart } from "../../components/charts/pie-chart";
 import { DatePicker } from 'antd';
-import UserIcon from '../../components/user-icon/user-icon';
+import UserCard from '../../components/user-card/user-card';
 
 const { RangePicker } = DatePicker;
 const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className='top'>
-        <div className="date-picker">
-          <UserIcon/>
+          <UserCard />
+        <div className="range-picker">
           <RangePicker />
+          <PieChart />
         </div>
-        <PieChart />
       </div>
       <BarChart />
     </div>
