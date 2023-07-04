@@ -11,7 +11,7 @@ const Dashboard = () => {
       <div className='top'>
           <UserCard />
         <div className="range-picker">
-          <RangePicker />
+          <RangePicker placement='bottomRight'/>
           <PieChart />
         </div>
       </div>
