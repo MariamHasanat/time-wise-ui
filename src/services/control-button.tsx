@@ -10,7 +10,7 @@ type Props = {
   setIsRunning: Function;
   setTaskDescription: Function;
   handleRequired: Function;
-  handleSubmit: Function;
+  handleStartNewTask: Function;
   taskInformation: ITask;
   setTaskInformation: Function;
 };
@@ -18,7 +18,7 @@ type Props = {
 const ControlBtn = (props: Props) => {
   const {
     setTaskInformation,
-    handleSubmit,
+    handleStartNewTask,
     setTimeInSecond,
     setDropdownLabel,
     setIsRunning,
@@ -38,14 +38,14 @@ const ControlBtn = (props: Props) => {
 
   const handlePlayButton = () => {
     const startTimestamp = Date.now().toString();
-    handleSubmit({ ...taskInformation, beginTime: startTimestamp });
+    handleStartNewTask({ ...taskInformation, beginTime: startTimestamp });
     setIsRunning(true);
     setStartTime(startTimestamp);
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
   };
-  
+
 
   const handleStopButton = () => {
     clearTimer();

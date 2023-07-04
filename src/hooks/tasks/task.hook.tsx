@@ -28,7 +28,7 @@ const useTask = () => {
       .then(async success => {
         // let tasks = comingState;
         if (success) {
-          showMessage('success', "task submitted successfully");
+          showMessage('success', "task started successfully");
           // tasks = await api.getTasks();
           // setComingState(tasks)
         } else {

@@ -8,16 +8,16 @@ import showMessage from '../../utils/message/message';
 import { ITask } from '../../hooks/tasks/task.hook';
 
 const NewTaskForm = (props: any) => {
-  
+
   const projectsId: Array<any> = props.projectsId;
   console.log(projectsId);
-  const submitTask = props.submitTask;
+  const startNewTask = props.startNewTask;
 
   const [timeInSecond, setTimeInSecond] = React.useState<number>(0);
   const [dropdownLabel, setDropdownLabel] = React.useState<string>(localStorage.getItem('projectName')?.toString() || 'Projects');
   const [isRunning, setIsRunning] = React.useState<boolean>((Number(localStorage.getItem("startTime")?.toString()) > 0));
   const [taskDescription, setTaskDescription] = React.useState<string>(localStorage.getItem("taskDescription")?.toString() || '');
-  
+
   const selectedProject = useRef<string>('');
 
   const [taskInformation, setTaskInformation] = useState<ITask>({
@@ -36,7 +36,7 @@ const NewTaskForm = (props: any) => {
     }
   }
 
-  
+
   useEffect(() => {
     //Save the stopwatch time to localStorage whenever it changes
     localStorage.setItem('stopwatchTime', timeInSecond.toString());
@@ -67,7 +67,7 @@ const NewTaskForm = (props: any) => {
       <Input required={true} disabled={isRunning} placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px' }} value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} />
       <DropDown projects={props.projects} dropdownLabel={dropdownLabel} setDropdownLabel={setDropdownLabel} isRunning={isRunning} />
       <StopWatch timeInSecond={timeInSecond} />
-      <ControlBtn  taskInformation={taskInformation} setTaskInformation={setTaskInformation} handleSubmit={submitTask} setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} handleRequired={handleRequired} />
+      <ControlBtn taskInformation={taskInformation} setTaskInformation={setTaskInformation} handleStartNewTask={startNewTask} setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} handleRequired={handleRequired} />
     </form>
   )
 }

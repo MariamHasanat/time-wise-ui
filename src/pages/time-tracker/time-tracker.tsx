@@ -15,8 +15,8 @@ interface IProName {
 const TimeTracker = () => {// eslint-disable-next-line
   const [projectsNames, setProjectsNames] = useState<Array<IProName>>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const submitTask = useTask();
-  const allTasks = submitTask.comingState;
+  const newTask = useTask();
+  const allTasks = newTask.comingState;
   console.log("all tasks : ", allTasks);
 
 
@@ -45,8 +45,8 @@ const TimeTracker = () => {// eslint-disable-next-line
   return (
     <div className='time-tracker'>
       <Spin spinning={loading} >
-        <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId} submitTask={submitTask.add} />
-        <TaskLog allTasks={allTasks}/>
+        <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId} startNewTask={newTask.add} />
+        <TaskLog allTasks={allTasks} />
       </Spin>
     </div>
   )
