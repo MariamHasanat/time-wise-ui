@@ -11,10 +11,7 @@ import { timeAsADate, timeInHoursAndMinutes, whatTheTime } from "../../utils/tim
 setTwoToneColor('#52469C');
 
 const TaskLog = (props: any) => {
-
   const allTasks = props.allTasks;
-  // console.log("from task log", allTasks);
-
   const [editMode, setEditMode] = useState<boolean>(false);
   return (
     allTasks.map((task: comingTasks, key: number) => (

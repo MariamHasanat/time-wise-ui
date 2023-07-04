@@ -23,7 +23,6 @@ const createProject = async (props: IProject) => {
 
   })
     .then(async response => {
-      // console.log(response.status);
       if (response.status === 401 || response.status === 403) {
         showMessage('error', 'Please log in to continue');
         response.json().then(() => localStorage.setItem('token', "invalid"));

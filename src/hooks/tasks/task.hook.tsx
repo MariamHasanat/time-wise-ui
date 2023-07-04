@@ -1,4 +1,3 @@
-// import React from 'react'
 import { useEffect, useState } from 'react';
 import TaskAPI, { ITaskInfo, comingTasks } from '../../services/tasks/submit-task';
 import showMessage from '../../utils/message/message';
@@ -30,8 +29,6 @@ const useTask = () => {
         if (success) {
           showMessage('success', "task started successfully");
           localStorage.setItem("taskID", success.taskID.toString())
-          // setTaskId(success.taskID);
-          // console.log(success.taskID);
         }
       })
       .catch(error => {

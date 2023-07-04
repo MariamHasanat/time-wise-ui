@@ -16,11 +16,8 @@ interface IProName {
 const TimeTracker = () => {// eslint-disable-next-line
   const [projectsNames, setProjectsNames] = useState<Array<IProName>>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  //const [runningTask, setRunningTask] = useState<ITaskInfo>({ endTime: '', _id: '' })
   const newTask = useTask();
   const allTasks = newTask.comingState;
-  // console.log("all tasks : ", allTasks);
-
 
   useEffect(() => {
     fetchProjectNames()

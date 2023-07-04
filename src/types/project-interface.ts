@@ -4,5 +4,4 @@ export interface IProject {
   color: string;
   description?: string;
   projectHours: number;
-  // userEmail: string;
 }

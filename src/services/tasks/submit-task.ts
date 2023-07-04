@@ -66,7 +66,6 @@ class TaskAPI {
       .then((res) => {
         if (res.status === 200) {
           showMessage("success", "completed successfully");
-          // this.getTasks();
           return true;
         } else {
           showMessage("error", "failed complete the task");

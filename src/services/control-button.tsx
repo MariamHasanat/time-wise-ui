@@ -18,9 +18,6 @@ type Props = {
 };
 
 const ControlBtn = (props: Props) => {
-  const task = useTask();
-
-  // const taskID: number = task.taskId;
   const { setTaskInformation, handleStartNewTask, setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired, taskInformation, handleCompleteRunningTask,
   } = props;
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));

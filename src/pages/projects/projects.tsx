@@ -20,12 +20,10 @@ const ProjectsPage = () => {
         if (Array.isArray(fetchedProjects)) {
           setProjects(fetchedProjects);
         } else {
-          //  / console.error('Invalid projects data:', fetchedProjects);
           showMessage('error', 'Invalid projects data')
         }
       } catch (error) {
         showMessage('error', 'Error fetching projects')
-        // console.error('Error fetching projects:', error);
       }
       finally {
         setLoading(false);
