@@ -6,7 +6,6 @@ import { fetchProjectNames } from '../../services/projects/get-projects-names';
 import showMessage from '../../utils/message/message';
 import { Spin } from 'antd';
 import useTask from '../../hooks/tasks/task.hook';
-import { ITaskInfo } from '../../services/tasks/submit-task';
 
 interface IProName {
   _id: string,

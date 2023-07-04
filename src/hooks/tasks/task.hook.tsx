@@ -13,7 +13,6 @@ const api = new TaskAPI();
 const useTask = () => {
 
   const [comingState, setComingState] = useState<Array<comingTasks>>([]);
-  const [taskId, setTaskId] = useState<string>('');
 
   useEffect(() => {
     api.getTasks()

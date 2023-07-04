@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import getTimeInSeconds from '../utils/get-time-in-seconds';
-import useTask, { ITask } from '../hooks/tasks/task.hook';
+import { ITask } from '../hooks/tasks/task.hook';
 
 type Props = {
   setTimeInSecond: Function;
@@ -21,7 +21,6 @@ const ControlBtn = (props: Props) => {
   const { setTaskInformation, handleStartNewTask, setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired, taskInformation, handleCompleteRunningTask,
   } = props;
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
-  const [endTime, setEndTime] = useState(JSON.parse(localStorage.getItem('endTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
   const [taskRef, setTaskRef] = useState<string>('');
 
@@ -54,7 +53,6 @@ const ControlBtn = (props: Props) => {
     setIsRunning(false);
     handleCompleteRunningTask({ _id: localStorage.getItem("taskID"), endTime: Date.now() })
     localStorage.setItem("taskID", "");
-    setEndTime(Date.now());
     setStartTime(0);
     setTimeInSecond(0);
     setDropdownLabel('Projects');
@@ -66,10 +64,6 @@ const ControlBtn = (props: Props) => {
     setTaskInformation({ ...taskInformation, beginTime: startTime.toString() });
     // eslint-disable-next-line
   }, [startTime]);
-
-  useEffect(() => {
-    localStorage.setItem('endTime', endTime.toString());
-  }, [endTime]);
 
   useEffect(() => {
     if (startTime > 0) {
