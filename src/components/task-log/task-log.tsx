@@ -16,7 +16,7 @@ const TaskLog = (props: any) => {
   return (
 
     allTasks.map((task: comingTasks, key: number) => (<form className="task-log" key={key}>
-      <span className="color">&nbsp;</span>
+      <span className="color" style={{ backgroundColor: task.projectColor }}>&nbsp;</span>
       <div className="task-desc">
         <label style={{ fontSize: "15px", color: "#52469C", width: 300 }}>{task.description}</label>
         <label style={{ fontSize: "10px", color: "#7489C1" }} >{task.projectName}</label>
