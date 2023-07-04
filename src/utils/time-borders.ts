@@ -8,11 +8,26 @@ export const timeInHoursAndMinutes = (timeStamp: string) => {
     return hours + ":0" + minutes;
   }
 };
+
 export const timeAsADate = (timeStamp: string) => {
   const time = new Date(Number(timeStamp));
   // Get the month name
   const monthName = time.toLocaleString("default", { month: "long" });
-  //const month = time.getMonth();
   const day = time.getDay();
   return monthName + " " + day;
+};
+
+export const whatTheTime = (timeStamp: string) => {
+  const time = new Date(Number(timeStamp));
+  const minutes = time.getMinutes();
+
+  if (minutes > 59) {
+    const hours = time.getHours();
+    return hours + " h";
+  } else if (minutes < 1) {
+    const seconds = time.getSeconds();
+    return seconds + " sec";
+  } else {
+    return minutes + " min";
+  }
 };
