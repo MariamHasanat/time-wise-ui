@@ -27,15 +27,15 @@ const useTask = () => {
 
     api.createTask(task)
       .then(async success => {
-        let tasks = comingState;
+        // let tasks = comingState;
         if (success) {
           showMessage('success', "task submitted successfully");
-          tasks = await api.getTasks();
-          setComingState(tasks)
+          // tasks = await api.getTasks();
+          // setComingState(tasks)
         } else {
           showMessage('error', "failed submitted task")
         }
-        setComingState(tasks);
+        // setComingState(tasks);
 
       })
       .catch(error => {
