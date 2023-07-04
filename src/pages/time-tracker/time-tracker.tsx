@@ -19,7 +19,7 @@ const TimeTracker = () => {// eslint-disable-next-line
   //const [runningTask, setRunningTask] = useState<ITaskInfo>({ endTime: '', _id: '' })
   const newTask = useTask();
   const allTasks = newTask.comingState;
-  console.log("all tasks : ", allTasks);
+  // console.log("all tasks : ", allTasks);
 
 
   useEffect(() => {

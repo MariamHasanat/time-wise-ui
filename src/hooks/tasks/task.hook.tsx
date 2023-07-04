@@ -14,6 +14,7 @@ const api = new TaskAPI();
 const useTask = () => {
 
   const [comingState, setComingState] = useState<Array<comingTasks>>([]);
+  const [taskId, setTaskId] = useState<string>('');
 
   useEffect(() => {
     api.getTasks()
@@ -26,15 +27,12 @@ const useTask = () => {
   const add = (task: ITask) => {
     api.createTask(task)
       .then(async success => {
-        // let tasks = comingState;
         if (success) {
           showMessage('success', "task started successfully");
-          // tasks = await api.getTasks();
-          // setComingState(tasks)
-        } else {
-          showMessage('error', "failed submitted task")
+          localStorage.setItem("taskID", success.taskID.toString())
+          // setTaskId(success.taskID);
+          // console.log(success.taskID);
         }
-        // setComingState(tasks);
       })
       .catch(error => {
         showMessage('error', error);
@@ -45,7 +43,6 @@ const useTask = () => {
       .then(async success => {
         let tasks = comingState;
         if (success) {
-          showMessage('success', "task submitted successfully");
           tasks = await api.getTasks();
           setComingState(tasks)
         } else {
@@ -56,9 +53,13 @@ const useTask = () => {
       .catch(error => {
         showMessage('error', error);
       })
+
+  }
+  const getTaskID = () => {
+    return localStorage.getItem("taskID");
   }
 
-  return { comingState, add, complete }
+  return { comingState, add, complete, getTaskID }
 }
 
 export default useTask

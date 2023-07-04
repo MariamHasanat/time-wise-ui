@@ -10,7 +10,7 @@ import { ITask } from '../../hooks/tasks/task.hook';
 const NewTaskForm = (props: any) => {
 
   const projectsId: Array<any> = props.projectsId;
-  console.log(projectsId);
+  // console.log(projectsId);
   const startNewTask = props.startNewTask;
   const completeRunningTask = props.completeRunningTask;
 
@@ -50,18 +50,18 @@ const NewTaskForm = (props: any) => {
   }, [taskDescription])
 
   useEffect(() => {
-    console.log("projectsId", projectsId);
+    // console.log("projectsId", projectsId);
 
     const proHasId = projectsId.find((proName) => proName.name === dropdownLabel);
     const proId = proHasId?.id;
     selectedProject.current = proId;
-    console.log("selectedId", selectedProject.current);
+    // console.log("selectedId", selectedProject.current);
     setTaskInformation({ ...taskInformation, projectId: selectedProject.current })
 
     // eslint-disable-next-line 
   }, [dropdownLabel])
 
-  console.log("taskInformation", taskInformation);
+  // console.log("taskInformation", taskInformation);
 
   return (
     <form className='new-task-form'>
@@ -71,6 +71,7 @@ const NewTaskForm = (props: any) => {
       <ControlBtn taskInformation={taskInformation} setTaskInformation={setTaskInformation}
         handleStartNewTask={startNewTask}
         handleCompleteRunningTask={completeRunningTask}
+        isRunning={isRunning}
         setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} handleRequired={handleRequired} />
     </form>
   )

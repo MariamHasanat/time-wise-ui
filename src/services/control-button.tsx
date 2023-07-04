@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import getTimeInSeconds from '../utils/get-time-in-seconds';
-import { ITask } from '../hooks/tasks/task.hook';
+import useTask, { ITask } from '../hooks/tasks/task.hook';
 
 type Props = {
   setTimeInSecond: Function;
@@ -14,23 +14,19 @@ type Props = {
   handleCompleteRunningTask: Function;
   taskInformation: ITask;
   setTaskInformation: Function;
+  isRunning: boolean;
 };
 
 const ControlBtn = (props: Props) => {
-  const {
-    setTaskInformation,
-    handleStartNewTask,
-    setTimeInSecond,
-    setDropdownLabel,
-    setIsRunning,
-    setTaskDescription,
-    handleRequired,
-    taskInformation,
-    handleCompleteRunningTask,
+  const task = useTask();
+
+  // const taskID: number = task.taskId;
+  const { setTaskInformation, handleStartNewTask, setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired, taskInformation, handleCompleteRunningTask,
   } = props;
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const [endTime, setEndTime] = useState(JSON.parse(localStorage.getItem('endTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
+  const [taskRef, setTaskRef] = useState<string>('');
 
   const clearTimer = () => {
     if (timerRef.current) {
@@ -38,9 +34,11 @@ const ControlBtn = (props: Props) => {
     }
   };
 
-  const handlePlayButton = () => {
+  const handlePlayButton = async () => {
     const startTimestamp = Date.now().toString();
-    handleStartNewTask({ ...taskInformation, beginTime: startTimestamp });
+    await handleStartNewTask({ ...taskInformation, beginTime: startTimestamp })
+    console.log("taskRef", taskRef);
+
     setIsRunning(true);
     setStartTime(startTimestamp);
     timerRef.current = setInterval(() => {
@@ -48,14 +46,21 @@ const ControlBtn = (props: Props) => {
     }, 1000);
   };
 
+  useEffect(() => {
+    if (props.isRunning)
+      setTaskRef(localStorage.getItem("taskID") || '');
+
+  }, [props.isRunning])
 
   const handleStopButton = () => {
     clearTimer();
+    setIsRunning(false);
+    handleCompleteRunningTask({ _id: localStorage.getItem("taskID"), endTime: Date.now() })
+    localStorage.setItem("taskID", "");
     setEndTime(Date.now());
     setStartTime(0);
     setTimeInSecond(0);
     setDropdownLabel('Projects');
-    setIsRunning(false);
     setTaskDescription('');
   };
 
