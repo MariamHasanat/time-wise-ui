@@ -11,6 +11,7 @@ const NewTaskForm = (props: any) => {
   
   const projectsId: Array<any> = props.projectsId;
   console.log(projectsId);
+  const submitTask = props.submitTask;
 
   const [timeInSecond, setTimeInSecond] = React.useState<number>(0);
   const [dropdownLabel, setDropdownLabel] = React.useState<string>(localStorage.getItem('projectName')?.toString() || 'Projects');
@@ -25,7 +26,6 @@ const NewTaskForm = (props: any) => {
     description: taskDescription,
   })
 
-  const submitTask = useTask();
 
   const handleRequired = () => {
     if (taskDescription.length > 0 && dropdownLabel !== 'Projects') {
@@ -67,7 +67,7 @@ const NewTaskForm = (props: any) => {
       <Input required={true} disabled={isRunning} placeholder="Task Description" type='string' style={{ width: '300px', marginRight: '50px', height: '30px' }} value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} />
       <DropDown projects={props.projects} dropdownLabel={dropdownLabel} setDropdownLabel={setDropdownLabel} isRunning={isRunning} />
       <StopWatch timeInSecond={timeInSecond} />
-      <ControlBtn  taskInformation={taskInformation} setTaskInformation={setTaskInformation} handleSubmit={submitTask.add} setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} handleRequired={handleRequired} />
+      <ControlBtn  taskInformation={taskInformation} setTaskInformation={setTaskInformation} handleSubmit={submitTask} setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} handleRequired={handleRequired} />
     </form>
   )
 }

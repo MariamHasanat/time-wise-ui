@@ -5,6 +5,7 @@ import TaskLog from '../../components/task-log/task-log';
 import { fetchProjectNames } from '../../services/projects/get-projects-names';
 import showMessage from '../../utils/message/message';
 import { Spin } from 'antd';
+import useTask from '../../hooks/tasks/task.hook';
 
 interface IProName {
   _id: string,
@@ -14,6 +15,7 @@ interface IProName {
 const TimeTracker = () => {// eslint-disable-next-line
   const [projectsNames, setProjectsNames] = useState<Array<IProName>>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const submitTask = useTask();
 
   useEffect(() => {
     fetchProjectNames()
@@ -40,7 +42,7 @@ const TimeTracker = () => {// eslint-disable-next-line
   return (
     <div className='time-tracker'>
       <Spin spinning={loading} >
-      <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId}/>
+      <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId} submitTask={submitTask.add}/>
       <TaskLog />
       </Spin>
     </div>
