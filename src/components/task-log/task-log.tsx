@@ -11,7 +11,7 @@ import { timeAsADate, timeInHoursAndMinutes, whatTheTime } from "../../utils/tim
 setTwoToneColor('#52469C');
 
 const TaskLog = (props: any) => {
- 
+
   const allTasks = props.allTasks;
   console.log("from task log", allTasks);
 
@@ -27,7 +27,7 @@ const TaskLog = (props: any) => {
           </div>
           <label >{whatTheTime(task.totalTimeInSeconds)}</label>
           <div className="task-time">
-          <ClockCircleTwoTone style={{ "fontSize": "22px", "margin": "5px", "color": "#f9ff00" }} /> &nbsp;&nbsp;
+            <ClockCircleTwoTone style={{ "fontSize": "22px", "margin": "5px", "color": "#f9ff00" }} /> &nbsp;&nbsp;
             <div className="task-date-time">
               <label> &nbsp;{timeInHoursAndMinutes(task.beginTime)} - {timeInHoursAndMinutes(task.endTime)}</label>
               <label className="task-dates" >{timeAsADate(task.beginTime)} - {timeAsADate(task.endTime)}</label>
@@ -38,7 +38,7 @@ const TaskLog = (props: any) => {
               onClick={() => setEditMode(true)}
               style={{ "backgroundColor": "transparent", "border": "none", "boxShadow": "none", "padding": 0, "marginRight": "10px" }}
             >
-          <EditTwoTone style={{ "fontSize": "22px", "margin": "5px" }} />
+              <EditTwoTone style={{ "fontSize": "22px", "margin": "5px" }} />
             </Button>
             <DeleteConfirmation />
           </div>
