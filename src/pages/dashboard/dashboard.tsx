@@ -1,15 +1,19 @@
 import './dashboard.css';
-import {default as BarChart } from "../../components/charts/bar-chart";
-import {default as PieChart} from "../../components/charts/pie-chart";
+import { default as BarChart } from "../../components/charts/bar-chart";
+import { default as PieChart } from "../../components/charts/pie-chart";
+import { DatePicker } from 'antd';
 
+const { RangePicker } = DatePicker;
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <div className="charts">
-        <BarChart />
+      <div className='top'>
+        <div className="date-picker">
+          <RangePicker />
+        </div>
         <PieChart />
       </div>
-      I know the colors are terrible, but this is to give you an idea of what the user may pick
+      <BarChart />
     </div>
   );
 };

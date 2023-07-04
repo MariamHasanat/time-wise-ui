@@ -8,6 +8,8 @@ export interface comingTasks {
   'endTime': string,
   'projectName': string,
   'projectColor': string
+  'status': string
+  'totalTimeInSeconds': string
 }
 
 class TaskAPI {
