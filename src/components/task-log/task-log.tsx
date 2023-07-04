@@ -8,13 +8,15 @@ import { setTwoToneColor } from '@ant-design/icons';
 
 setTwoToneColor('#52469C');
 
+
 const TaskLog = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   return (
+
     <form className="task-log">
       <span className="color">&nbsp;</span>
       <div className="task-desc">
-        <label style={{ fontSize: "15px", color: "#52469C", width: 300 }}>Description</label>
+        <label style={{ fontSize: "15px", color: "#52469C", width: 300 }}>description</label>
         <label style={{ fontSize: "10px", color: "#7489C1" }} >projectName</label>
       </div>
       <label >15 mins</label>
@@ -36,7 +38,6 @@ const TaskLog = () => {
       </div>
       <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none" />
     </form>)
-
 }
 
 export default TaskLog;
