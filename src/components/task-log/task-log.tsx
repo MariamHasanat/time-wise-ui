@@ -5,7 +5,7 @@ import { useState } from "react";
 import EditTaskPopup from "../edit-task/edit-task";
 import DeleteConfirmation from "../delete-confirmation/delete-confirmation";
 import { comingTasks } from "../../services/tasks/submit-task";
-import { timeAsADate, timeInHoursAndMinutes } from "../../utils/time-borders";
+import { timeAsADate, timeInHoursAndMinutes, whatTheTime } from "../../utils/time-borders";
 
 
 const TaskLog = (props: any) => {
@@ -15,13 +15,13 @@ const TaskLog = (props: any) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   return (
 
-    allTasks.map((task: comingTasks, key:number) => (<form className="task-log" key={key}>
+    allTasks.map((task: comingTasks, key: number) => (<form className="task-log" key={key}>
       <span className="color">&nbsp;</span>
       <div className="task-desc">
         <label style={{ fontSize: "15px", color: "#52469C", width: 300 }}>{task.description}</label>
         <label style={{ fontSize: "10px", color: "#7489C1" }} >{task.projectName}</label>
       </div>
-      <label >{task.totalTimeInSeconds} mins</label>
+      <label >{whatTheTime(task.totalTimeInSeconds)}</label>
       <div className="task-time">
         <ClockCircleOutlined style={{ "fontSize": "15px", "margin": "10px" }} />
         <div className="task-date-time">
