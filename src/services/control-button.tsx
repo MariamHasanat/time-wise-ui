@@ -14,7 +14,6 @@ type Props = {
   handleCompleteRunningTask: Function;
   taskInformation: ITask;
   setTaskInformation: Function;
-  isRunning: boolean;
 };
 
 const ControlBtn = (props: Props) => {
@@ -22,7 +21,6 @@ const ControlBtn = (props: Props) => {
   } = props;
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
-  const [taskRef, setTaskRef] = useState<string>('');
 
   const clearTimer = () => {
     if (timerRef.current) {
@@ -33,20 +31,12 @@ const ControlBtn = (props: Props) => {
   const handlePlayButton = async () => {
     const startTimestamp = Date.now().toString();
     await handleStartNewTask({ ...taskInformation, beginTime: startTimestamp })
-    console.log("taskRef", taskRef);
-
     setIsRunning(true);
     setStartTime(startTimestamp);
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
   };
-
-  useEffect(() => {
-    if (props.isRunning)
-      setTaskRef(localStorage.getItem("taskID") || '');
-
-  }, [props.isRunning])
 
   const handleStopButton = () => {
     clearTimer();

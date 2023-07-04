@@ -66,7 +66,6 @@ const NewTaskForm = (props: any) => {
       <ControlBtn taskInformation={taskInformation} setTaskInformation={setTaskInformation}
         handleStartNewTask={startNewTask}
         handleCompleteRunningTask={completeRunningTask}
-        isRunning={isRunning}
         setTimeInSecond={setTimeInSecond} setDropdownLabel={setDropdownLabel} setIsRunning={setIsRunning} setTaskDescription={setTaskDescription} handleRequired={handleRequired} />
     </form>
   )
