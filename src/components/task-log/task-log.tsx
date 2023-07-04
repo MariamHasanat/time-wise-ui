@@ -5,6 +5,7 @@ import { useState } from "react";
 import EditTaskPopup from "../edit-task/edit-task";
 import DeleteConfirmation from "../delete-confirmation/delete-confirmation";
 import { comingTasks } from "../../services/tasks/submit-task";
+import { timeAsADate, timeInHoursAndMinutes } from "../../utils/time-borders";
 
 
 const TaskLog = (props: any) => {
@@ -24,8 +25,8 @@ const TaskLog = (props: any) => {
       <div className="task-time">
         <ClockCircleOutlined style={{ "fontSize": "15px", "margin": "10px" }} />
         <div className="task-date-time">
-          <label> &nbsp;{task.beginTime} - {task.endTime}</label>
-          <label className="task-dates" >{task.endTime}</label>
+          <label> &nbsp;{timeInHoursAndMinutes(task.beginTime)} - {timeInHoursAndMinutes(task.endTime)}</label>
+          <label className="task-dates" >{timeAsADate(task.beginTime)} - {timeAsADate(task.endTime)}</label>
         </div>
       </div>
       <div className="control-btns">
