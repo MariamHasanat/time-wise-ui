@@ -1,4 +1,4 @@
-import { DeleteOutlined, DeleteTwoTone, QuestionCircleOutlined } from '@ant-design/icons';
+import { DeleteTwoTone, QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Popconfirm } from 'antd';
 
 const DeleteConfirmation = () => (
