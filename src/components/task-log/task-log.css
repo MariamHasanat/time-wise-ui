@@ -27,7 +27,7 @@
   display: flex;
   align-items: center;
   justify-content:center;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 .task-log .task-date-time>.task-dates {
   font-size: 10px;
