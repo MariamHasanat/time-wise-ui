@@ -1,6 +1,6 @@
 // import React from 'react'
 import { useEffect, useState } from 'react';
-import TaskAPI, { comingTasks } from '../../services/tasks/submit-task';
+import TaskAPI, { ITaskInfo, comingTasks } from '../../services/tasks/submit-task';
 import showMessage from '../../utils/message/message';
 
 export interface ITask {
@@ -24,7 +24,6 @@ const useTask = () => {
   }, [])
 
   const add = (task: ITask) => {
-
     api.createTask(task)
       .then(async success => {
         // let tasks = comingState;
@@ -36,14 +35,30 @@ const useTask = () => {
           showMessage('error', "failed submitted task")
         }
         // setComingState(tasks);
-
+      })
+      .catch(error => {
+        showMessage('error', error);
+      })
+  }
+  const complete = (taskInfo: ITaskInfo) => {
+    api.completeTask(taskInfo)
+      .then(async success => {
+        let tasks = comingState;
+        if (success) {
+          showMessage('success', "task submitted successfully");
+          tasks = await api.getTasks();
+          setComingState(tasks)
+        } else {
+          showMessage('error', "failed submitted task")
+        }
+        setComingState(tasks);
       })
       .catch(error => {
         showMessage('error', error);
       })
   }
 
-  return { comingState, add }
+  return { comingState, add, complete }
 }
 
 export default useTask
