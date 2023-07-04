@@ -11,6 +11,7 @@ type Props = {
   setTaskDescription: Function;
   handleRequired: Function;
   handleStartNewTask: Function;
+  handleCompleteRunningTask: Function;
   taskInformation: ITask;
   setTaskInformation: Function;
 };
@@ -25,6 +26,7 @@ const ControlBtn = (props: Props) => {
     setTaskDescription,
     handleRequired,
     taskInformation,
+    handleCompleteRunningTask,
   } = props;
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
   const [endTime, setEndTime] = useState(JSON.parse(localStorage.getItem('endTime') || '0'));
