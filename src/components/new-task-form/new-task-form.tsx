@@ -5,7 +5,7 @@ import DropDown from '../drop-down/drop-down';
 import StopWatch from '../stop-watch/stop-watch';
 import ControlBtn from '../../services/control-button';
 import showMessage from '../../utils/message/message';
-import useTask, { ITask } from '../../hooks/tasks/task.hook';
+import { ITask } from '../../hooks/tasks/task.hook';
 
 const NewTaskForm = (props: any) => {
   
