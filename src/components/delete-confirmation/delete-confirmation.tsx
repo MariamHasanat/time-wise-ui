@@ -1,4 +1,4 @@
-import { DeleteOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { DeleteOutlined, DeleteTwoTone, QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Popconfirm } from 'antd';
 
 const DeleteConfirmation = () => (
@@ -13,7 +13,7 @@ const DeleteConfirmation = () => (
         danger
         style={{ "border": "none", "background": "none", "boxShadow": "none", "padding": 0, "color":"#52469C", "marginLeft": "10px"}}
       >
-        <DeleteOutlined />
+        <DeleteTwoTone style={{ "fontSize": "22px", "margin": "5px" }}/>
       </Button>
     </Popconfirm>
   </div>
