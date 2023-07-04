@@ -55,6 +55,7 @@ const PageLayout = (props: IProps) => {
             defaultSelectedKeys={['1']}
             mode="inline"
             items={items}
+            selectedKeys={[window.location.pathname]}
           />
           <UserIcon />
         </Sider>
