@@ -14,8 +14,8 @@ const UserCard = (user: userData) => {
         <img src='/cat.png' alt='avatara' />
       </div>
       <div className='user-details'>
-        <h4 className='username' style={{ display: 'flex', justifyContent: 'space-between' }}>{user.username || "user"}</h4>
-        <h5 className='useremail'>{user.email || "username@company.com"}</h5>
+        <h4 className='username' style={{ display: 'flex', justifyContent: 'space-between' }}>{user.username || "..."}</h4>
+        <h5 className='useremail'>{user.email || "..."}</h5>
       </div>
       <Button type='primary' style={{ border: 0 }} className='logout-btn'
         onClick={() => {
