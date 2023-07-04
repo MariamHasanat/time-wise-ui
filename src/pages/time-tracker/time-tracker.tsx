@@ -46,7 +46,7 @@ const TimeTracker = () => {// eslint-disable-next-line
     <div className='time-tracker'>
       <Spin spinning={loading} >
         <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId} submitTask={submitTask.add} />
-        <TaskLog />
+        <TaskLog allTasks={allTasks}/>
       </Spin>
     </div>
   )
