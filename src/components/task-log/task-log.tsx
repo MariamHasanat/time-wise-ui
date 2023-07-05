@@ -49,7 +49,7 @@ const TaskLog = (props: any) => {
             <DeleteConfirmation onDelete={() => handleDeleteTask(task._id)} taskId={task._id} />
 
           </div>
-          <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none" />
+          <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none" start="none" end="none" />
         </form>
         :
         <div key={key}></div>))

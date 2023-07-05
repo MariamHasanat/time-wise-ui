@@ -2,21 +2,25 @@ import { Modal } from 'antd';
 import './edit-task.css';
 import Input from '../input/input';
 import { useState } from 'react';
+import { convertToTimestamp } from '../../utils/convert-timeStamp';
 
 interface IProps {
   editMode: boolean;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-  // start: Date??;
-  // end: Date??;
+  start: string;
+  end: string;
   description: string;
 }
 const EditTaskPopup = (props: IProps) => {
   const [description, setDescription] = useState(props.description);
-  // const [start, setStart] = useState(props.start);
-  // const [end, setEnd] = useState(props.end);
+  const [start, setStart] = useState(props.start);
+  const [end, setEnd] = useState(props.end);
   return (
     <div className="edit-task">
-      <Modal title="edit task" open={props.editMode} onCancel={() => props.setEditMode(false)}>
+      <Modal title="edit task" open={props.editMode} onCancel={() => props.setEditMode(false)} onOk={() => {
+        props.setEditMode(false);
+        //collect the information and send it to the api
+      }}>
         <Input
           label={"Description"}
           style={{ "width": "400px" }}
@@ -26,15 +30,21 @@ const EditTaskPopup = (props: IProps) => {
         <Input
           label={"Start Time"}
           type='datetime-local'
-          // value={start}
-          // onChange={(e) => setStart(+e.target.value.toString())}
-          />
+          value={start}
+          onChange={(e) => {
+            setStart(e.target.value.toString())
+            console.log(convertToTimestamp(start));
+          }}
+        />
         <Input
           label={"End Time"}
           type='datetime-local'
-          // value={end}
-          // onChange={(e) => setEnd(+e.target.value)}
-          // min={start | 0}
+          value={end}
+          onChange={(e) => {
+            setEnd(e.target.value)
+            console.log(end);
+          }}
+          min={start || 0}
         />
       </Modal>
     </div>
