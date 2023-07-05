@@ -13,22 +13,25 @@ const Dashboard = () => {
   const [fetchingUser, setFetchingUser] = useState(true);
 
   useEffect(() => {
-    userHook.fetchUserData().then(() => setFetchingUser(false))
+    userHook.fetchUserData().then(() => setTimeout(() => {
+      setFetchingUser(false);
+    }, 500)
+    )
   }, []);
 
   return (
-    <div className="dashboard">
-      <div className='top'>
-        <Spin spinning={fetchingUser}>
+    <Spin spinning={fetchingUser}>
+      <div className="dashboard">
+        <div className='top'>
           <UserCard username={userHook.username} email={userHook.email} />
-        </Spin>
-        <div className="range-picker">
-          <RangePicker placement='bottomRight' />
-          <PieChart />
+          <div className="range-picker">
+            <RangePicker placement='bottomRight' />
+            <PieChart />
+          </div>
         </div>
+        <BarChart />
       </div>
-      <BarChart />
-    </div>
+    </Spin>
   );
 };
 

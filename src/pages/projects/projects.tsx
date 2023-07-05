@@ -26,7 +26,9 @@ const ProjectsPage = () => {
         showMessage('error', 'Error fetching projects')
       }
       finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       }
     };
 
@@ -38,8 +40,8 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div className="projects-page">
-      <Spin spinning={loading}>
+    <Spin spinning={loading}>
+      <div className="projects-page">
         <div className="projects-page-inner">
           <div className="new-project-btn">
             <Button onClick={() =>
@@ -65,8 +67,8 @@ const ProjectsPage = () => {
           setIsSubmit={setIsSubmit}
           isSubmit={isSubmit}
         />
-      </Spin>
-    </div>
+      </div>
+    </Spin>
   );
 };
 
