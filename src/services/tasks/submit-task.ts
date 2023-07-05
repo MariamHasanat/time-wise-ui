@@ -21,7 +21,7 @@ export interface IResInfo {
   taskID: string;
 }
 
-class TaskAPI {
+export class TaskAPI {
   private API: string = `http://localhost:3001`;
   private token: string = localStorage.getItem("token") || "";
   public receivedStatus: object = {};
@@ -34,7 +34,6 @@ class TaskAPI {
       },
     }).then((res) => res.json() as Promise<comingTasks[]>);
   };
-
   createTask = async (task: ITask) => {
     const optional: RequestInit = {
       method: "POST",
@@ -50,8 +49,7 @@ class TaskAPI {
   };
   completeTask = async (taskInfo: ITaskInfo) => {
     const { _id, endTime } = taskInfo;
-    console.log("id is ", _id);
-
+    
     const optional: RequestInit = {
       method: "POST",
       headers: {
@@ -72,5 +70,26 @@ class TaskAPI {
       })
       .catch((error) => showMessage("error", error));
   };
+  deleteTask = (taskId: string) => {
+    const optional: RequestInit = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        token: this.token,
+      },
+    };
+
+    return fetch(`${this.API}/tasks/${taskId}`, optional)
+      .then((res) => {
+        if (res.ok) {
+          return true;
+        } else {
+          throw new Error("Failed to delete task.");
+        }
+      })
+      .catch((error) => {
+        showMessage("error", error);
+        return false;
+      });
+  };
 }
-export default TaskAPI;

@@ -10,9 +10,16 @@ import { timeAsADate, timeInHoursAndMinutes, whatTheTime } from "../../utils/tim
 
 setTwoToneColor('#52469C');
 
+export interface IProps {
+  allTasks : comingTasks[] ;
+  handleDeleteTask : Function;
+}
+
 const TaskLog = (props: any) => {
   const allTasks = props.allTasks;
   const [editMode, setEditMode] = useState<boolean>(false);
+  const handleDeleteTask = props.handleDeleteTask;
+
   return (
     allTasks.map((task: comingTasks, key: number) => (
       task.status === "stopped" ?
@@ -37,7 +44,8 @@ const TaskLog = (props: any) => {
             >
               <EditTwoTone style={{ "fontSize": "22px", "margin": "5px" }} />
             </Button>
-            <DeleteConfirmation />
+            <DeleteConfirmation onDelete={() => handleDeleteTask(task._id)} taskId={task._id} />
+
           </div>
           <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none" />
         </form>

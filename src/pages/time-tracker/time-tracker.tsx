@@ -8,27 +8,30 @@ import { Spin } from 'antd';
 import useTask from '../../hooks/tasks/task.hook';
 
 export interface IProName {
-  _id: string,
-  name: string
+  _id: string;
+  name: string;
 }
 
-const TimeTracker = () => {// eslint-disable-next-line
-  const [projectsNames, setProjectsNames] = useState<Array<IProName>>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+const TimeTracker = () => {
+  const [projectsNames, setProjectsNames] = useState<IProName[]>([]);
+  const [loading, setLoading] = useState(true);
   const newTask = useTask();
   const allTasks = newTask.comingState;
 
   useEffect(() => {
     fetchProjectNames()
-      .then((names ?: Array<IProName>) => {
+      .then((names: IProName[] | null | undefined) => {
         if (names === null || names === undefined) {
-          showMessage('error', "names of projects are not found")
+          showMessage('error', 'Names of projects are not found');
         } else {
           setProjectsNames(names);
         }
         setLoading(false);
-      }
-      )
+      })
+      .catch((error) => {
+        showMessage('error', error);
+        setLoading(false);
+      });
 
     newTask.getTasks()
       .then(() => {
@@ -43,17 +46,23 @@ const TimeTracker = () => {// eslint-disable-next-line
   }));
   const projectsId = projectsNames.map((item) => ({
     id: item._id,
-    name: item.name
-  }))
+    name: item.name,
+  }));
 
   return (
-    <div className='time-tracker'>
-      <Spin spinning={loading} >
-        <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId} startNewTask={newTask.add} completeRunningTask={newTask.complete} />
-        <TaskLog allTasks={allTasks} />
+    <div className="time-tracker">
+      <Spin spinning={loading}>
+        <NewTaskForm
+          projects={convertedProjectsNames}
+          projectsId={projectsId}
+          startNewTask={newTask.add}
+          completeRunningTask={newTask.complete}
+        />
+
+        <TaskLog allTasks={allTasks} handleDeleteTask={newTask.deleteTask} />
       </Spin>
     </div>
-  )
-}
+  );
+};
 
 export default TimeTracker;
