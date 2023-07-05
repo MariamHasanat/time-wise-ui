@@ -4,9 +4,10 @@ import { ClockCircleTwoTone, EditTwoTone } from "@ant-design/icons"
 import { useState } from "react";
 import EditTaskPopup from "../edit-task/edit-task";
 import DeleteConfirmation from "../delete-confirmation/delete-confirmation";
-import { comingTasks } from "../../services/tasks/taskApi";
+
 import { setTwoToneColor } from '@ant-design/icons';
 import { timeAsADate, timeInHoursAndMinutes, whatTheTime } from "../../utils/time-borders";
+import { comingTasks } from "../../services/tasks/submit-task";
 
 setTwoToneColor('#52469C');
 

@@ -49,7 +49,7 @@ export class TaskAPI {
   };
   completeTask = async (taskInfo: ITaskInfo) => {
     const { _id, endTime } = taskInfo;
-    
+
     const optional: RequestInit = {
       method: "POST",
       headers: {
@@ -75,7 +75,7 @@ export class TaskAPI {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: this.token,
+        token: localStorage.getItem("token") || "",
       },
     };
 
