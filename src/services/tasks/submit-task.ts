@@ -50,7 +50,6 @@ class TaskAPI {
   };
   completeTask = async (taskInfo: ITaskInfo) => {
     const { _id, endTime } = taskInfo;
-    console.log("id is ", _id);
 
     const optional: RequestInit = {
       method: "POST",
