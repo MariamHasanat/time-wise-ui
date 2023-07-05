@@ -34,7 +34,7 @@ const TimeTracker = () => {// eslint-disable-next-line
 
     newTask.getTasks()
       .then(() => {
-        showMessage('success', "tasks fetched successfully")
+        // showMessage('success', "tasks fetched successfully")
       }).catch(error => showMessage('error', error))
     // eslint-disable-next-line
   }, [])

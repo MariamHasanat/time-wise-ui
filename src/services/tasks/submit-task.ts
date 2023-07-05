@@ -63,7 +63,7 @@ class TaskAPI {
     return await fetch(`${this.API}/tasks/${_id}`, optional)
       .then((res) => {
         if (res.status === 200) {
-          showMessage("success", "completed successfully");
+          // showMessage("success", "completed successfully");
           return true;
         } else {
           showMessage("error", "failed complete the task");
