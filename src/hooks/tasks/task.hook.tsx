@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import TaskAPI, { ITaskInfo, comingTasks } from '../../services/tasks/submit-task';
 import showMessage from '../../utils/message/message';
+import { ITaskInfo, TaskAPI, comingTasks } from '../../services/tasks/submit-task';
 
 export interface ITask {
   projectId: string,
@@ -16,39 +16,55 @@ const useTask = () => {
 
   const getTasks = async () => {
     await api.getTasks()
-      .then((tasks) => setComingState(tasks))
-      .catch(error => {
+      .then((tasks: any) => setComingState(tasks))
+      .catch((error :any) => {
         showMessage('error', error);
       })
 
   }
 
+  const deleteTask = async (taskId: string) => {
+    await api.deleteTask(taskId)
+    .then(async (deleted) => {
+      if (deleted) {
+        showMessage('success', 'Task deleted successfully.');
+        setComingState(await api.getTasks());
+      } else {
+        showMessage('error', 'Failed to delete task.');
+      }
+    })
+    .catch((error: any) => {
+      showMessage('error', error);
+    });
+
+  }
 
   const add = async (task: ITask) => {
     await api.createTask(task)
-      .then(async success => {
+      .then(async (success : any) => {
         if (success) {
           showMessage('success', "task started successfully");
           localStorage.setItem("taskID", success.taskID.toString())
         }
       })
-      .catch(error => {
+      .catch((error: any) => {
         showMessage('error', error);
       })
   }
+
   const complete = async (taskInfo: ITaskInfo) => {
     await api.completeTask(taskInfo)
-      .then(async success => {
+      .then(async (success : any) => {
         let tasks = comingState;
         if (success) {
           tasks = await api.getTasks();
-          setComingState(tasks)
+          setComingState(await api.getTasks())
         } else {
           showMessage('error', "failed submitted task")
         }
         setComingState(tasks);
       })
-      .catch(error => {
+      .catch((error : any) => {
         showMessage('error', error);
       })
 
@@ -57,7 +73,7 @@ const useTask = () => {
     return localStorage.getItem("taskID");
   }
 
-  return { comingState, add, complete, getTaskID, getTasks }
+  return { comingState, add, complete, getTaskID, getTasks, deleteTask }
 }
 
 export default useTask
