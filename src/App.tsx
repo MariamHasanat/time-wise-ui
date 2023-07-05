@@ -59,7 +59,8 @@ function App() {
                   <ProjectsPage />
                 </PageLayout>
               </Guard>} />
-            <Route path='/*' element={<Navigate to="/login" />} />
+            <Route path='/*' element={<Navigate to="/Dashboard" />} />
+            <Route path='/' element={<Navigate to="/Dashboard" />} />
           </Routes>
         </BrowserRouter>
       </ConfigProvider>
