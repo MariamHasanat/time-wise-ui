@@ -18,33 +18,30 @@
 }
 
 .task-log .task-time {
-  color: #52469C;
+  color: #52469c;
   display: flex;
   align-items: center;
-
 }
 .task-log .task-date-time {
   display: flex;
   align-items: center;
-  justify-content:center;
-  flex-direction: column-reverse;
+  justify-content: center;
+  flex-direction: column;
 }
-.task-log .task-date-time>.task-dates {
+.task-log .task-date-time > .task-dates {
   font-size: 10px;
-  color:rgb(116, 137, 193)
-
+  color: rgb(116, 137, 193);
 }
 
 .task-log .color {
   border-radius: 100%;
-  width: 15px;
-  height: 15px;
+  width: 22px;
+  height: 22px;
 }
-
 
 .task-log .control-btns {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-right: -50px
+  margin-right: -50px;
 }

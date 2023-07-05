@@ -78,8 +78,8 @@ const MyBarChart = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        {projects.map((project) =>
-          <Bar legendType="circle" dataKey={project.name} stackId="a" fill={project.color} />)}
+        {projects.map((project, key) =>
+          <Bar key={key} legendType="circle" dataKey={project.name} stackId="a" fill={project.color} />)}
       </BarChart>
     </div>
   )

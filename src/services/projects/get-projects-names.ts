@@ -1,24 +1,28 @@
+import { IProName } from "../../pages/time-tracker/time-tracker";
 import showMessage from "../../utils/message/message";
 
 const fetchProjectNames = async () => {
-  const token :string = localStorage.getItem('token') || "";
   try {
-    const response = await fetch(`http://localhost:3001/projects/list`, {
-      method: 'GET',
+    return await fetch(`http://localhost:3001/projects/list`, {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        'token': token
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token") || "",
       },
-
-    });
-    if (response.status === 200) {
-      const projectName = await response.json();
-      // console.log("success fetching the projects names");
-      return projectName;
-    }
+    })
+      .then(async (response) => {
+        if (response.status === 200) {
+          const projectName: Array<IProName> = await response.json();
+          return projectName;
+        }
+      })
+      .catch((error) => {
+        showMessage("error", error);
+        return [];
+      });
   } catch (error) {
-    showMessage("error", `error on get the projects names`);
-    return undefined;
+    showMessage("error", "error fetching project name");
+    return [];
   }
 };
 

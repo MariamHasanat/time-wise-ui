@@ -7,7 +7,7 @@ import showMessage from '../../utils/message/message';
 import { Spin } from 'antd';
 import useTask from '../../hooks/tasks/task.hook';
 
-interface IProName {
+export interface IProName {
   _id: string,
   name: string
 }
@@ -15,14 +15,12 @@ interface IProName {
 const TimeTracker = () => {// eslint-disable-next-line
   const [projectsNames, setProjectsNames] = useState<Array<IProName>>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const submitTask = useTask();
-  const allTasks = submitTask.comingState;
-  console.log("all tasks : ", allTasks);
-
+  const newTask = useTask();
+  const allTasks = newTask.comingState;
 
   useEffect(() => {
     fetchProjectNames()
-      .then((names: Array<IProName>) => {
+      .then((names ?: Array<IProName>) => {
         if (names === null || names === undefined) {
           showMessage('error', "names of projects are not found")
         } else {
@@ -30,7 +28,13 @@ const TimeTracker = () => {// eslint-disable-next-line
         }
         setLoading(false);
       }
-      )// eslint-disable-next-line
+      )
+
+    newTask.getTasks()
+      .then(() => {
+        showMessage('success', "fetch successfully")
+      }).catch(error => showMessage('error', error))
+    // eslint-disable-next-line
   }, [])
 
   const convertedProjectsNames = projectsNames.map((item, index) => ({
@@ -45,7 +49,7 @@ const TimeTracker = () => {// eslint-disable-next-line
   return (
     <div className='time-tracker'>
       <Spin spinning={loading} >
-        <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId} submitTask={submitTask.add} />
+        <NewTaskForm projects={convertedProjectsNames} projectsId={projectsId} startNewTask={newTask.add} completeRunningTask={newTask.complete} />
         <TaskLog allTasks={allTasks} />
       </Spin>
     </div>

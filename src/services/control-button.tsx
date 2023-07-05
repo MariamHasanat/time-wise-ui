@@ -10,24 +10,16 @@ type Props = {
   setIsRunning: Function;
   setTaskDescription: Function;
   handleRequired: Function;
-  handleSubmit: Function;
+  handleStartNewTask: Function;
+  handleCompleteRunningTask: Function;
   taskInformation: ITask;
   setTaskInformation: Function;
 };
 
 const ControlBtn = (props: Props) => {
-  const {
-    setTaskInformation,
-    handleSubmit,
-    setTimeInSecond,
-    setDropdownLabel,
-    setIsRunning,
-    setTaskDescription,
-    handleRequired,
-    taskInformation,
+  const { setTaskInformation, handleStartNewTask, setTimeInSecond, setDropdownLabel, setIsRunning, setTaskDescription, handleRequired, taskInformation, handleCompleteRunningTask,
   } = props;
   const [startTime, setStartTime] = useState(JSON.parse(localStorage.getItem('startTime') || '0'));
-  const [endTime, setEndTime] = useState(JSON.parse(localStorage.getItem('endTime') || '0'));
   const timerRef = useRef<NodeJS.Timer>();
 
   const clearTimer = () => {
@@ -36,24 +28,24 @@ const ControlBtn = (props: Props) => {
     }
   };
 
-  const handlePlayButton = () => {
+  const handlePlayButton = async () => {
     const startTimestamp = Date.now().toString();
-    handleSubmit({ ...taskInformation, beginTime: startTimestamp });
+    await handleStartNewTask({ ...taskInformation, beginTime: startTimestamp })
     setIsRunning(true);
     setStartTime(startTimestamp);
     timerRef.current = setInterval(() => {
       setTimeInSecond((previousState: number) => previousState + 1);
     }, 1000);
   };
-  
 
   const handleStopButton = () => {
     clearTimer();
-    setEndTime(Date.now());
+    setIsRunning(false);
+    handleCompleteRunningTask({ _id: localStorage.getItem("taskID"), endTime: Date.now() })
+    localStorage.setItem("taskID", "");
     setStartTime(0);
     setTimeInSecond(0);
     setDropdownLabel('Projects');
-    setIsRunning(false);
     setTaskDescription('');
   };
 
@@ -62,10 +54,6 @@ const ControlBtn = (props: Props) => {
     setTaskInformation({ ...taskInformation, beginTime: startTime.toString() });
     // eslint-disable-next-line
   }, [startTime]);
-
-  useEffect(() => {
-    localStorage.setItem('endTime', endTime.toString());
-  }, [endTime]);
 
   useEffect(() => {
     if (startTime > 0) {

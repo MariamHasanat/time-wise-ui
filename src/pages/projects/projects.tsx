@@ -5,6 +5,7 @@ import ProjectCard from '../../components/project-card/project-card';
 import getProjects from '../../services/projects/getProjects';
 import { IProject } from '../../types/project-interface';
 import './projects.css'
+import showMessage from '../../utils/message/message';
 
 const ProjectsPage = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -19,10 +20,10 @@ const ProjectsPage = () => {
         if (Array.isArray(fetchedProjects)) {
           setProjects(fetchedProjects);
         } else {
-          console.error('Invalid projects data:', fetchedProjects);
+          showMessage('error', 'Invalid projects data')
         }
       } catch (error) {
-        console.error('Error fetching projects:', error);
+        showMessage('error', 'Error fetching projects')
       }
       finally {
         setLoading(false);

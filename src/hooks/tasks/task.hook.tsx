@@ -1,6 +1,5 @@
-// import React from 'react'
-import { useEffect, useState } from 'react';
-import TaskAPI, { comingTasks } from '../../services/tasks/submit-task';
+import { useState } from 'react';
+import TaskAPI, { ITaskInfo, comingTasks } from '../../services/tasks/submit-task';
 import showMessage from '../../utils/message/message';
 
 export interface ITask {
@@ -15,35 +14,50 @@ const useTask = () => {
 
   const [comingState, setComingState] = useState<Array<comingTasks>>([]);
 
-  useEffect(() => {
-    api.getTasks()
+  const getTasks = async () => {
+    await api.getTasks()
       .then((tasks) => setComingState(tasks))
       .catch(error => {
         showMessage('error', error);
       })
-  }, [])
 
-  const add = (task: ITask) => {
+  }
 
-    api.createTask(task)
+
+  const add = async (task: ITask) => {
+    await api.createTask(task)
       .then(async success => {
-        // let tasks = comingState;
         if (success) {
-          showMessage('success', "task submitted successfully");
-          // tasks = await api.getTasks();
-          // setComingState(tasks)
-        } else {
-          showMessage('error', "failed submitted task")
+          showMessage('success', "task started successfully");
+          localStorage.setItem("taskID", success.taskID.toString())
         }
-        // setComingState(tasks);
-
       })
       .catch(error => {
         showMessage('error', error);
       })
   }
+  const complete = async (taskInfo: ITaskInfo) => {
+    await api.completeTask(taskInfo)
+      .then(async success => {
+        let tasks = comingState;
+        if (success) {
+          tasks = await api.getTasks();
+          setComingState(tasks)
+        } else {
+          showMessage('error', "failed submitted task")
+        }
+        setComingState(tasks);
+      })
+      .catch(error => {
+        showMessage('error', error);
+      })
 
-  return { comingState, add }
+  }
+  const getTaskID = () => {
+    return localStorage.getItem("taskID");
+  }
+
+  return { comingState, add, complete, getTaskID, getTasks }
 }
 
 export default useTask
