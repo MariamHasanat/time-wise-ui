@@ -6,6 +6,7 @@ import getProjects from '../../services/projects/getProjects';
 import { IProject } from '../../types/project-interface';
 import './projects.css'
 import showMessage from '../../utils/message/message';
+import NoProjectsFound from './no-projects-found/not-found';
 
 const ProjectsPage = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -50,15 +51,19 @@ const ProjectsPage = () => {
           </div>
         </div>
         <div className="projects-board">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.name}
-              color={project.color}
-              name={project.name}
-              description={project.description || ''}
-              projectHours={project.projectHours || 0}
-            />
-          ))}
+          {
+            projects.length ?
+              projects.map((project) => (
+                <ProjectCard
+                  key={project.name}
+                  color={project.color}
+                  name={project.name}
+                  description={project.description || ''}
+                  projectHours={project.projectHours || 0}
+                />
+              ))
+              : <NoProjectsFound />
+          }
         </div>
         <ProjectForm
           onProjectCreated={handleProjectCreated}
