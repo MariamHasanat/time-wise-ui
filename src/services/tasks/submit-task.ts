@@ -30,39 +30,37 @@ class TaskAPI {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        token: this.token,
+        token: localStorage.getItem("token") || "",
       },
     }).then((res) => res.json() as Promise<comingTasks[]>);
   };
 
-  createTask = (task: ITask) => {
+  createTask = async (task: ITask) => {
     const optional: RequestInit = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        token: this.token,
+        token: localStorage.getItem("token") || "",
       },
       body: JSON.stringify(task),
     };
-    return fetch(`${this.API}/tasks`, optional)
-      .then(
-        async (res) => res.json() as Promise<IResInfo>
-      )
+    return await fetch(`${this.API}/tasks`, optional)
+      .then(async (res) => res.json() as Promise<IResInfo>)
       .catch((error) => showMessage("error", error));
   };
-  completeTask = (taskInfo: ITaskInfo) => {
+  completeTask = async (taskInfo: ITaskInfo) => {
     const { _id, endTime } = taskInfo;
-    console.log("id is " , _id);
-    
+    console.log("id is ", _id);
+
     const optional: RequestInit = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        token: this.token,
+        token: localStorage.getItem("token") || "",
       },
       body: JSON.stringify({ endTime }),
     };
-    return fetch(`${this.API}/tasks/${_id}`, optional)
+    return await fetch(`${this.API}/tasks/${_id}`, optional)
       .then((res) => {
         if (res.status === 200) {
           showMessage("success", "completed successfully");

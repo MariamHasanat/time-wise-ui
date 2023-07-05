@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TaskAPI, { ITaskInfo, comingTasks } from '../../services/tasks/submit-task';
 import showMessage from '../../utils/message/message';
 
@@ -14,16 +14,18 @@ const useTask = () => {
 
   const [comingState, setComingState] = useState<Array<comingTasks>>([]);
 
-  useEffect(() => {
-    api.getTasks()
+  const getTasks = async () => {
+    await api.getTasks()
       .then((tasks) => setComingState(tasks))
       .catch(error => {
         showMessage('error', error);
       })
-  }, [])
 
-  const add = (task: ITask) => {
-    api.createTask(task)
+  }
+
+
+  const add = async (task: ITask) => {
+    await api.createTask(task)
       .then(async success => {
         if (success) {
           showMessage('success', "task started successfully");
@@ -34,8 +36,8 @@ const useTask = () => {
         showMessage('error', error);
       })
   }
-  const complete = (taskInfo: ITaskInfo) => {
-    api.completeTask(taskInfo)
+  const complete = async (taskInfo: ITaskInfo) => {
+    await api.completeTask(taskInfo)
       .then(async success => {
         let tasks = comingState;
         if (success) {
@@ -55,7 +57,7 @@ const useTask = () => {
     return localStorage.getItem("taskID");
   }
 
-  return { comingState, add, complete, getTaskID }
+  return { comingState, add, complete, getTaskID, getTasks }
 }
 
 export default useTask

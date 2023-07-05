@@ -7,7 +7,7 @@ import showMessage from '../../utils/message/message';
 import { Spin } from 'antd';
 import useTask from '../../hooks/tasks/task.hook';
 
-interface IProName {
+export interface IProName {
   _id: string,
   name: string
 }
@@ -20,7 +20,7 @@ const TimeTracker = () => {// eslint-disable-next-line
 
   useEffect(() => {
     fetchProjectNames()
-      .then((names: Array<IProName>) => {
+      .then((names ?: Array<IProName>) => {
         if (names === null || names === undefined) {
           showMessage('error', "names of projects are not found")
         } else {
@@ -28,7 +28,13 @@ const TimeTracker = () => {// eslint-disable-next-line
         }
         setLoading(false);
       }
-      )// eslint-disable-next-line
+      )
+
+    newTask.getTasks()
+      .then(() => {
+        showMessage('success', "fetch successfully")
+      }).catch(error => showMessage('error', error))
+    // eslint-disable-next-line
   }, [])
 
   const convertedProjectsNames = projectsNames.map((item, index) => ({
