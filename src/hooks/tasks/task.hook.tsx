@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import TaskAPI, { ITaskInfo, comingTasks } from '../../services/tasks/submit-task';
+import TaskAPI, { ITaskInfo, comingTasks } from '../../services/tasks/taskApi';
 import showMessage from '../../utils/message/message';
 
 export interface ITask {
