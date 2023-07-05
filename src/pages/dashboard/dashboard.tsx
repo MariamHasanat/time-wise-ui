@@ -17,7 +17,7 @@ const Dashboard = () => {
       setFetchingUser(false);
     }, 500)
     )
-  }, []);
+  });
 
   return (
     <Spin spinning={fetchingUser}>
