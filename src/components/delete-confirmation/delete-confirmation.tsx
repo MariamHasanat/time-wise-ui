@@ -11,9 +11,9 @@ const DeleteConfirmation = () => (
     >
       <Button
         danger
-        style={{ "border": "none", "background": "none", "boxShadow": "none", "padding": 0, "color":"#52469C", "marginLeft": "10px"}}
+        style={{ "border": "none", "background": "none", "boxShadow": "none", "padding": 0, "color": "#52469C", "marginLeft": "10px" }}
       >
-        <DeleteTwoTone style={{ "fontSize": "22px", "margin": "5px" }}/>
+        <DeleteTwoTone style={{ "fontSize": "22px", "margin": "5px" }} />
       </Button>
     </Popconfirm>
   </div>

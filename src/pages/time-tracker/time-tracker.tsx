@@ -20,7 +20,7 @@ const TimeTracker = () => {// eslint-disable-next-line
 
   useEffect(() => {
     fetchProjectNames()
-      .then((names ?: Array<IProName>) => {
+      .then((names?: Array<IProName>) => {
         if (names === null || names === undefined) {
           showMessage('error', "names of projects are not found")
         } else {

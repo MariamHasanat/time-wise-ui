@@ -26,15 +26,15 @@ const EditTaskPopup = (props: IProps) => {
         <Input
           label={"Start Time"}
           type='datetime-local'
-          // value={start}
-          // onChange={(e) => setStart(+e.target.value.toString())}
-          />
+        // value={start}
+        // onChange={(e) => setStart(+e.target.value.toString())}
+        />
         <Input
           label={"End Time"}
           type='datetime-local'
-          // value={end}
-          // onChange={(e) => setEnd(+e.target.value)}
-          // min={start | 0}
+        // value={end}
+        // onChange={(e) => setEnd(+e.target.value)}
+        // min={start | 0}
         />
       </Modal>
     </div>

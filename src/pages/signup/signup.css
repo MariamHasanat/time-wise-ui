@@ -39,14 +39,14 @@
   border-radius: var(--border-radius);
 }
 
-.signup .button>button {
+.signup .button > button {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 7px;
 }
 
-.signup .input>input {
+.signup .input > input {
   width: 100%;
   display: flex;
   justify-content: center;

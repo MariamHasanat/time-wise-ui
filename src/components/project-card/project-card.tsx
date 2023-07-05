@@ -18,9 +18,9 @@ const ProjectCard = (props: IProps) => {
           <button className='proj-tooltip-btn'><InfoCircleFilled /></button>
         </Tooltip>
       </div>
-        <h4>{props.name}</h4>
+      <h4>{props.name}</h4>
       <div className='proj-time'>
-        <p><b><ClockCircleOutlined/> </b>{props.projectHours}hrs</p>
+        <p><b><ClockCircleOutlined /> </b>{props.projectHours}hrs</p>
       </div>
     </div>
   )

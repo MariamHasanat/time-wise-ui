@@ -18,7 +18,7 @@ const MyPieChart = () => {
           outerRadius={100}
           paddingAngle={5}
           label
-          >
+        >
           {
             projects.map((project) => <Cell fill={project.color} />)
           }
