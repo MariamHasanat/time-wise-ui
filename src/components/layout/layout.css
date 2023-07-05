@@ -16,8 +16,9 @@
   width: 50px;
 }
 
-.page-layout .user-icon {
+.page-layout  .logout-btn{
   position: fixed;
-  bottom :10px;
-  left: 10px;
+  bottom :20px;
+  left: 50px;
+  
 }

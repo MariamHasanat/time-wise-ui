@@ -8,7 +8,6 @@ import {
 import type { MenuProps } from 'antd';
 import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router';
-import UserIcon from '../user-icon/user-icon';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -57,7 +56,6 @@ const PageLayout = (props: IProps) => {
             items={items}
             selectedKeys={[window.location.pathname]}
           />
-          <UserIcon />
         </Sider>
         <Layout style={{ "paddingTop": 25 }}>
           <Content style={{ margin: '0 16px' }}>
