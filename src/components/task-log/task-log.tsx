@@ -14,12 +14,14 @@ setTwoToneColor('#52469C');
 export interface IProps {
   allTasks: comingTasks[];
   handleDeleteTask: Function;
+  handleUpdateTask: Function;
 }
 
 const TaskLog = (props: any) => {
   const allTasks = props.allTasks;
   const [editMode, setEditMode] = useState<boolean>(false);
   const handleDeleteTask = props.handleDeleteTask;
+  const handleUpdateTask = props.handleUpdateTask;
 
   return (
     allTasks.map((task: comingTasks, key: number) => (
@@ -49,7 +51,7 @@ const TaskLog = (props: any) => {
             <DeleteConfirmation onDelete={() => handleDeleteTask(task._id)} taskId={task._id} />
 
           </div>
-          <EditTaskPopup editMode={editMode} setEditMode={setEditMode} description="none" start="none" end="none" />
+          <EditTaskPopup handleUpdateTask={handleUpdateTask} editMode={editMode} taskId={task._id} setEditMode={setEditMode} description={task.description} start={task.beginTime} end={task.endTime} />
         </form>
         :
         <div key={key}></div>))

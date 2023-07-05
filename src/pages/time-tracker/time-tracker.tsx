@@ -13,7 +13,7 @@ export interface IProName {
 }
 
 const TimeTracker = () => {
-  
+
   const [projectsNames, setProjectsNames] = useState<IProName[]>([]);
   const [loading, setLoading] = useState(true);
   const newTask = useTask();
@@ -63,7 +63,7 @@ const TimeTracker = () => {
           completeRunningTask={newTask.complete}
         />
 
-        <TaskLog allTasks={allTasks} handleDeleteTask={newTask.deleteTask} />
+        <TaskLog allTasks={allTasks} handleDeleteTask={newTask.deleteTask} handleUpdateTask={newTask.update} />
       </Spin>
     </div>
   );
