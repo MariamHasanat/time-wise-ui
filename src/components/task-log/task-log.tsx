@@ -4,15 +4,15 @@ import { ClockCircleTwoTone, EditTwoTone } from "@ant-design/icons"
 import { useState } from "react";
 import EditTaskPopup from "../edit-task/edit-task";
 import DeleteConfirmation from "../delete-confirmation/delete-confirmation";
-import { comingTasks } from "../../services/tasks/submit-task";
+import { comingTasks } from "../../services/tasks/taskApi";
 import { setTwoToneColor } from '@ant-design/icons';
 import { timeAsADate, timeInHoursAndMinutes, whatTheTime } from "../../utils/time-borders";
 
 setTwoToneColor('#52469C');
 
 export interface IProps {
-  allTasks : comingTasks[] ;
-  handleDeleteTask : Function;
+  allTasks: comingTasks[];
+  handleDeleteTask: Function;
 }
 
 const TaskLog = (props: any) => {
@@ -44,6 +44,7 @@ const TaskLog = (props: any) => {
             >
               <EditTwoTone style={{ "fontSize": "22px", "margin": "5px" }} />
             </Button>
+
             <DeleteConfirmation onDelete={() => handleDeleteTask(task._id)} taskId={task._id} />
 
           </div>

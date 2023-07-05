@@ -33,15 +33,18 @@ const TimeTracker = () => {
         setLoading(false);
       });
 
-    newTask.getTasks()
+    newTask
+      .getTasks()
       .then(() => {
-        showMessage('success', "fetch successfully")
-      }).catch(error => showMessage('error', error))
-    // eslint-disable-next-line
-  }, [])
+        showMessage('success', 'Fetch successful');
+      })
+      .catch((error) => {
+        showMessage('error', error);
+      });
+  }, []);
 
-  const convertedProjectsNames = projectsNames.map((item, index) => ({
-    key: index.toString(),
+  const convertedProjectsNames = projectsNames.map((item) => ({
+    key: item._id,
     label: item.name,
   }));
   const projectsId = projectsNames.map((item) => ({
