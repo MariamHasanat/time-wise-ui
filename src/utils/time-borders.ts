@@ -9,12 +9,31 @@ export const timeInHoursAndMinutes = (timeStamp: string) => {
   }
 };
 
-export const timeAsADate = (timeStamp: string) => {
+export const timeAsADate = (timeStamp: string): string => {
   const time = new Date(Number(timeStamp));
-  // Get the month name
-  const monthName = time.toLocaleString("default", { month: "long" });
-  const day = time.getDay();
-  return monthName + " " + day;
+  const month = time.getMonth();
+  const day = time.getDate();
+
+  // Create an array of month names
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // Get the month name using the month index
+  const monthName = monthNames[month];
+
+  return `${monthName} ${day}`;
 };
 
 export function convertTimestampToDHMS(timestamp: number): string {
