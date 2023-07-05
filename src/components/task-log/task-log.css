@@ -27,7 +27,7 @@
   display: flex;
   align-items: center;
   justify-content:center;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 .task-log .task-date-time>.task-dates {
   font-size: 10px;
@@ -36,7 +36,6 @@
 }
 
 .task-log .color {
-  background-color: rgb(250, 250, 116);
   border-radius: 100%;
   width: 15px;
   height: 15px;
