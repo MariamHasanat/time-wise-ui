@@ -27,11 +27,13 @@ const TaskLog = (props: any) => {
     allTasks.map((task: comingTasks, key: number) => (
       task.status === "stopped" ?
         <form className="task-log" key={key}>
-          <span className="color" style={{ backgroundColor: task.projectColor }}>&nbsp;</span>
-          <div className="task-desc">
-            <label style={{ fontSize: "15px", color: "#52469C", width: 300 }}>{task.description}</label>
-            <label style={{ fontSize: "10px", color: "#7489C1" }} >{task.projectName}</label>
-          </div>
+          <span className="newStyle" style={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "center"}}>
+            <span className="color" style={{ backgroundColor: task.projectColor }}>&nbsp;</span>
+            <div className="task-desc">
+              <label style={{ fontSize: "15px", color: "#52469C", width: 210 }}>{task.description}</label>
+              <label style={{ fontSize: "10px", color: "#7489C1" }} >{task.projectName}</label>
+            </div>
+          </span>
           <label >{convertTimestampToDHMS(Number(task.totalTimeInSeconds))}</label>
           <div className="task-time">
             <ClockCircleTwoTone style={{ "fontSize": "22px", "margin": "5px", "color": "#f9ff00" }} /> &nbsp;&nbsp;
