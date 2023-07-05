@@ -7,6 +7,15 @@ export interface ITask {
   beginTime: string,
   description: string,
 }
+export interface IUpTask {
+  taskId: string;
+  task: {
+    description: string;
+    beginTime: string;
+    endTime: string;
+  }
+}
+
 
 const api = new TaskAPI();
 
@@ -17,7 +26,7 @@ const useTask = () => {
   const getTasks = async () => {
     await api.getTasks()
       .then((tasks: any) => setComingState(tasks))
-      .catch((error :any) => {
+      .catch((error: any) => {
         showMessage('error', error);
       })
 
@@ -25,23 +34,23 @@ const useTask = () => {
 
   const deleteTask = async (taskId: string) => {
     await api.deleteTask(taskId)
-    .then(async (deleted) => {
-      if (deleted) {
-        showMessage('success', 'Task deleted successfully.');
-        setComingState(await api.getTasks());
-      } else {
-        showMessage('error', 'Failed to delete task.');
-      }
-    })
-    .catch((error: any) => {
-      showMessage('error', error);
-    });
+      .then(async (deleted) => {
+        if (deleted) {
+          showMessage('success', 'Task deleted successfully.');
+          setComingState(await api.getTasks());
+        } else {
+          showMessage('error', 'Failed to delete task.');
+        }
+      })
+      .catch((error: any) => {
+        showMessage('error', error);
+      });
 
   }
 
   const add = async (task: ITask) => {
     await api.createTask(task)
-      .then(async (success : any) => {
+      .then(async (success: any) => {
         if (success) {
           showMessage('success', "task started successfully");
           localStorage.setItem("taskID", success.taskID.toString())
@@ -51,10 +60,22 @@ const useTask = () => {
         showMessage('error', error);
       })
   }
+  const update = async (task: IUpTask) => {
+    await api.updateTask(task)
+      .then(async (success: any) => {
+        if (success) {
+          showMessage('success', "task updated successfully");
+          setComingState(await api.getTasks())
+        }
+      })
+      .catch((error: any) => {
+        showMessage('error', error);
+      })
+  }
 
   const complete = async (taskInfo: ITaskInfo) => {
     await api.completeTask(taskInfo)
-      .then(async (success : any) => {
+      .then(async (success: any) => {
         let tasks = comingState;
         if (success) {
           tasks = await api.getTasks();
@@ -64,7 +85,7 @@ const useTask = () => {
         }
         setComingState(tasks);
       })
-      .catch((error : any) => {
+      .catch((error: any) => {
         showMessage('error', error);
       })
 
@@ -73,7 +94,7 @@ const useTask = () => {
     return localStorage.getItem("taskID");
   }
 
-  return { comingState, add, complete, getTaskID, getTasks, deleteTask }
+  return { comingState, add, complete, getTaskID, getTasks, deleteTask, update }
 }
 
 export default useTask
