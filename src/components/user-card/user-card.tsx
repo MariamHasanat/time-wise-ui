@@ -17,16 +17,6 @@ const UserCard = (user: userData) => {
         <h4 className='username' style={{ display: 'flex', justifyContent: 'space-between' }}>{user.username || "..."}</h4>
         <h5 className='useremail'>{user.email || "..."}</h5>
       </div>
-      <Button type='primary' style={{ border: 0 }} className='logout-btn'
-        onClick={() => {
-          localStorage.setItem('token', "");
-          navigate('/login');
-        }
-        }
-      >
-        <ExportOutlined />
-        <p>logout</p>
-      </Button>
     </div>
   )
 }

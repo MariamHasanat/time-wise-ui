@@ -24,14 +24,6 @@
   width: 100%;
 }
 
-.user-card .logout-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100px;
-  margin-top: 10px;
-}
-
 .user-card .user-details .username {
   text-transform: capitalize;
   font-size: 20px;
