@@ -6,7 +6,7 @@ import EditTaskPopup from "../edit-task/edit-task";
 import DeleteConfirmation from "../delete-confirmation/delete-confirmation";
 
 import { setTwoToneColor } from '@ant-design/icons';
-import { timeAsADate, timeInHoursAndMinutes, whatTheTime } from "../../utils/time-borders";
+import { timeAsADate, timeInHoursAndMinutes, convertTimestampToDHMS } from "../../utils/time-borders";
 import { comingTasks } from "../../services/tasks/submit-task";
 
 setTwoToneColor('#52469C');
@@ -32,7 +32,7 @@ const TaskLog = (props: any) => {
             <label style={{ fontSize: "15px", color: "#52469C", width: 300 }}>{task.description}</label>
             <label style={{ fontSize: "10px", color: "#7489C1" }} >{task.projectName}</label>
           </div>
-          <label >{whatTheTime(task.totalTimeInSeconds)}</label>
+          <label >{convertTimestampToDHMS(Number(task.totalTimeInSeconds))}</label>
           <div className="task-time">
             <ClockCircleTwoTone style={{ "fontSize": "22px", "margin": "5px", "color": "#f9ff00" }} /> &nbsp;&nbsp;
             <div className="task-date-time">
