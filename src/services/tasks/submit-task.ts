@@ -1,4 +1,4 @@
-import { ITask } from "../../hooks/tasks/task.hook";
+import { ITask, IUpTask } from "../../hooks/tasks/task.hook";
 import showMessage from "../../utils/message/message";
 
 export interface comingTasks {
@@ -47,10 +47,22 @@ export class TaskAPI {
       .then(async (res) => res.json() as Promise<IResInfo>)
       .catch((error) => showMessage("error", error));
   };
+  updateTask = async (task: IUpTask) => {
+    const optional: RequestInit = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token") || "",
+      },
+      body: JSON.stringify(task.task),
+    };
+    return await fetch(`${this.API}/tasks/${task.taskId}`, optional)
+      .then(async (res) => res.json() as Promise<IResInfo>)
+      .catch((error) => showMessage("error", error));
+  };
   completeTask = async (taskInfo: ITaskInfo) => {
     const { _id, endTime } = taskInfo;
 
-    
     const optional: RequestInit = {
       method: "POST",
       headers: {
@@ -76,7 +88,7 @@ export class TaskAPI {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        token: this.token,
+        token: localStorage.getItem("token") || "",
       },
     };
 
@@ -93,4 +105,5 @@ export class TaskAPI {
         return false;
       });
   };
+
 }

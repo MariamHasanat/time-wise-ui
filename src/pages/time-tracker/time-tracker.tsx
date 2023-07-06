@@ -13,10 +13,13 @@ export interface IProName {
 }
 
 const TimeTracker = () => {
+
   const [projectsNames, setProjectsNames] = useState<IProName[]>([]);
   const [loading, setLoading] = useState(true);
   const newTask = useTask();
   const allTasks = newTask.comingState;
+  // const myLabel = document.getElementById("myLabel") as HTMLLabelElement;
+  // myLabel.style.textAlign = "center";
 
   useEffect(() => {
     fetchProjectNames()
@@ -26,13 +29,15 @@ const TimeTracker = () => {
         } else {
           setProjectsNames(names);
         }
-        setLoading(false);
       })
       .catch((error) => {
         showMessage('error', error);
-        setLoading(false);
-      });
-
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      })
     newTask
       .getTasks()
       .then(() => {
@@ -61,8 +66,10 @@ const TimeTracker = () => {
           startNewTask={newTask.add}
           completeRunningTask={newTask.complete}
         />
-
-        <TaskLog allTasks={allTasks} handleDeleteTask={newTask.deleteTask} />
+        <label >Your Completed Tasks</label>
+        <div style={{ display: "flex", flexDirection: "column-reverse" }}>
+          <TaskLog allTasks={allTasks} handleDeleteTask={newTask.deleteTask} handleUpdateTask={newTask.update} />
+        </div>
       </Spin>
     </div>
   );
