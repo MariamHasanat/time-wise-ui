@@ -52,9 +52,7 @@ const TaskLog = (props: any) => {
                 >
                   <EditTwoTone style={{ "fontSize": "22px", "margin": "5px" }} />
                 </Button>
-
                 <DeleteConfirmation onDelete={() => handleDeleteTask(task._id)} taskId={task._id} />
-
               </div>
               <EditTaskPopup handleUpdateTask={handleUpdateTask} editMode={editMode} taskId={task._id} setEditMode={setEditMode} description={task.description} start={task.beginTime} end={task.endTime} />
             </form>
