@@ -33,11 +33,11 @@ const TaskLog = (props: any) => {
             <span className="newStyle" style={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
               <span className="color" style={{ backgroundColor: task.projectColor }}>&nbsp;</span>
               <div className="task-desc">
-                <label style={{ fontSize: "15px", color: "#52469C", width: 210 }}>{task.description}</label>
+                <label style={{ fontSize: "15px", color: "#52469C", maxWidth: "180px" }}>{task.description}</label>
                 <label style={{ fontSize: "10px", color: "#7489C1" }} >{task.projectName}</label>
               </div>
             </span>
-            <label >{convertTimestampToDHMS(Number(task.totalTimeInSeconds))}</label>
+            <label style={{maxWidth : "180px"}} >{convertTimestampToDHMS(Number(task.totalTimeInSeconds))}</label>
             <div className="task-time">
               <ClockCircleTwoTone style={{ "fontSize": "22px", "margin": "5px", "color": "#f9ff00" }} /> &nbsp;&nbsp;
               <div className="task-date-time">
