@@ -21,7 +21,7 @@ export interface IResInfo {
   taskID: string;
 }
 
-export class TaskAPI {
+class TaskAPI {
   private API: string = `http://localhost:3001`;
   private token: string = localStorage.getItem("token") || "";
   public receivedStatus: object = {};
@@ -34,6 +34,7 @@ export class TaskAPI {
       },
     }).then((res) => res.json() as Promise<comingTasks[]>);
   };
+
   createTask = async (task: ITask) => {
     const optional: RequestInit = {
       method: "POST",
@@ -49,8 +50,8 @@ export class TaskAPI {
   };
   completeTask = async (taskInfo: ITaskInfo) => {
     const { _id, endTime } = taskInfo;
+    console.log("id is ", _id);
 
-    
     const optional: RequestInit = {
       method: "POST",
       headers: {
@@ -62,7 +63,7 @@ export class TaskAPI {
     return await fetch(`${this.API}/tasks/${_id}`, optional)
       .then((res) => {
         if (res.status === 200) {
-          // showMessage("success", "completed successfully");
+          showMessage("success", "completed successfully");
           return true;
         } else {
           showMessage("error", "failed complete the task");
@@ -70,27 +71,104 @@ export class TaskAPI {
         }
       })
       .catch((error) => showMessage("error", error));
-  };
+  }
   deleteTask = (taskId: string) => {
     const optional: RequestInit = {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
-        token: this.token,
-      },
+        'Content-Type': 'application/json',
+        'token': this.token
+      }
     };
 
     return fetch(`${this.API}/tasks/${taskId}`, optional)
-      .then((res) => {
+      .then(res => {
         if (res.ok) {
           return true;
         } else {
-          throw new Error("Failed to delete task.");
+          throw new Error('Failed to delete task.');
         }
       })
-      .catch((error) => {
-        showMessage("error", error);
+      .catch(error => {
+        showMessage('error', error);
         return false;
       });
   };
 }
+export default TaskAPI;
+
+
+
+
+// import { ITask } from "../../hooks/tasks/task.hook";
+// import showMessage from "../../utils/message/message";
+
+// export interface comingTasks {
+//   '_id': string,
+//   'description': string,
+//   'beginTime': string,
+//   'endTime': string,
+//   'projectName': string,
+//   'projectColor': string
+// }
+
+// class TaskAPI {
+//   private API: string = `http://localhost:3001`;
+//   private token: string = localStorage.getItem("token") || "";
+
+//   getTasks = () => {
+//     return fetch(`${this.API}/tasks`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'token': this.token
+//       }
+//     }
+//     ).then(res => res.json() as Promise<comingTasks[]>);
+//   }
+
+//   createTask = (task: ITask) => {
+//     console.log(task);
+
+//     const optional: RequestInit = {
+//       method: "POST",
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'token': this.token
+//       },
+//       body: JSON.stringify(task)
+//     };
+//     return fetch(`${this.API}/tasks`, optional)
+//       .then(res => res.status === 201)
+//       .catch(error => showMessage('error', error))
+
+//   }
+//   deleteTask = (taskId: string) => {
+//     const optional: RequestInit = {
+//       method: "DELETE",
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'token': this.token
+//       }
+//     };
+
+//     return fetch(`${this.API}/tasks/${taskId}`, optional)
+//       .then(res => {
+//         if (res.ok) {
+//           return true;
+//         } else {
+//           throw new Error('Failed to delete task.');
+//         }
+//       })
+//       .catch(error => {
+//         showMessage('error', error);
+//         return false;
+//       });
+//   };
+
+// }
+// export default TaskAPI
+
+
+
+
