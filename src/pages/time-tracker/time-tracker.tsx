@@ -40,7 +40,7 @@ const TimeTracker = () => {
       })
       .catch((error) => {
         showMessage('error', error);
-      });
+      });// eslint-disable-next-line
   }, []);
 
   const convertedProjectsNames = projectsNames.map((item) => ({
