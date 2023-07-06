@@ -2,7 +2,7 @@ import { Modal } from 'antd';
 import './edit-task.css';
 import Input from '../input/input';
 import { useState } from 'react';
-import { convertToTimestamp } from '../../utils/convert-timeStamp';
+import { convertFromTimestamp, convertToTimestamp } from '../../utils/convert-timeStamp';
 import { IUpTask } from '../../hooks/tasks/task.hook';
 
 interface IProps {
@@ -43,7 +43,7 @@ const EditTaskPopup = (props: IProps) => {
         <Input
           label={"Start Time"}
           type='datetime-local'
-          value={updateTask.task.beginTime}
+          value={convertFromTimestamp(Number(updateTask.task.beginTime))}
           onChange={(e) => {
             setUpdatedTask({ taskId: props.taskId, task: { ...updateTask.task, beginTime: convertToTimestamp(e.target.value.toString()).toString() } })
           }}
@@ -51,7 +51,7 @@ const EditTaskPopup = (props: IProps) => {
         <Input
           label={"End Time"}
           type='datetime-local'
-          value={updateTask.task.endTime}
+          value={convertFromTimestamp(Number(updateTask.task.endTime))}
           onChange={(e) => {
             setUpdatedTask({ taskId: props.taskId, task: { ...updateTask.task, endTime: convertToTimestamp(e.target.value.toString()).toString() } })          }}
           min={updateTask.task.beginTime || 0}

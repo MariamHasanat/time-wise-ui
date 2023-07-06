@@ -22,6 +22,7 @@
   color: #52469c;
   display: flex;
   align-items: center;
+  width: 130px;
 }
 .task-log .task-date-time {
   display: flex;
