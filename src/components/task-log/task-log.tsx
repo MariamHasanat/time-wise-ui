@@ -20,7 +20,7 @@ export interface IProps {
 
 const TaskLog = (props: any) => {
   const allTasks = props.allTasks;
-  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editMode, setEditMode] = useState<string>('');
   const handleDeleteTask = props.handleDeleteTask;
   const handleUpdateTask = props.handleUpdateTask;
 
@@ -29,7 +29,7 @@ const TaskLog = (props: any) => {
       allTasks.length ?
       allTasks.map((task: comingTasks, key: number) => (
         task.status === "stopped" ?
-          <form className="task-log" key={key}>
+          <form className="task-log" key={task._id}>
             <span className="newStyle" style={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
               <span className="color" style={{ backgroundColor: task.projectColor }}>&nbsp;</span>
               <div className="task-desc">
@@ -47,7 +47,7 @@ const TaskLog = (props: any) => {
             </div>
             <div className="control-btns">
               <Button
-                onClick={() => setEditMode(true)}
+                onClick={() => setEditMode(task._id)}
                 style={{ "backgroundColor": "transparent", "border": "none", "boxShadow": "none", "padding": 0, "marginRight": "10px" }}
               >
                 <EditTwoTone style={{ "fontSize": "22px", "margin": "5px" }} />
