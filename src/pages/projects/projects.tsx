@@ -6,6 +6,7 @@ import getProjects from '../../services/projects/getProjects';
 import { IProject } from '../../types/project-interface';
 import './projects.css'
 import showMessage from '../../utils/message/message';
+import NoProjectsFound from './no-projects-found/not-found';
 
 const ProjectsPage = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -26,7 +27,9 @@ const ProjectsPage = () => {
         showMessage('error', 'Error fetching projects')
       }
       finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       }
     };
 
@@ -38,8 +41,8 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div className="projects-page">
-      <Spin spinning={loading}>
+    <Spin spinning={loading}>
+      <div className="projects-page">
         <div className="projects-page-inner">
           <div className="new-project-btn">
             <Button onClick={() =>
@@ -48,15 +51,19 @@ const ProjectsPage = () => {
           </div>
         </div>
         <div className="projects-board">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.name}
-              color={project.color}
-              name={project.name}
-              description={project.description || ''}
-              projectHours={project.projectHours || 0}
-            />
-          ))}
+          {
+            projects.length ?
+              projects.map((project) => (
+                <ProjectCard
+                  key={project.name}
+                  color={project.color}
+                  name={project.name}
+                  description={project.description || ''}
+                  projectHours={project.projectHours || 0}
+                />
+              ))
+              : <NoProjectsFound />
+          }
         </div>
         <ProjectForm
           onProjectCreated={handleProjectCreated}
@@ -65,8 +72,8 @@ const ProjectsPage = () => {
           setIsSubmit={setIsSubmit}
           isSubmit={isSubmit}
         />
-      </Spin>
-    </div>
+      </div>
+    </Spin>
   );
 };
 

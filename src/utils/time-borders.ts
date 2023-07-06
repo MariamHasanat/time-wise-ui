@@ -26,8 +26,8 @@ export const whatTheTime = (timeStamp: string) => {
     return hours + " h";
   } else if (minutes < 1) {
     const seconds = time.getSeconds();
-      return seconds + " sec";
-    } else {
-      return minutes + " min";
-    }
+    return seconds + " sec";
+  } else {
+    return minutes + " min";
+  }
 };

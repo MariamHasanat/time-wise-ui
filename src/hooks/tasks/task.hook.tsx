@@ -43,7 +43,7 @@ const useTask = () => {
     await api.createTask(task)
       .then(async (success : any) => {
         if (success) {
-          showMessage('success', "task started successfully");
+          // showMessage('success', "task started successfully");
           localStorage.setItem("taskID", success.taskID.toString())
         }
       })

@@ -15,7 +15,7 @@ const StopWatch = (props: Props) => {
 
   useEffect(() => {
     setTimeArray(calculateTimeInSeconds(timeInSecond));
-  }, [timeInSecond]); 
+  }, [timeInSecond]);
 
 
   return (
