@@ -18,7 +18,7 @@ const login = async (props: ILogin) => {
         return response.json()
           .then((res) => {
             localStorage.setItem('token', res.token)
-            showMessage('success', 'success');
+            showMessage('success', 'welcome back!');
             return true;
           })
       } else if (response.status === 400 || response.status === 401) {

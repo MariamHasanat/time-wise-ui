@@ -7,7 +7,7 @@
   margin-bottom: 10px;
   margin-left: 50px;
   height: max-content;
-  margin-top: 70px
+  margin-top: 70px;
 }
 
 .user-card .profile-pic {
@@ -22,15 +22,6 @@
 
 .user-card .profile-pic img {
   width: 100%;
-}
-
-
-.user-card .logout-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100px;
-  margin-top: 10px;
 }
 
 .user-card .user-details .username {

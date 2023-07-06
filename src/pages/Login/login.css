@@ -39,14 +39,14 @@
   border-radius: var(--border-radius);
 }
 
-.login .button>button {
+.login .button > button {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 7px;
 }
 
-.login .input>input {
+.login .input > input {
   width: 100%;
   display: flex;
   justify-content: center;

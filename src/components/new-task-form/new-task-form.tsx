@@ -53,7 +53,7 @@ const NewTaskForm = (props: any) => {
     const proHasId = projectsId.find((proName) => proName.name === dropdownLabel);
     const proId = proHasId?.id;
     selectedProject.current = proId;
-    
+
     setTaskInformation({ ...taskInformation, projectId: selectedProject.current })
     // eslint-disable-next-line 
   }, [dropdownLabel])
