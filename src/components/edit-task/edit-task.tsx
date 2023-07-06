@@ -1,7 +1,7 @@
 import { Modal } from 'antd';
 import './edit-task.css';
 import Input from '../input/input';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { convertToTimestamp } from '../../utils/convert-timeStamp';
 import { IUpTask } from '../../hooks/tasks/task.hook';
 
@@ -17,9 +17,6 @@ interface IProps {
 const EditTaskPopup = (props: IProps) => {
   console.log(props.description);
 
-  // const [description, setDescription] = useState(props.description);
-  // const [start, setStart] = useState(props.start);
-  // const [end, setEnd] = useState(props.end);
   const [updateTask, setUpdatedTask] = useState<IUpTask>({
     taskId: props.taskId,
     task: {
@@ -28,20 +25,6 @@ const EditTaskPopup = (props: IProps) => {
       endTime: props.end,
     }
   });
-  // useEffect(() => {
-  //   setUpdatedTask({
-  //     taskId: props.taskId,
-  //     task: {
-  //       description: props.description,
-  //       beginTime: props.start,
-  //       endTime: props.end,
-  //     }
-  //   });
-  //   setDescription(props.description);
-  //   setStart(props.start);
-  //   setEnd(props.end);
-
-  // }, [props.taskId, props.description]);
 
   return (
     <div className="edit-task">
@@ -56,7 +39,6 @@ const EditTaskPopup = (props: IProps) => {
           value={updateTask.task.description}
           onChange={(e) => {
             setUpdatedTask({ taskId: props.taskId, task: { ...updateTask.task, description: e.target.value } })
-            // setDescription(e.target.value);
           }}
         />
         <Input
@@ -64,9 +46,7 @@ const EditTaskPopup = (props: IProps) => {
           type='datetime-local'
           value={updateTask.task.beginTime}
           onChange={(e) => {
-            // setStart(e.target.value.toString())//with form 22-5-2023.....
             setUpdatedTask({ taskId: props.taskId, task: { ...updateTask.task, beginTime: convertToTimestamp(e.target.value.toString()).toString() } })
-            // console.log(convertToTimestamp(start));
           }}
         />
         <Input
@@ -74,10 +54,7 @@ const EditTaskPopup = (props: IProps) => {
           type='datetime-local'
           value={updateTask.task.endTime}
           onChange={(e) => {
-            // setEnd(e.target.value.toString())
-            setUpdatedTask({ taskId: props.taskId, task: { ...updateTask.task, endTime: convertToTimestamp(e.target.value.toString()).toString() } })
-            // console.log(end);
-          }}
+            setUpdatedTask({ taskId: props.taskId, task: { ...updateTask.task, endTime: convertToTimestamp(e.target.value.toString()).toString() } })          }}
           min={updateTask.task.beginTime || 0}
         />
       </Modal>
