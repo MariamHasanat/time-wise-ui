@@ -15,7 +15,6 @@ interface IProps {
   handleUpdateTask: Function;
 }
 const EditTaskPopup = (props: IProps) => {
-  console.log(props.description);
 
   const [updateTask, setUpdatedTask] = useState<IUpTask>({
     taskId: props.taskId,
