@@ -29,13 +29,15 @@ const TimeTracker = () => {
         } else {
           setProjectsNames(names);
         }
-        setLoading(false);
       })
       .catch((error) => {
         showMessage('error', error);
-        setLoading(false);
-      });
-
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      })
     newTask
       .getTasks()
       .then(() => {
