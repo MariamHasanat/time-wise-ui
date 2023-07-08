@@ -6,12 +6,13 @@ import UserCard from '../../components/user-card/user-card';
 import { useEffect, useState } from 'react';
 import UseFetchUser from '../../hooks/user/fetch.hook'
 import { Spin } from 'antd';
+import useRange from '../../hooks/dashboard/date.hook';
 const { RangePicker } = DatePicker;
 
 const Dashboard = () => {
+  const rangeHook = useRange();
   const userHook = UseFetchUser();
   const [fetchingUser, setFetchingUser] = useState(true);
-
   useEffect(() => {
     userHook.fetchUserData().then(() =>
       setFetchingUser(false))
@@ -23,8 +24,12 @@ const Dashboard = () => {
       <div className="dashboard">
         <div className='top'>
           <UserCard username={userHook.username} email={userHook.email} />
-          <div className="range-picker">
-            <RangePicker placement='bottomRight' />
+          <div className="range-picker" >
+            <RangePicker
+              placement='bottomRight'
+              format={'MMM DD, YYYY'}
+              onChange={rangeHook.dateChangeHandler}
+            />
             <PieChart />
           </div>
         </div>

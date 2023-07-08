@@ -81,7 +81,7 @@ const useTask = () => {
           tasks = await api.getTasks();
           setComingState(await api.getTasks())
         } else {
-          showMessage('error', "failed submitted task")
+          showMessage('error', "failed to submit the task")
         }
         setComingState(tasks);
       })
