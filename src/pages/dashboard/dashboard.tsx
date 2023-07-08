@@ -7,12 +7,13 @@ import UserCard from '../../components/user-card/user-card';
 import { useEffect, useState } from 'react';
 import UseFetchUser from '../../hooks/user/fetch.hook'
 import { Spin } from 'antd';
+import useRange from '../../hooks/dashboard/date.hook';
 const { RangePicker } = DatePicker;
 
 const Dashboard = () => {
+  const rangeHook = useRange();
   const userHook = UseFetchUser();
   const [fetchingUser, setFetchingUser] = useState(true);
-  const [dateRange, setDateRange] = useState<any | null>([]);
   useEffect(() => {
     userHook.fetchUserData().then(() => setTimeout(() => {
       setFetchingUser(false);
@@ -29,18 +30,8 @@ const Dashboard = () => {
             <RangePicker
               placement='bottomRight'
               format={'MMM DD, YYYY'}
-              onChange={values => {
-                if (values) {
-                  const val1: Date = new Date(dayjs(values[0]).format('YYYY-MM-DDTHH:mm:ss.sssZ'))
-                  const val2: Date = new Date(dayjs(values[1]).format('YYYY-MM-DDTHH:mm:ss.sssZ'))
-                  val1.setHours(0, 0, 0)
-                  val2.setHours(23, 59, 59, 999);
-                  setDateRange([val1.getTime(), val2.getTime()]);
-                }
-                else {
-                  console.log('something went wrong');
-                }
-              }} />
+              onChange={rangeHook.dateChangeHandler}
+            />
             <PieChart />
           </div>
         </div>
