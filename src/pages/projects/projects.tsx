@@ -59,7 +59,7 @@ const ProjectsPage = () => {
                   color={project.color}
                   name={project.name}
                   description={project.description || ''}
-                  projectHours={project.projectHours || 0}
+                  projectHours={project.projectHours || ''}
                 />
               ))
               : <NoProjectsFound />
