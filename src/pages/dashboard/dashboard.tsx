@@ -1,5 +1,4 @@
 import './dashboard.css';
-import dayjs from 'dayjs';
 import { default as BarChart } from "../../components/charts/bar-chart";
 import { default as PieChart } from "../../components/charts/pie-chart";
 import { DatePicker } from 'antd';
@@ -15,11 +14,10 @@ const Dashboard = () => {
   const userHook = UseFetchUser();
   const [fetchingUser, setFetchingUser] = useState(true);
   useEffect(() => {
-    userHook.fetchUserData().then(() => setTimeout(() => {
-      setFetchingUser(false);
-    }, 500)
-    )// eslint-disable-next-line
-  }, []);
+    userHook.fetchUserData().then(() =>
+      setFetchingUser(false))
+    // eslint-disable-next-line
+  },[]);
 
   return (
     <Spin spinning={fetchingUser}>
