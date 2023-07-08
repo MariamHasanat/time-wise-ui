@@ -13,11 +13,10 @@ const Dashboard = () => {
   const [fetchingUser, setFetchingUser] = useState(true);
 
   useEffect(() => {
-    userHook.fetchUserData().then(() => setTimeout(() => {
-      setFetchingUser(false);
-    }, 500)
-    )
-  });
+    userHook.fetchUserData().then(() =>
+      setFetchingUser(false))
+    // eslint-disable-next-line
+  },[]);
 
   return (
     <Spin spinning={fetchingUser}>
