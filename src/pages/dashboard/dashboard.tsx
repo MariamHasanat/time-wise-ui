@@ -16,8 +16,8 @@ const Dashboard = () => {
     userHook.fetchUserData().then(() => setTimeout(() => {
       setFetchingUser(false);
     }, 500)
-    )
-  });
+    )// eslint-disable-next-line
+  },[]);
 
   return (
     <Spin spinning={fetchingUser}>

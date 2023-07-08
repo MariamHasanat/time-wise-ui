@@ -77,7 +77,7 @@ export class TaskAPI {
           // showMessage("success", "completed successfully");
           return true;
         } else {
-          showMessage("error", "failed complete the task");
+          // showMessage("error", "failed to complete the task");
           return false;
         }
       })
