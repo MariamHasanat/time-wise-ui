@@ -9,7 +9,7 @@ const useRange = () => {
       const val2: Date = new Date(dayjs(values[1]).format('YYYY-MM-DDTHH:mm:ss.sssZ'))
       val1.setHours(0, 0, 0)
       val2.setHours(23, 59, 59, 999);
-      console.log(val1, val2)
+      // console.log(val1, val2)
       setDateRange([val1.getTime(), val2.getTime()]);
     }
     else {
