@@ -10,7 +10,9 @@ import useRange from '../../hooks/dashboard/date.hook';
 const { RangePicker } = DatePicker;
 
 const Dashboard = () => {
-  const rangeHook = useRange();
+  const [dateRange, setDateRange] = useState<any | null>([]);
+
+  const rangeHook = useRange(dateRange, setDateRange);
   const userHook = UseFetchUser();
   const [fetchingUser, setFetchingUser] = useState(true);
   useEffect(() => {
@@ -33,7 +35,7 @@ const Dashboard = () => {
             <PieChart />
           </div>
         </div>
-        <BarChart dateRange={rangeHook.dateRange} />
+        <BarChart dateRange={dateRange} />
       </div>
     </Spin>
   );

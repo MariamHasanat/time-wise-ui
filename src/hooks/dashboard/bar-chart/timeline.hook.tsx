@@ -3,6 +3,7 @@ import showMessage from '../../../utils/message/message';
 
 const useFetchTimeline = () => {
   const [timeline, setTimeline] = useState<[any] | null>();
+
   const fetchtimeline = async (startDate: number, endDate: number) => {
     console.log('in timeline', startDate, endDate)
     const token: string = localStorage.getItem('token') || "";

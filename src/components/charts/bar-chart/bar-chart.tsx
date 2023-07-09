@@ -1,22 +1,23 @@
 import './bar-chart.css'
 import { BarChart, Bar, YAxis, CartesianGrid, XAxis, Tooltip, Legend } from "recharts"
-import showMessage from '../../../utils/message/message';
 import { useEffect, useState } from 'react'
 import { Spin } from 'antd';
 import useFetchProjects from '../../../hooks/dashboard/bar-chart/projects.hook';
 import useFetchTimeline from '../../../hooks/dashboard/bar-chart/timeline.hook';
 
-
 const MyBarChart = (dateRange: any) => {
   const [loading, setLoading] = useState(true);
   const projectsHook = useFetchProjects();
-  const timelineHook = useFetchTimeline()
+  const timelineHook = useFetchTimeline();
   useEffect(() => {
-    if (dateRange?.length) {
+    console.log('in useeffect')
+    console.log('date range 0 and date range 1 in bar chart',dateRange[0], dateRange[1])
+    console.log('dateRange:', )
+    if (dateRange){
+     console.log('YESSSS!')  
       console.log('range in barchart', dateRange)
       projectsHook.fetchProjects();
-      timelineHook.fetchtimeline(dateRange[0], dateRange[1]);
-      console.log('date range 0 and date range 1 in bar chart',dateRange[0], dateRange[1])
+      timelineHook.fetchtimeline(dateRange.dateRange[0], dateRange.dateRange[1]);
     }
     else{
       console.log('NOOOOO')
