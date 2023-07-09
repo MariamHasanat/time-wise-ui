@@ -17,7 +17,7 @@ const Dashboard = () => {
     userHook.fetchUserData().then(() =>
       setFetchingUser(false))
     // eslint-disable-next-line
-  },[]);
+  }, []);
 
   return (
     <Spin spinning={fetchingUser}>
@@ -33,7 +33,7 @@ const Dashboard = () => {
             <PieChart />
           </div>
         </div>
-        <BarChart />
+        <BarChart dateRange={rangeHook.dateRange} />
       </div>
     </Spin>
   );

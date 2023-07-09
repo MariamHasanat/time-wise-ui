@@ -1,29 +1,42 @@
 import './bar-chart.css'
 import { BarChart, Bar, YAxis, CartesianGrid, XAxis, Tooltip, Legend } from "recharts"
+import showMessage from '../../../utils/message/message';
 import { useEffect, useState } from 'react'
 import { Spin } from 'antd';
+import useFetchProjects from '../../../hooks/dashboard/bar-chart/projects.hook';
+import useFetchTimeline from '../../../hooks/dashboard/bar-chart/timeline.hook';
 
 
-const MyBarChart = () => {
-  const [timeline, setTimeLine] = useState<[any] | null>();
-  const [projects, setProjects] = useState<[any] | null>();
+const MyBarChart = (dateRange: any) => {
   const [loading, setLoading] = useState(true);
+  const projectsHook = useFetchProjects();
+  const timelineHook = useFetchTimeline()
   useEffect(() => {
-    
-  }, [])
+    if (dateRange?.length) {
+      console.log('range in barchart', dateRange)
+      projectsHook.fetchProjects();
+      timelineHook.fetchtimeline(dateRange[0], dateRange[1]);
+      console.log('date range 0 and date range 1 in bar chart',dateRange[0], dateRange[1])
+    }
+    else{
+      console.log('NOOOOO')
+    }
+    setLoading(false);
+  }, [dateRange])
+
   return (
     <div className="bar-chart">
       {
-        timeline && projects ?
+        timelineHook.timeline && projectsHook.projects ?
           <>
             <p className="y-axis-label">Hours</p>
-            <BarChart barSize={20} barGap={10} width={1000} height={250} data={timeline}>
+            <BarChart barSize={20} barGap={10} width={1000} height={250} data={timelineHook.timeline}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey={"date"} />
               <YAxis />
               <Tooltip />
-              {projects ?
-                projects.map((project, key) =>
+              {projectsHook.projects ?
+                projectsHook.projects.map((project, key) =>
                   <Bar key={key} legendType="circle" dataKey={project.name} stackId="a" fill={project.color} />)
                 : "no projects"}
               <Legend />

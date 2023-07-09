@@ -11,9 +11,11 @@ const useRange = () => {
       val2.setHours(23, 59, 59, 999);
       // console.log(val1, val2)
       setDateRange([val1.getTime(), val2.getTime()]);
+      console.log('Range: ', dateRange)
+      console.log(dateRange[0]);
     }
     else {
-      console.log('something went wrong');
+      console.log('something went wrong in date.hook.tsx');
     }
 
   }
