@@ -1,4 +1,5 @@
 import { BarChart, Bar, YAxis, CartesianGrid, XAxis, Tooltip, Legend } from "recharts"
+import './bar-chart.css'
 
 const timeline = [
   {
@@ -72,15 +73,17 @@ const projects = [
 const MyBarChart = () => {
   return (
     <div className="bar-chart">
+      <p className="y-axis-label">Hours</p>
       <BarChart barSize={20} barGap={10} width={1000} height={250} data={timeline}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={"date"} />
         <YAxis />
         <Tooltip />
-        <Legend />
         {projects.map((project, key) =>
           <Bar key={key} legendType="circle" dataKey={project.name} stackId="a" fill={project.color} />)}
+        <Legend />
       </BarChart>
+      <p className="x-axis-label">Date</p>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import './dashboard.css';
-import { default as BarChart } from "../../components/charts/bar-chart";
+import { default as BarChart } from "../../components/charts/bar-chart/bar-chart";
 import { default as PieChart } from "../../components/charts/pie-chart";
 import { DatePicker } from 'antd';
 import UserCard from '../../components/user-card/user-card';

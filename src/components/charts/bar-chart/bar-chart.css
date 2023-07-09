@@ -1,0 +1,33 @@
+.bar-chart {
+  position: absolute;
+}
+
+.bar-chart .y-axis-label {
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  left: 50px;
+
+  right: 100px;
+  /* Safari */
+  -webkit-transform: rotate(-90deg);
+
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+
+  /* IE */
+  -ms-transform: rotate(-90deg);
+
+  /* Opera */
+  -o-transform: rotate(-90deg);
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.bar-chart .x-axis-label {
+  position: relative;
+  top: 70px;
+  left: 15px;
+}
