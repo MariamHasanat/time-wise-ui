@@ -31,3 +31,10 @@
   top: 70px;
   left: 15px;
 }
+
+.bar-chart .barchart-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1280px;
+}
