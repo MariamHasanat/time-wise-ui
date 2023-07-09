@@ -5,7 +5,6 @@ const useFetchTimeline = () => {
   const [timeline, setTimeline] = useState<[any] | null>();
 
   const fetchtimeline = async (startDate: number, endDate: number) => {
-    console.log('in timeline', startDate, endDate)
     const token: string = localStorage.getItem('token') || "";
     fetch(`http://localhost:3001/dashboard/bar-chart?startDate=${startDate}&endDate=${endDate}`, {
       method: 'GET',
@@ -17,7 +16,6 @@ const useFetchTimeline = () => {
       .then((res) => {
         if (res.status === 200) {
           res.json().then((res) => {
-            console.log(res)
             setTimeline(res)
             return true;
           })

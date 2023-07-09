@@ -10,17 +10,9 @@ const MyBarChart = (dateRange: any) => {
   const projectsHook = useFetchProjects();
   const timelineHook = useFetchTimeline();
   useEffect(() => {
-    console.log('in useeffect')
-    console.log('date range 0 and date range 1 in bar chart',dateRange[0], dateRange[1])
-    console.log('dateRange:', )
     if (dateRange){
-     console.log('YESSSS!')  
-      console.log('range in barchart', dateRange)
       projectsHook.fetchProjects();
       timelineHook.fetchtimeline(dateRange.dateRange[0], dateRange.dateRange[1]);
-    }
-    else{
-      console.log('NOOOOO')
     }
     setLoading(false);
   }, [dateRange])
