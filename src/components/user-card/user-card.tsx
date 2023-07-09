@@ -1,13 +1,11 @@
 import './user-card.css';
-import { Button } from 'antd';
-import { ExportOutlined } from "@ant-design/icons"
-import { useNavigate } from 'react-router';
+
 interface userData {
   username: string,
   email: string
 }
 const UserCard = (user: userData) => {
-  const navigate = useNavigate();
+  
   return (
     <div className='user-card'>
       <div className='profile-pic'>

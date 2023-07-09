@@ -1,7 +1,8 @@
-import { useState } from 'react'
 import dayjs from 'dayjs'
-const useRange = () => {
-  const [dateRange, setDateRange] = useState<any | null>([]);
+
+type DateRange = number[];
+const useRange = (newDateRange: DateRange,
+  setDateRange: React.Dispatch<React.SetStateAction<DateRange>>) => {
 
   const dateChangeHandler = (values: any) => {
     if (values) {
@@ -13,13 +14,12 @@ const useRange = () => {
       setDateRange([val1.getTime(), val2.getTime()]);
     }
     else {
-      console.log('something went wrong');
+      console.log('something went wrong in date.hook.tsx');
     }
 
   }
   return {
-    dateChangeHandler,
-    dateRange
+    dateChangeHandler
   }
 }
 export default useRange;
