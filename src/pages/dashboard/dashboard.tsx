@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 import UseFetchUser from '../../hooks/user/fetch.hook'
 import { Spin } from 'antd';
 import useRange from '../../hooks/dashboard/date.hook';
+import { IProject } from '../../types/project-interface';
+import getProjects from '../../services/projects/getProjects';
+import showMessage from '../../utils/message/message';
 const { RangePicker } = DatePicker;
 
 const Dashboard = () => {
@@ -15,9 +18,26 @@ const Dashboard = () => {
   const rangeHook = useRange(dateRange, setDateRange);
   const userHook = UseFetchUser();
   const [fetchingUser, setFetchingUser] = useState(true);
+  const [projects, setProjects] = useState<IProject[]>([]);
+
   useEffect(() => {
     userHook.fetchUserData().then(() =>
-      setFetchingUser(false))
+      setFetchingUser(false)
+    )
+    const fetchProjects = async () => {
+      try {
+        const fetchedProjects = await getProjects();
+        if (Array.isArray(fetchedProjects)) {
+          setProjects(fetchedProjects);
+        } else {
+          showMessage('error', 'Invalid projects data')
+        }
+      } catch (error) {
+        showMessage('error', 'Error fetching projects')
+      }
+    };
+
+    fetchProjects();
     // eslint-disable-next-line
   }, []);
 
@@ -32,7 +52,7 @@ const Dashboard = () => {
               format={'MMM DD, YYYY'}
               onChange={rangeHook.dateChangeHandler}
             />
-            <PieChart />
+            <PieChart projects={projects} />
           </div>
         </div>
         <BarChart dateRange={dateRange} />
