@@ -7,8 +7,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 You should run the backend side in this repo [https://github.com/MariamHasanat/time-wise-api]
 ### Connect Client side with Server side 
-Do not forget to create `.env` file and write this line `TOKEN_KEY = clockify` to connect the frontend side with the server side.
-
+Do not forget to create `.env` file and write the password to connect the frontend side with the server side.
+to get the password plz contact me using the email `201011@ppu.edu.ps`
 ### Login Page 
 ![login page](image.png)
 
@@ -31,4 +31,23 @@ The checkbox to show the password will reveal the password to the user.
 
 ### Successfully create a new user
 <img width="960" alt="success create new user" src="https://github.com/MariamHasanat/time-wise-ui/assets/103320980/d1beaf66-f47d-4899-96a3-a4f173e9d7d4">
+
+### Login process 
+
+1. enter the email 
+2. enter the password 
+
+If the email does not exist or the password is wrong, the site will alert the user.
+
+<img width="960" alt="when enter wrrong password" src="https://github.com/MariamHasanat/time-wise-ui/assets/103320980/40ab8670-547a-4f0e-aa32-a49b5579b6ab">
+
+The correct email and password will allow the user to log in to the application.
+
+<img width="960" alt="the first sign in " src="https://github.com/MariamHasanat/time-wise-ui/assets/103320980/e76e47ab-97a1-4176-bf2e-51077dd8e656">
+
+If the user tries to enter the application in an illegal way, the site will prevent him as well as display him an alert.
+
+<img width="960" alt="unuthonticated login" src="https://github.com/MariamHasanat/time-wise-ui/assets/103320980/9787321c-d1f2-4350-9c69-4d0e5b45ff1b">
+ 
+
 
