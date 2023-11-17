@@ -10,4 +10,4 @@ You should run the backend side in this repo [https://github.com/MariamHasanat/t
 Do not forget create `.env` file and write this line `TOKEN_KEY = clockify` to connect the frontend side with server side.
 
 ### Login Page 
-![Alt text](<login page.png>)
+![Alt text](image.png)
