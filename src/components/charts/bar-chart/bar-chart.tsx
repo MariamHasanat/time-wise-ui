@@ -23,7 +23,7 @@ const MyBarChart = (dateRange: any) => {
        console.log(newTimeLine);
       });
     }
-    setLoading(false);
+    setLoading(false);// eslint-disable-next-line
   }, [dateRange])
 
   return (
