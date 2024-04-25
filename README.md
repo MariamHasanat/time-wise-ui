@@ -8,7 +8,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 You should run the backend side in this repo [https://github.com/MariamHasanat/time-wise-api]
 ### Connect Client side with Server side 
 Do not forget to create `.env` file and write the password to connect the frontend side with the server side.
-to get the password plz contact me using the email `201011@ppu.edu.ps`
+to get the password plz contact me using the email `hasanattmariam@gmail.com`
 ### Login Page 
 ![login page](image.png)
 
